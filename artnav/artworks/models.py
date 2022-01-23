@@ -11,6 +11,7 @@ from django.utils import timezone
 class Artist(models.Model):
   artist_name = models.CharField(max_length=200, unique=True)
   artist_bio = models.TextField(blank=True, null=True)
+  lifespan = models.CharField(max_length=200, blank=True, null=True)
 
   def __str__(self):
     return self.artist_name
@@ -21,6 +22,12 @@ class Artwork(models.Model):
   description = models.TextField(null=True, blank=True)
   about = models.TextField(null=True, blank=True)
   image_ref = models.CharField(max_length=200, blank=True, null=True)
+  
+  iiif_uuid = models.CharField(max_length=300, blank=True, null=True)
+  credit = models.TextField(null=True, blank=True)
+  dimensions = models.CharField(max_length=400, blank=True, null=True)
+  medium = models.CharField(max_length=400, blank=True, null=True)
+
   catalog_id = models.CharField(max_length=200, blank=True, null=True)
   accession_number = models.CharField(max_length=200, blank=True, null=True)
   artwork_slug = models.SlugField(max_length=300)

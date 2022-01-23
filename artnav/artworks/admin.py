@@ -15,7 +15,7 @@ class ArtworkAdmin(admin.ModelAdmin):
 	fieldsets = [
 		('Curator', {'fields': ['curator']}),
 		('Artwork Title', {'fields': ['artwork_title', 'artwork_slug', 'published']}),
-    ('About the Artwork', {'fields': ['description']}),
+    	('About the Artwork', {'fields': ['iiif_uuid', 'credit', 'dimensions', 'medium', 'description']}),
 		('Artist', {'fields': ['artist']})
 	]
 	prepopulated_fields = {'artwork_slug': ('artwork_title',), }
@@ -28,7 +28,7 @@ class ArtworkAdmin(admin.ModelAdmin):
 class ArtistAdmin(admin.ModelAdmin):
 	fieldsets = [
 		('Artist Name', {'fields': ['artist_name']}),
-		('Biography', {'fields': ['artist_bio']})
+		('Biography', {'fields': ['lifespan', 'artist_bio']})
 	]
 	list_display = ['artist_name']
 	search_fields = ['artist_name']
