@@ -1,0 +1,49 @@
+.btn-group{
+  &.show{}
+}
+.btn{
+  border-radius: 2rem;
+  @include type_header_medium;
+  @include font-size(0.8);
+  cursor: pointer;
+  width: 7rem;
+  padding: 0.5rem;
+
+  &.artmap-primary{
+    background-color:$colors_primary;
+    border-color:$colors_primary;
+    color:$colors_primary_btn_text;
+  }
+  &.artmap-secondary{
+    background-color:$colors_grays_light;
+    border-color:$colors_grays_light;
+    color:$colors_primary_btn_text;
+  }
+  &.artmap-subtle-ctrl{
+    background-color:transparent;
+    border: none;
+    border-color:$colors_primary;
+    color:$colors_text_primary;
+    text-decoration: underline;
+  }
+  &.btn-copy{
+    padding: 0.07rem 0.7rem;
+    width: auto;
+    @include font-size(0.7)
+  }
+  &.btn-delete-artwork{
+    color:red;
+    width:auto;
+  }
+  &.btn-delete-collection{
+    color:red;
+    background-color: transparent;
+  }
+}
+.btn-primary:not([disabled]):not(.disabled).active,
+.btn-primary:not([disabled]):not(.disabled):active,
+.show>.btn-primary.dropdown-toggle{
+  background-color:$colors_primary;
+  border-color:$colors_primary;
+  color:$colors_primary_btn_text;
+}

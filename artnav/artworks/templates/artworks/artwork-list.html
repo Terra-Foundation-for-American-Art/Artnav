@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+{% if messages %}
+  {% for message in messages %}
+    <div class="{{ message.tags }}">{{ message }}</div>
+  {% endfor %}
+{% endif %}
+
+
+<div class='row'>
+{% for artItem in artList %}
+<div class='col-3 card_column'>
+  <div class="card">
+    {% if artItem.image_ref %}
+    <div class="card-img-top" style='background-image: url({{artItem.image_ref}});'></div>
+    {% else %}
+    <div class="card-img-top" style="background-image: url({% static 'images/blue.png' %});"></div>
+    {% endif %}
+    <div class="card-body">
+      <h2 class="card-title">
+        <a href='{% url "artworks:artwork-detail" artItem.artwork_slug %}'>{{ artItem.artwork_title }}</a>
+      </h2>
+      <p class='artist_byline'>by {{artItem.artist.artist_name}}</p>
+      <!-- <p class="card-text">{{artItem.description|truncatewords:50}}</p> -->
+      <!-- <p class='card_body_text'>{% lorem 50 w %}</p> -->
+    </div>
+    <p class='data-fig'>{{artItem.pub_date | date:'m.d.Y'}}</p>
+  </div>
+</div>
+{% endfor %}
+</div>
+
+
+{% endblock %}

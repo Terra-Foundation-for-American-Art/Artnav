@@ -1,0 +1,82 @@
+
+.artmapper-global-navigation{
+  @include type_header_bold;
+  // padding-top: 3rem;
+  margin-bottom: 2rem;
+  z-index: 3;
+  position: relative;
+  ul{
+    margin:0;
+    padding:0;
+    // text-align: center;
+    li{
+      list-style-type: none;
+      display: inline-block;
+
+      &.site-word-mark{
+        float:left;
+        h1{
+          margin:0;
+          display: inline-block;
+          @include line-height(0.5);
+          a{
+            color:$colors_background_primary;
+            @include font-size(1.2);
+          }
+        }
+        .artwork_title{
+          display: inline-block;
+          vertical-align: middle;
+          @include type_header_bold;
+          border-right: 1px solid $colors_background_primary;
+          padding-right: 1rem;
+          color:$colors_background_primary;
+          margin-right:0.9rem;
+          @include font-size(1.2)
+        }
+        .artist_name{
+          @include type_header_medium;
+          color:$colors_background_primary;
+          vertical-align: bottom;
+          line-height: 1.05rem;
+        }
+      }
+      a{
+        color:$colors_text_primary;
+      }
+      &.artmapper-global-options{
+        float:right;
+        @include type_body;
+        a{
+          margin-right:1.1rem;
+        }
+        .account_menu_item{
+          display: inline-block;
+          .dropdown-toggle{
+            .oi{
+              font-size: 0.7rem;
+              margin-left: 0.5rem;
+            }
+          }
+        }
+      }
+    }
+  }
+  &.artwork_view{
+    display: none;
+    .site-word-mark{
+      h1{
+        display: none;
+      }
+    }
+    .utility-nav{
+      display: none;
+    }
+  }
+  .top-nav{
+    background-color: $colors_primary;
+    padding: 1.2rem;
+    height: 3.6rem;
+  }
+}
+

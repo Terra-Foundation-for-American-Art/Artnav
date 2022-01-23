@@ -1,0 +1,10 @@
+<template>
+  <div class="icon plus">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="5907 1074 20 20" id='plus-icon'>
+      <g id="Symbol_6_1" data-name="Symbol 6 – 1" transform="translate(4075 506)">
+        <rect id="Rectangle_2" data-name="Rectangle 2" class="cls-1" width="20" height="2.053" rx="1" transform="translate(1832 576.974)"/>
+        <rect id="Rectangle_4" data-name="Rectangle 4" class="cls-1" width="20" height="2.053" rx="1" transform="translate(1843.026 568) rotate(90)"/>
+      </g>
+    </svg>
+  </div>
+</template>

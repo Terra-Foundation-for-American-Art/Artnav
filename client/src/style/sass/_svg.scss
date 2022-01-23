@@ -1,0 +1,158 @@
+#artmapper_create{
+  #Rectangle_10{
+    rect{
+      stroke:$colors_background_primary;
+      fill: none;
+    }
+  }
+  #Path_5{
+    fill:$colors_background_primary;
+    stroke: $colors_background_primary;
+  }
+  #Path_7{
+    fill:$colors_background_primary;
+    stroke: $colors_background_primary;
+  }
+  #Rectangle_2{
+    fill:$colors_background_primary;
+  }
+  #Rectangle_4{
+    fill:$colors_background_primary;
+  }
+}
+#artmaps-icon{
+  .cls-1 {
+    fill: none;
+  }
+
+  .cls-1, .cls-3 {
+    stroke: $colors_background_primary;
+    stroke-width: 2px;
+  }
+
+  .cls-2 {
+    fill: $colors_background_primary;
+  }
+
+  .cls-3, .cls-5 {
+    fill: none;
+  }
+
+  .cls-4 {
+    stroke: none;
+  }
+}
+#collections-icon{
+  .cls-1 {
+    fill: none;
+  }
+
+  .cls-1, .cls-2 {
+    stroke: $colors_background_primary;
+    stroke-width: 2px;
+  }
+
+  .cls-2, .cls-4 {
+    fill: none;
+  }
+
+  .cls-3 {
+    stroke: none;
+  }
+}
+#artists-icon{
+  .cls-1 {
+    fill: $colors_background_primary;
+    fill-rule: evenodd;
+  }
+}
+#plus-icon{
+  .cls-1 {
+    fill: $colors_grays_dark;
+  }
+}
+#check-icon{
+  display: block;
+  .cls-1 {
+    fill: none;
+    stroke: #394242;
+  }
+}
+#x-icon{
+  display: block;
+  .cls-1 {
+    fill: none;
+    stroke: #394242;
+  }
+}
+#scrub-arrows{
+  display: block;
+  .cls-1 {
+    fill: none;
+    stroke: #394242;
+  }
+}
+#pencil-icon{
+  path{
+    fill: $colors_grays_dark;
+  }
+}
+#double-arrow-icon{
+  .cls-1 {
+    fill: none;
+    stroke: #333445;
+    stroke-width: 2px;
+  }
+}
+.sidebar_reveal{
+  #double-arrow-icon{
+    .cls-1 {
+      fill: none;
+      stroke: #333445;
+      stroke-width: 2px;
+      transition: all 0.2s ease-in-out;
+    }
+  }
+  &:hover, &.open{
+    #double-arrow-icon{
+      .cls-1 {
+        fill: none;
+        stroke: $colors_primary;
+        stroke-width: 2px;
+      }
+    }
+  }
+}
+#preview-icon{
+  .cls-1, .cls-2, .cls-5 {
+    fill: none;
+  }
+
+  .cls-2 {
+    stroke: #fff;
+    stroke-width: 2px;
+  }
+
+  .cls-3, .cls-4 {
+    stroke: none;
+  }
+
+  .cls-4 {
+    fill: #fff;
+  }
+}
+
+#publish-icon{
+  .cls-1, .cls-3 {
+    fill: none;
+  }
+
+  .cls-1 {
+    stroke: #fff;
+    stroke-width: 2px;
+  }
+
+  .cls-2 {
+    stroke: none;
+  }
+}

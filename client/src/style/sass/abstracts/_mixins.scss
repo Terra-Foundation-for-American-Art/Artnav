@@ -1,0 +1,86 @@
+
+//Fonts:
+@mixin type_body {
+  // font-family: "Mercury SSm A", "Mercury SSm B", "Georgia", serif;
+  font-family: "ApercuPro", "Helvetica", Arial, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+}
+
+@mixin type_body_bold {
+  // font-family: "Mercury SSm A", "Mercury SSm B", "Georgia", serif;
+  font-family: "ApercuPro-Bold", "Helvetica", Arial, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+}
+
+@mixin type_header_medium {
+  // font-family: "Mercury SSm A", "Mercury SSm B", "Georgia", serif;
+  font-family: "ApercuPro-Medium", "Helvetica", Arial, sans-serif;
+  font-style: normal;
+}
+
+@mixin type_header_bold {
+  // font-family: "Mercury SSm A", "Mercury SSm B", "Georgia", serif;
+  // font-family: "ApercuPro-Bold", "Helvetica", Arial, sans-serif;
+  font-family: "Domaine", "Times New Roman", Georgia, serif;
+  font-style: normal;
+}
+
+@mixin type_header_italic {
+  font-family: "DomaineItalic", "Times New Roman", Georgia, serif;
+  font-style: normal;
+}
+
+@mixin type_data_fig {
+  font-family: "ApercuPro-Mono", "Helvetica", Arial, sans-serif;
+  font-style: normal;
+}
+
+// Layout:
+@mixin layList($padding, $margin_right) {
+  display: inline-block;
+  padding:$padding;
+  margin-right:$margin_right;
+  &:last-child{
+    margin-right:0;
+  }
+}
+
+@mixin gradientOverlay{
+  background-image: -moz-linear-gradient(left, transparent, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8));
+  background-image: -ms-linear-gradient(left, transparent, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8));
+  background-image: -webkit-linear-gradient(left, transparent, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8));
+  background-image: -o-linear-gradient(left, transparent, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8));
+  background-image: linear-gradient(left, transparent, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8));
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='rgba(0, 0, 0, 0)', endColorstr='rgba(0, 0, 0, 0.8)', GradientType=1);
+}
+
+
+//REM font sizing with PX fallback for IE 8 <
+@mixin font-size($sizeValue: 1.6) {
+  font-size: ($sizeValue * 10) + px;
+  font-size: $sizeValue + rem;
+}
+
+@mixin line-height($sizeValue: 1.6) {
+  line-height: ($sizeValue * 10) + px;
+  line-height: $sizeValue + rem;
+}
+
+@mixin respond-to($name) {
+  // If the key exists in the map
+  @if map-has-key($breakpoints, $name) {
+    // Prints a media query based on the value
+    @media #{inspect(map-get($breakpoints, $name))} {
+      @content;
+    }
+  }
+
+  // If the key doesn't exist in the map
+  @else {
+    @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
+        + "Please make sure it is defined in `$breakpoints` map.";
+  }
+}

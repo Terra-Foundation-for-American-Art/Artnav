@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% load render_bundle from webpack_loader %}
+
+{% load static %}
+
+{% block content %}
+
+<div class='body_content_wrap' id='on_dashboard'>
+
+  {% if messages %}
+    {% for message in messages %}
+      <div class="{{ message.tags }}">{{ message }}</div>
+    {% endfor %}
+  {% endif %}
+
+  <div class='row' id='dashboard'></div>
+
+</div>
+{% render_bundle 'dashboard' %}
+
+
+{% endblock %}
+
+
+

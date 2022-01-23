@@ -1,0 +1,110 @@
+{% load render_bundle from webpack_loader %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="robots" content="noindex">
+  <title>Terra Foundation Presents: {{artwork.artwork_title}}</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:url" content="https://www.terraamericanart.org/"/>
+
+  {% if artwork.og_title %}
+  <meta property="og:title" content="{{artwork.og_title}}" />
+  {% else %}
+  <meta property="og:title" content="Terra Foundation's Artmapper" />
+  {% endif %}
+
+  {% if artwork.og_description %}
+  <meta property="og:description" content="{{artwork.og_description}}" />
+  {% else %}
+  <meta property="og:description" content="Experience Artwork spatially with a historical and critical context." />
+  {% endif %}
+
+  <meta property="og:image" content="{% static 'images/social-share-image.jpg' %}"/>
+
+  <link rel="apple-touch-icon" sizes="180x180" href="{% static 'icons/apple-touch-icon.png' %}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{% static 'icons/favicon-32x32.png' %}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{% static 'icons/favicon-16x16.png' %}">
+  <!-- <link rel="manifest" href="{% static 'icons/site.webmanifest' %}"> -->
+  <link rel="mask-icon" href="{% static 'icons/safari-pinned-tab.svg' %}" color="#3b84c7">
+  <meta name="msapplication-TileColor" content="#3b84c7">
+  <meta name="theme-color" content="#ffffff">
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="{% static 'css/screen.css' %}">
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-55815856-4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-55815856-4');
+  </script>
+
+</head>
+
+<body>
+
+  {% comment %}
+  <nav class="artmapper-global-navigation {% block artwork_class %}{% endblock %}">
+    <div class='top-nav'>
+      <ul>
+        <li class='site-word-mark'>
+          <h1><a href="{% url 'dashboard:dashboard' %}">Artmaps</a></h1>
+          {% block artwork_info %} {% endblock %}
+        </li>
+      </ul>
+    </div>
+    <div id='vue-app-utility-nav'></div>
+  </nav>
+  {% endcomment %}
+
+  <div id='artmap'></div>
+  <!-- <span class='artmap_point' id='160'></span>
+  <span class='artmap_point' id='161'></span> -->
+
+  <script type="text/javascript">
+    window.art_id = {{ artwork.id }}
+    window.art_title = "{{artwork.artwork_title}}"
+    window.art_image = "{{ artwork.image_ref }}",
+    window.collections = [
+      {% if collections is not None %}
+        {% for collection in collections %}
+        {
+          collection_title: "{{collection.collection_title}}",
+          collection_slug: "{{collection.collection_slug}}",
+          curatorial_statement: "{{collection.curatorial_statement}}",
+          external_link: "{{collection.external_link}}",
+          artworks: [
+            {% if collection.artworks is not None %}
+            {% for work in collection.artworks.all %}
+              {% if work.id is not artwork.id and work.published %}
+                {
+                  name: "{{work.artwork_title}}",
+                  slug: "{{work.artwork_slug}}",
+                  url: "{{work.image_ref}}",
+                  artist: "{{work.artist.artist_name}}"
+                },
+              {% endif %}
+            {% endfor %}
+            {% endif %}
+          ]
+        },
+        {% endfor %}
+      {% endif %}
+    ]
+  </script>
+  {% render_bundle 'chunk-vendors' %}
+  {% render_bundle 'artmap' %}
+
+
+</body>
+</html>

@@ -1,0 +1,18 @@
+.alert{
+  // reset bootstrap elements:
+  border-radius: 0;
+  border: none;
+  background-color:$colors_alerts_success;
+  color:white;
+  &.artmapper-login{
+    position: absolute;
+    top: 3.65rem;
+    left: 0;
+    width: 100%;
+    padding: 1rem 4rem;
+    text-align: center;
+    &.alert-danger{
+      background-color:#dc4040;
+    }
+  }
+}

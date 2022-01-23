@@ -1,0 +1,49 @@
+// colors:
+$colors_background_primary: rgb(239, 239, 239);
+// $colors_primary: rgb(102, 63, 180);
+$colors_primary:rgb(59, 132, 199);
+$colors_primary_dark:rgb(14, 26, 41);
+$colors_primary_header: rgb(25, 155, 255);
+
+$colors_grays_light: rgb(201, 201, 201);
+$colors_grays_dark: rgb(57, 66, 66);
+$colors_grays_medium: rgb(111, 111, 111);
+
+
+$colors_text_primary: rgb(53, 53, 53);
+$colors_primary_btn_text: rgb(255, 255, 255);
+
+$colors_text_secondary: rgb(139, 139, 139);
+$colors_form_field_section: rgb(197, 197, 197);
+
+$colors_background_point_detail: rgb(248, 248, 248);
+$colors_point_list_meta_attrs: rgb(155, 155, 155);
+$colors_meta_attrs: rgb(136, 136, 136);
+
+$border_primary:1px solid rgb(239, 239, 239);
+$border_input:1px solid rgb(197, 197, 197);
+$border_meta: 1px solid rgb(228, 228, 228);
+
+$colors_artcanvas: rgb(27, 27, 27);
+$input_border_color: rgb(197, 197, 197);
+$colors_alerts_success: rgb(0, 193, 122);
+
+
+
+
+// TYPOGRAPHY:
+// format: css_attribute_target
+$font_size_body: 1.0;
+
+$breakpoints: (
+  'small'  : ( max-width:  576px ),
+  'medium' : ( max-width:  768px ),
+  'large'  : ( max-width: 992px ),
+  'xlarge'  : ( min-width: 1200px )
+);
+
+// NEAT GRID:
+$global-nav-grid: (
+  columns: 12,
+  gutter: 0px,
+);

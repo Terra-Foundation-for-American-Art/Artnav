@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% load widget_tweaks %}
+
+{% block content %}
+
+
+<div class='body_content_wrap'>
+
+  {% if messages %}
+    {% for message in messages %}
+      <div class="{{ message.tags }}">{{ message }}</div>
+    {% endfor %}
+  {% endif %}
+
+  <div class='row'>
+    <div class='col-4'>
+      <h1>{{collection.collection_title}}</h1>
+      <!-- <p>{{collection.curatorial_statement}}</p> -->
+      <p>{% lorem 50 w %}</p>
+    </div>
+    <div class='col-8'>
+      <div class='row'>
+        {% for art in artworks %}
+        <div class='col-4 card_column'>
+          <div class="card">
+            {% if art.image_ref %}
+            <div class="card-img-top" style='background-image: url({{art.image_ref}});'></div>
+            {% else %}
+            <div class="card-img-top" style="background-image: url({% static 'images/blue.png' %});"></div>
+            {% endif %}
+            <div class="card-body">
+              <h2 class="card-title">
+                <a href='{% url "artworks:artwork-detail" art.artwork_slug %}'>{{ art.artwork_title }}</a>
+              </h2>
+              <p class='artist_byline'>by {{art.artist.artist_name}}</p>
+              <!-- <p class="card-text">{{art.description|truncatewords:50}}</p> -->
+              <!-- <p class='card_body_text'>{% lorem 50 w %}</p> -->
+            </div>
+            <p class='data-fig'>{{art.pub_date | date:'m.d.Y'}}</p>
+          </div>
+        </div>
+        {%  endfor %}
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+{% endblock %}

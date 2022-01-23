@@ -1,0 +1,6 @@
+.form-control{
+  @include font-size(0.85);
+  // input{
+    border-radius:0;
+  // }
+}

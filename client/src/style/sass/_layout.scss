@@ -1,0 +1,46 @@
+.container-fluid{
+  padding: 0rem 4rem;
+}
+#container-artmapper-builder{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1050;
+}
+.body_content_wrap{
+  position: relative;
+  top:0;
+  width:100%;
+  height:auto;
+  display: block;
+  &#on_dashboard{
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 5rem;
+    padding-top: 12rem;
+    width: 100%;
+    height: auto;
+    display: block;
+    &.feed-view{
+      width:600px;
+      margin: 0 auto;
+    }
+    &.grid-view{}
+  }
+}
+.section-header{
+  margin-top: 2rem;
+  margin-bottom: 2.2rem;
+  text-align: center;
+  p{
+    margin-bottom: 0.1rem;
+  }
+  a{
+    display: block;
+    color:$colors_text_secondary;
+    @include font-size(0.8);
+  }
+}

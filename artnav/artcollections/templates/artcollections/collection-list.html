@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<div class='row'>
+
+  <div class='col-12 section-header'>
+    <p>All Collections</p>
+  </div>
+
+  {% for collection in collections %}
+      <div class='col-3 card_column'>
+        <div class="card">
+
+          <div class='collection_card_content_group'>
+            <ul class='collection_images'>
+              {% for artwork in collection.artworks.all %}
+                {% if forloop.counter < 5 %}
+                  {% if artwork.image_ref %}
+                  <li style='background-image: url({{artwork.image_ref}});'></li>
+                  {% else %}
+                  <li style="background-image: url({% static 'images/blue.png' %});"></li>
+                  {% endif %}
+                {% endif %}
+              {% endfor %}
+              {% if collection.artworks.all.count > 4 %}
+              <li style="background-image: url({% static 'images/blue.png' %});">+ {{ collection.artworks.all.count|add:"-4" }}</li>
+              {% endif %}
+            </ul>
+
+            <div class="card-body">
+              <h2 class="card-title"><a href="{% url 'artcollections:collection' collection.collection_slug %}">{{collection.collection_title}}</a></h2>
+              <p class='artist_byline'>Curated by {{collection.curator.first_name}} {{collection.curator.last_name}}</p>
+            </div>
+          </div>
+          <p class='data-fig'>{{collection.pub_date | date:'Y.m.d'}}</p>
+        </div>
+      </div>
+  {% endfor %}
+
+</div>
+
+
+{% endblock %}

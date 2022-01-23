@@ -1,0 +1,64 @@
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 62.5%;
+  @include type_body;
+  color:$colors_text_primary;
+}
+
+h1, h2, h3, h4, h5, h6, p, a, span, li, td, div{
+  @include font-size(0.9);
+  @include line-height(1.25);
+}
+
+p{
+
+}
+
+h1, h1 span{
+  @include font-size(1.9);
+  @include type_header_bold;
+  @include line-height(2.2);
+}
+
+h1.art_title{
+  margin:0 0 0.5rem 0;
+}
+
+h2{
+  @include font-size(1.1);
+  @include type_body;
+  a{
+    @include font-size(1.1);
+    @include type_body;
+    color:$colors_text_primary;
+  }
+}
+
+
+a, a:active, a:visited{
+
+
+  // &:hover{
+  // }
+}
+
+.meta_attr_point_list{
+  @include font-size(0.7);
+  color: $colors_point_list_meta_attrs;
+  display: block;
+  border-bottom: $border_primary;
+  padding:0.45rem;
+}
+
+.meta_attr{
+  color: $colors_meta_attrs;
+  @include font-size(0.8);
+  margin:0 0 0.5rem 0;
+}
+
+.data-fig{
+  @include type_data_fig;
+  @include font-size(0.6);
+  color:$colors_meta_attrs;
+}

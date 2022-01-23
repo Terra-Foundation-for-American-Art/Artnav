@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+{% block content %}
+
+{% if form.errors %}
+<div class="alert alert-danger artmapper-login" role="alert">
+  Your username and password didn't match. Please try again.
+</div>
+{% endif %}
+
+<div class="modal-dialog artmapper-login" role="document">
+  <div class="modal-content update_collection">
+
+    <form method="post" action="{% url 'login' %}">
+    {% csrf_token %}
+      <div class='modal-body'>
+
+        <div class='form-group'>
+          <label for="art_title">Username:</label>
+          <small id="imageHelp" class="form-text text-muted">Required</small>
+          {% render_field form.username class="form-control" placeholder='Username...' %}
+        </div>
+
+
+        <div class='form-group'>
+          <label for="art_title">Password:</label>
+          <small id="imageHelp" class="form-text text-muted">Required</small>
+          {% render_field form.password class="form-control" placeholder='Password...' %}
+        </div>
+
+
+        <!-- <div>
+          <input type="submit" value="login" />
+          <input type="hidden" name="next" value="{{ next }}" />
+        </div> -->
+
+      </div>
+
+      <div class='modal-foot'>
+        <div class='row no-gutters'>
+          <div class='col-sm-9'>
+            <div class="form-group">
+              {# Assumes you setup the password_reset view in your URLconf #}
+              <p class='password_reset'><a class='inline_highlight' href="{% url 'password_reset' %}">Lost password?</a></p>
+            </div>
+          </div>
+          <div class='col-sm-3'>
+            <div class="form-group">
+              <button class="btn artmap-primary" type='submit'>Submit</button>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}

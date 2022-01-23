@@ -1,0 +1,79 @@
+// .modal{
+  .modal-dialog{
+    width: 60%;
+    max-width: 45rem;
+    min-width: 28rem;
+    margin: 80px auto;
+    z-index: 2000;
+    input{
+      border:$border_input;
+    }
+    textarea{
+      min-height:8rem;
+    }
+    .modal-content{
+      // background-color:$colors_background_primary;
+      // background-color:red;
+      border-radius: 0;
+      // padding: 1.75rem 3rem;
+      &:before{
+        content: '';
+        display: block;
+        position: absolute;
+        top:0;
+        left:0;
+        height:0.7rem;
+        width:100%;
+        background-color:$colors_primary;
+      }
+      // form{
+        .modal-body{
+          label{
+            display: block;
+            @include type_header_bold;
+            @include font-size(1.4);
+            margin-top: 1.6rem;
+            margin-bottom: 1.3rem;
+          }
+          // input{
+          //   @include font-size(0.85);
+          // }
+          input#id_artwork_title{}
+          select#id_artist{}
+          select#id_collection{}
+        }
+        .modal-footer{
+          .form-group{
+            button.artmap-secondary{
+              margin-right:1rem
+            }
+          }
+        }
+      // }
+    }
+    &.artmapper-login{
+      border: 0px;
+      .modal-content{
+        border:0px;
+        padding:3rem;
+        padding-bottom:1rem;
+        padding-top:2rem;
+        .modal-body{ padding:0; }
+        .modal-foot{
+          margin-top: 2rem;
+          background-color: white;
+          padding: 2rem 0rem 0rem 0rem;
+          border: none;
+          .password_reset{
+            text-align: left;
+          }
+          .form-group{
+            button{
+              margin-left: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+// }

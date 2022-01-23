@@ -1,0 +1,7 @@
+// TYPOGRAPHY:
+.inline_highlight{
+  color:$colors_primary;
+}
+.italic_title{
+  @include type_header_italic;
+}

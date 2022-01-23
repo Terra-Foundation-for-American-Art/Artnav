@@ -1,0 +1,14 @@
+.badge{
+    padding: .6em .7em;
+}
+.badge-published{
+    background-color: #1ab33d;
+    border: 1px solid rgb(2, 150, 36);
+    color:white;
+}
+.badge-unpublished{
+    background-color: rgba(0, 0, 0, 0.1);
+    border: 1px solid;
+    border-color: transparent;
+    color: #fff;
+}

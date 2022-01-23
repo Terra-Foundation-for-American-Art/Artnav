@@ -1,0 +1,16 @@
+<template>
+  <div class="icon collections">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="1033 -5786.5 66.392 50.67" id='collections-icon'>
+      <g id="Symbol_3_1" data-name="Symbol 3 – 1" transform="translate(-27 -5944)">
+        <g id="Group_3" data-name="Group 3" transform="translate(1060 172)">
+          <g id="Rectangle_10" data-name="Rectangle 10" class="cls-1" transform="translate(0 0)">
+            <rect class="cls-3" width="51.995" height="36.17"/>
+            <rect class="cls-4" x="1" y="1" width="49.995" height="34.17"/>
+          </g>
+        </g>
+        <path id="Path_2" data-name="Path 2" class="cls-2" d="M1060.4,196h51.892v36.2" transform="translate(6.1 -30.5)"/>
+        <path id="Path_3" data-name="Path 3" class="cls-2" d="M1060.4,196h51.892v36.2" transform="translate(13.1 -37.5)"/>
+      </g>
+    </svg>
+  </div>
+</template>

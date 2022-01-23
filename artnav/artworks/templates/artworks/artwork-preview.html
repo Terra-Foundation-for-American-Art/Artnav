@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load render_bundle from webpack_loader %}
+{% block artwork_class %}artwork_view{% endblock %}
+
+{% block artwork_info %}
+<span class='artwork_title'>{{artwork.artwork_title}}</span>
+<span class='artist_name'>{{artwork.artist.artist_name}}</span>
+{% endblock %}
+
+{% block artmapper %}artmapper-builder{% endblock %}
+
+{% block content %}
+
+<div id='artmap'></div>
+
+<script type="text/javascript">
+  window.art_id = {{ artwork.id }}
+  window.art_title = "{{artwork.artwork_title}}"
+  window.art_image = "{{ artwork.image_ref }}"
+  window.home_url = "{% url 'dashboard:dashboard' %}"
+  window.profile_url = "{% url 'profiles:user-profile' %}"
+  window.logout_url = "{% url 'logout'%}?next={{request.path}}"
+  window.artmap_builder_url = "{% url 'artworks:artwork-detail' artwork.artwork_slug %}"
+  window.collections = [
+    {% if collections is not None %}
+      {% for collection in collections %}
+      {
+        collection_title: "{{collection.collection_title}}",
+        collection_slug: "{{collection.collection_slug}}",
+        curatorial_statement: "{{collection.curatorial_statement}}",
+        external_link: "{{collection.external_link}}",
+        artworks: [
+          {% if collection.artworks is not None %}
+            {% for work in collection.artworks.all %}
+              {% if work.id is not artwork.id and work.published %}
+                {
+                  name: "{{work.artwork_title}}",
+                  slug: "{{work.artwork_slug}}",
+                  url: "{{work.image_ref}}",
+                  artist: "{{work.artist.artist_name}}"
+                },
+              {% endif %}
+            {% endfor %}
+          {% endif %}
+        ]
+      },
+      {% endfor %}
+    {% endif %}
+    ]
+</script>
+{% render_bundle 'artmap' %}
+{% endblock %}
+
+
+collections_found

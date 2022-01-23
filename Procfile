@@ -1,0 +1,1 @@
+web: gunicorn artnav.wsgi --log-file -
