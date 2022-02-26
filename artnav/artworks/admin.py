@@ -7,22 +7,23 @@ from django.contrib import admin
 from .models import Artwork, Artist, ArtPoint
 
 
-class ArtPointInline(admin.TabularInline):
-	model = ArtPoint
+# class ArtPointInline(admin.TabularInline):
+# 	model = ArtPoint
 
 
 class ArtworkAdmin(admin.ModelAdmin):
 	fieldsets = [
 		('Curator', {'fields': ['curator']}),
 		('Artwork Title', {'fields': ['artwork_title', 'artwork_slug', 'published']}),
-    	('About the Artwork', {'fields': ['iiif_uuid', 'credit', 'dimensions', 'medium', 'description']}),
+    	('About the Artwork', {'fields': ['artwork_creation_date', 'accession_number', 'iiif_uuid', 'credit', 
+		'dimensions', 'medium',]}),
 		('Artist', {'fields': ['artist']})
 	]
 	prepopulated_fields = {'artwork_slug': ('artwork_title',), }
-	list_display = ('artwork_title', 'pub_date')
-	list_filter = ['artwork_title', 'pub_date']
+	list_display = ('artwork_title', )
+	list_filter = ['artwork_title', ]
 	search_fields = ['artwork_title']
-	inlines = [ArtPointInline]
+	# inlines = [ArtPointInline]
 
 
 class ArtistAdmin(admin.ModelAdmin):

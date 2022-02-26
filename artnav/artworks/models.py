@@ -19,16 +19,13 @@ class Artist(models.Model):
 # @python_2_unicode_compatible
 class Artwork(models.Model):
   artwork_title = models.CharField(max_length=300)
-  description = models.TextField(null=True, blank=True)
   about = models.TextField(null=True, blank=True)
-  image_ref = models.CharField(max_length=200, blank=True, null=True)
   
   iiif_uuid = models.CharField(max_length=300, blank=True, null=True)
   credit = models.TextField(null=True, blank=True)
   dimensions = models.CharField(max_length=400, blank=True, null=True)
   medium = models.CharField(max_length=400, blank=True, null=True)
 
-  catalog_id = models.CharField(max_length=200, blank=True, null=True)
   accession_number = models.CharField(max_length=200, blank=True, null=True)
   artwork_slug = models.SlugField(max_length=300)
 
@@ -39,7 +36,6 @@ class Artwork(models.Model):
 
   artwork_creation_date = models.CharField(max_length=50, blank=True, null=True)
   creation_date = models.DateTimeField(auto_now_add=True, blank=True, null=True)
-  pub_date = models.DateTimeField(blank=True, null=True)
   updated_at = models.DateTimeField(auto_now=True, null=True)
 
   og_title = models.CharField(max_length=200, blank=True, null=True)

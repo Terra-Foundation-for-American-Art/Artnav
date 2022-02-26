@@ -216,16 +216,10 @@ class ArtworkViewSet(viewsets.ModelViewSet):
     # This works!
 
     queryset = Artwork.objects.all()
-    catalog_id = self.request.query_params.get('catalog_id', None)
+    accession_num = self.request.query_params.get('accession_num', None)
 
-    if self.request.user.username == 'getty':
-      queryset = queryset.filter(curator=self.request.user)
-
-    if catalog_id is not None:
-      queryset = queryset.filter(catalog_id=catalog_id)
-      print(self.request.user)
-    # if self.request.user.username is 'getty':
-      # print(self.request.user.username)
+    if accession_num is not None:
+      queryset = queryset.filter(accession_number=accession_num)
 
     return queryset
 

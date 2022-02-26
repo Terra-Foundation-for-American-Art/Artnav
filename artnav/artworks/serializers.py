@@ -9,7 +9,7 @@ from drf_extra_fields.fields import Base64ImageField
 class ArtistSerializer(serializers.HyperlinkedModelSerializer):
   class Meta:
     model = Artist
-    fields = ('artist_name', 'artist_bio', 'id')
+    fields = ('artist_name', 'artist_bio', 'lifespan', 'id')
 
 
 class ArtPointSerializer(serializers.ModelSerializer):
@@ -20,7 +20,7 @@ class ArtPointSerializer(serializers.ModelSerializer):
     fields = ('point_x', 'point_y','zoom_value', 'scale_value', 'point_title', 'point_image', 'point_slug',
       'point_content', 'point_lede', 'artwork_context', 'pub_date', 'custom_order_index', 'id')
 
-
+ 
 class ArtworkSerializer(serializers.HyperlinkedModelSerializer):
   # artist = ArtistSerializer()
   curator = serializers.PrimaryKeyRelatedField(queryset=User.objects.all())
@@ -28,9 +28,9 @@ class ArtworkSerializer(serializers.HyperlinkedModelSerializer):
 
   class Meta:
     model = Artwork
-    fields = ('id', 'artwork_title', 'description', 'about', 'image_ref', 'catalog_id',
-      'accession_number', 'artwork_slug', 'artwork_creation_date', 'creation_date', 'updated_at',
-      'artist', 'curator', 'published', 'pub_date', 'og_title', 'og_description',)
+    fields = ('id', 'artwork_title', 'about', 'iiif_uuid', 'credit', 'dimensions', 
+      'medium', 'accession_number', 'artwork_slug', 'artwork_creation_date', 'creation_date', 
+      'updated_at', 'artist', 'curator', 'published', 'og_title', 'og_description',)
 
 
 
