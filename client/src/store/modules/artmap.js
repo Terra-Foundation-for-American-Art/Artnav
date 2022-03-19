@@ -41,7 +41,6 @@ const mutations = {
             point['checkResize'] = false
         })
         setTimeout(() => {
-            // var nonCachedArtImg = `${window.art_image}?d=${Date.now()}`
             state.viewer = OpenSeadragon({
                 id: 'artmapcanvas',
                 visibilityRatio: 1.0,

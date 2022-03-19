@@ -178,23 +178,24 @@ import {CATALOG_URL} from './../../api/endpoints'
 
         updatedRecentArtwork.forEach((updatedArtItem, i) => {
 
-          axiosInstance.get(`${CATALOG_URL}${updatedArtItem.accession_number}/`)
-          .then(resp => {
-            // console.log(resp.body)
+          // axiosInstance.get(`${CATALOG_URL}${updatedArtItem.accession_number}/`)
+          // .then(resp => {
+          //   // console.log(resp.body)
+          console.log(updatedArtItem)
 
-            axiosInstance.get(`https://dlc.services/iiif-img/3/2/${resp.data.iiif_uuid}/info.json`)
+            axiosInstance.get(`https://dlc.services/iiif-img/3/2/${updatedArtItem.iiif_uuid}/info.json`)
             .then(iiif_resp => {
               updatedArtItem['iiif'] = iiif_resp.data
-              updatedArtItem['thumbnail'] = `https://dlc.services/thumbs/3/2/${resp.data.iiif_uuid}/full/${iiif_resp.data.sizes[1].width},${iiif_resp.data.sizes[1].height}/0/default.jpg`
+              updatedArtItem['thumbnail'] = `https://dlc.services/thumbs/3/2/${updatedArtItem.iiif_uuid}/full/${iiif_resp.data.sizes[1].width},${iiif_resp.data.sizes[1].height}/0/default.jpg`
             }, err => {
               console.log(err)
-              updatedArtItem['api_error'] = err.body.message
+              updatedArtItem['api_error'] = err
             })
 
-          }, err => {
-            console.log(err)
-            updatedArtItem['api_error'] = err.body.message
-          })
+          // }, err => {
+          //   console.log(err)
+          //   updatedArtItem['api_error'] = err.body
+          // })
         })
 
         var foundArtworksSize = 0
@@ -202,24 +203,25 @@ import {CATALOG_URL} from './../../api/endpoints'
         updatedRecentCollections.forEach((updatedCollectionItem, i) => {
           updatedCollectionItem.artworks.forEach(collectionArtworkItem => {
             foundArtworksSize += 1
-            axiosInstance.get(`${CATALOG_URL}${collectionArtworkItem.accession_number}/`)
-            .then(resp => {
-              // console.log(resp.body)
-              // console.log(resp)
+            console.log(`https://dlc.services/iiif-img/3/2/${collectionArtworkItem.iiif_uuid}/info.json`)
+            // axiosInstance.get(`${CATALOG_URL}${collectionArtworkItem.accession_number}/`)
+            // .then(resp => {
+            //   // console.log(resp.body)
+            //   // console.log(resp)
 
-              axiosInstance.get(`https://dlc.services/iiif-img/3/2/${resp.data.iiif_uuid}/info.json`)
+              axiosInstance.get(`https://dlc.services/iiif-img/3/2/${collectionArtworkItem.iiif_uuid}/info.json`)
               .then(iiif_resp => {
                 collectionArtworkItem['iiif'] = iiif_resp.data
-                collectionArtworkItem['thumbnail'] = `https://dlc.services/thumbs/3/2/${resp.data.iiif_uuid}/full/${iiif_resp.data.sizes[3].width},${iiif_resp.data.sizes[3].height}/0/default.jpg`
+                collectionArtworkItem['thumbnail'] = `https://dlc.services/thumbs/3/2/${collectionArtworkItem.iiif_uuid}/full/${iiif_resp.data.sizes[3].width},${iiif_resp.data.sizes[3].height}/0/default.jpg`
               }, err => {
                 console.log(err)
-                collectionArtworkItem['api_error'] = err.body.message
+                collectionArtworkItem['api_error'] = err.body
               })
 
-            }, err => {
-              console.log(err)
-              collectionArtworkItem['api_error'] = err.body.message
-            })
+            // }, err => {
+            //   console.log(err)
+            //   collectionArtworkItem['api_error'] = err.body
+            // })
           })
         })
 

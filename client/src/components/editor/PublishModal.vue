@@ -21,11 +21,23 @@
                 </div>
                <div class='form-group'>
                     <small id="imageHelp" class="form-text text-muted">Accession Number:</small>
-                    <input class='form-control' type="text" id='art_title' placeholder='Accession Number...' v-model='accession_number'>
+                    <input class='form-control' type="text" id='art_accession' placeholder='Accession Number...' v-model='accession_number'>
                 </div>
                 <div class='form-group'>
                     <small id="imageHelp" class="form-text text-muted">Date Created:</small>
                     <input class='form-control' type="text" id='art_date' placeholder='Date...' v-model='artwork_creation_date'>
+                </div>
+                <div class='form-group'>
+                    <small id="imageHelp" class="form-text text-muted">Medium:</small>
+                    <input class='form-control' type="text" id='art_medium' placeholder='Medium...' v-model='artwork_medium'>
+                </div>
+                <div class='form-group'>
+                    <small id="imageHelp" class="form-text text-muted">Dimensions:</small>
+                    <input class='form-control' type="text" id='art_dimensions' placeholder='Dimensions...' v-model='artwork_dimensions'>
+                </div>
+                <div class='form-group'>
+                    <small id="imageHelp" class="form-text text-muted">Credit:</small>
+                    <input class='form-control' type="text" id='art_credit' placeholder='Credit...' v-model='artwork_credit'>
                 </div>
                 <div class='form-group autocomplete-group'>
                   <p style="display:none;">{{artist_name}}</p>
@@ -71,14 +83,19 @@
                   </div>
               </div>
               <div class='col-sm-12'>
-                  <div class='form-group' id='edit_about_group'>
-
-                      <small id="imageHelp" class="form-text text-muted">About</small>
-                      <span class='location_group' id='about_rt_pos'></span>
-
+                  <div class='form-group'>
+                      <small id="imageHelp" class="form-text text-muted">Artwork DLCS IIIF UUID:</small>
+                      <div 
+                        v-if='dialog'
+                        @click='openUrl(`https://portal.dlc.services/Image.aspx?space=2&image=${artwork_iiif_uuid}`)'>
+                          <input 
+                            class='form-control' 
+                            id='art_iiif' 
+                            :value='artwork_iiif_uuid' 
+                            disabled=true>
+                      </div>
                   </div>
               </div>
-
             </div>
             
             <div class='row artwork'>
@@ -209,6 +226,10 @@ export default {
         artwork_creation_date: null,
         artist: null,
         description: null,
+        credit: null,
+        iiif_uuid: null,
+        dimensions: null,
+        medium: null,
         image_ref: null,
         artwork_slug: null,
         creation_date: null,
@@ -248,6 +269,22 @@ export default {
         this.$store.state.art.art_data.art.artwork_title = value
         this.$store.state.art.art_data.art.artwork_slug = value.replace(/[^A-Z0-9]+/ig, '-').toLowerCase().toLowerCase()
       }
+    },
+    'artwork_credit': {
+      get () { return this.$store.state.art.art_data.art.credit },
+      set (value) {this.$store.state.art.art_data.art.credit = value}
+    },
+    'artwork_medium': {
+      get () { return this.$store.state.art.art_data.art.medium },
+      set (value) {this.$store.state.art.art_data.art.medium = value}
+    },
+    'artwork_dimensions': {
+      get () { return this.$store.state.art.art_data.art.dimensions },
+      set (value) {this.$store.state.art.art_data.art.dimensions = value}
+    },
+    'artwork_iiif_uuid': {
+      get () { return this.$store.state.art.art_data.art.iiif_uuid },
+      set (value) {this.$store.state.art.art_data.art.iiif_uuid = value}
     },
     'accession_number': {
       get () { return this.$store.state.art.art_data.art.accession_number },
@@ -358,10 +395,10 @@ export default {
         this.autocompletes.collections = null
         this.new_collection.collection_title = null
       }
-    },
-    'art_data.art.about': function (value) {
-      setTimeout(() => { this.initRichText(value) }, 500)
     }
+    // 'art_data.art.about': function (value) {
+    //   setTimeout(() => { this.initRichText(value) }, 500)
+    // }
   },
   methods: {
     ...mapMutations('art', ['revert', 'setArtData', 'setArtDescription', 'callSuccessAlert', 'setArtsArtistId', 'setArtsPublishState', 'setDeleteCandidate']),
@@ -431,26 +468,26 @@ export default {
     handleSelection (selectedIndex) {
         this.index = selectedIndex
     },
-    initRichText (value) {
-      var existingRtEl = document.getElementById('about_rich_text')
-      // var existingToolbar = document.getElementsByClassName('ql-toolbar')[2]
-      var existingToolbar = $('#edit_about_group').find('.ql-toolbar')[0]
-      if (existingRtEl) existingRtEl.parentNode.removeChild(existingRtEl)
-      if (existingToolbar) existingToolbar.parentNode.removeChild(existingToolbar)
+    // initRichText (value) {
+    //   var existingRtEl = document.getElementById('about_rich_text')
+    //   // var existingToolbar = document.getElementsByClassName('ql-toolbar')[2]
+    //   var existingToolbar = $('#edit_about_group').find('.ql-toolbar')[0]
+    //   if (existingRtEl) existingRtEl.parentNode.removeChild(existingRtEl)
+    //   if (existingToolbar) existingToolbar.parentNode.removeChild(existingToolbar)
 
-      // add new element for caption rich text:
-      var newAboutEl = document.createElement('div')
+    //   // add new element for caption rich text:
+    //   var newAboutEl = document.createElement('div')
 
-      newAboutEl.id = 'about_rich_text'
+    //   newAboutEl.id = 'about_rich_text'
 
-      var aboutRef = document.getElementById('about_rt_pos')
-      aboutRef.parentNode.insertBefore(newAboutEl, aboutRef.nextSibling)
+    //   var aboutRef = document.getElementById('about_rt_pos')
+    //   aboutRef.parentNode.insertBefore(newAboutEl, aboutRef.nextSibling)
 
-      this.rt.editor = new Quill(newAboutEl, this.rt.options)
-      if (value) {
-        this.rt.editor.setContents(JSON.parse(value))
-      }
-    },
+    //   this.rt.editor = new Quill(newAboutEl, this.rt.options)
+    //   if (value) {
+    //     this.rt.editor.setContents(JSON.parse(value))
+    //   }
+    // },
     saveNewArtistFirst: function (cb) {
       axiosInstance.post('artists/', this.new_artist, {
         headers: {
@@ -524,9 +561,6 @@ export default {
     },
     updateArtwork: function (collectionCreated, collectionId, shouldPublish) {
       var vm = this
-      // var richTextData = JSON.stringify(this.rt.editor.getContents())
-      // this.setArtDescription(richTextData)
-      // console.log(richTextData)
       console.log(this.art_data.art)
       if (shouldPublish) {
         this.setArtsPublishState(shouldPublish)
@@ -557,12 +591,14 @@ export default {
 
       this.callSuccessAlert(successPayload)
 
-      var artistPayload = {
-        vm: this,
-        artist: updatedArtwork.artist
-      }
+      // var artistPayload = {
+      //   vm: this,
+      //   artist: updatedArtwork.artist
+      // }
 
-      this.getArtistData(artistPayload)
+      // console.log(artistPayload)
+
+      this.getArtistData(updatedArtwork.artist)
       this.getThisArtworksCollections()
 
       $('#publishModal').modal('hide')

@@ -145,111 +145,37 @@ const actions = {
             axiosInstance.get(`https://dlc.services/iiif-img/3/2/${iiif_uuid}/info.json`)
             .then(resp => {
                 commit('setIIIF', resp.data)
-                // dispatch('getPoints', {})
                 resolve(resp)
             }, err => {
                 console.log(err)
                 reject(err)
             })
         })
-        // axiosInstance.get(`https://dlc.services/iiif-img/3/2/${iiif_uuid}/info.json`)
-        //     .then(resp => {
-        //         commit('setIIIF', resp.data)
-        //         dispatch('getPoints', {})
-        //     }, err => {
-        //         console.log(err)
-        //     })
-    },
-    getCatalogData({
-        commit,
-        dispatch
-    }, accession_number) {
-        // FAKE API CALL FOR PRE-API DEV:
-        // axiosInstance.get(``)
-        // getObject(payload.catalog_id, (resp) => {
-        //   commit('setCatalogData', resp)
-        //   var payloadTwo = {
-        //     vm: payload.vm,
-        //     iiif: resp['IIIF-UUID']
-        //   }
-        //   dispatch('getIIIFAsset', payloadTwo)
-        // })
-        // var proxy = 'https://cors-anywhere.herokuapp.com'
-        // var terra100URL = 'https://terra-100-staging.herokuapp.com/api/v1/artworks/'
-        return new Promise((resolve, reject) => {
-            axiosInstance.get(`${CATALOG_URL}${accession_number}/`)
-                .then(resp => {
-                    console.log(resp.data)
-                    commit('setCatalogData', resp.data)
-                    // var payloadTwo = {
-                    //     iiif: resp.data.iiif_uuid
-                    // }
-                    resolve(resp)
-                    // dispatch('getIIIFAsset', resp.data.iiif_uuid)
-                }, err => {
-                    console.log(err)
-                    reject(err)
-                })
-        })
-        // axiosInstance.get(`${CATALOG_URL}${accession_number}/`)
-        //     .then(resp => {
-        //         console.log(resp.data)
-        //         commit('setCatalogData', resp.data)
-        //         // var payloadTwo = {
-        //         //     iiif: resp.data.iiif_uuid
-        //         // }
-        //         dispatch('getIIIFAsset', resp.data.iiif_uuid)
-        //     }, err => {
-        //         console.log(err)
-        //     })
     },
     getPoints({
         commit
     }) {
-        // dispatch('preloadArtCanvas')
         return new Promise((resolve, reject) => {
             axiosInstance.get(`points/?artwork=${window.art_id}`)
                 .then(resp => {
                     commit('setPointData', resp.data)
                     commit('convertAndSetPoints')
-
-                    // setTimeout(() => {
-                    //     commit('initCanvas')
-                    // }, 2000)
                     resolve(resp)
-
                 }, err => {
                     console.log(err)
                     reject(err)
                 }) 
         })
-        // axiosInstance.get(`points/?artwork=${window.art_id}`)
-        //     .then(resp => {
-        //         commit('setPointData', resp.data)
-        //         commit('convertAndSetPoints')
-
-        //         setTimeout(() => {
-        //             commit('initCanvas')
-        //         }, 2000)
-
-        //     }, err => {
-        //         console.log(err)
-        //     })
     },
     getArtData({
         commit,
         dispatch
     }) {
-
-
         return new Promise((resolve, reject) => {
             axiosInstance
                 .get(`art/${window.art_id}/`)
                 .then(resp => {
-
                     commit('setArtData', resp.data)
-                    // dispatch('getArtistData', resp.data.artist)
-                    // dispatch('getCatalogData', resp.data.accession_number)
                     resolve(resp)
                 })
                 .catch(err => {
@@ -257,23 +183,6 @@ const actions = {
                     reject(err)
                 })
         })
-
-
-        // axiosInstance.get(`art/${window.art_id}/`)
-        //     .then(resp => {
-        //         commit('setArtData', resp.data)
-        //         // var payloadTwo = {
-        //         //     artist: resp.data.artist
-        //         // }
-        //         dispatch('getArtistData', resp.data.artist)
-        //         // var payloadThree = {
-        //         //     accession_number: resp.data.accession_number
-        //         // }
-        //         dispatch('getCatalogData', resp.data.accession_number)
-                
-        //     }, err => {
-        //         console.log(err)
-        //     })
     },
     getArtistData({
         commit

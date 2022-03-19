@@ -14,7 +14,7 @@ from .models import Artwork, Artist, ArtPoint
 class ArtworkAdmin(admin.ModelAdmin):
 	fieldsets = [
 		('Curator', {'fields': ['curator']}),
-		('Artwork Title', {'fields': ['artwork_title', 'artwork_slug', 'published']}),
+		('Artwork Title', {'fields': ['artwork_title', 'artwork_slug', 'published', ]}),
     	('About the Artwork', {'fields': ['artwork_creation_date', 'accession_number', 'iiif_uuid', 'credit', 
 		'dimensions', 'medium',]}),
 		('Artist', {'fields': ['artist']})

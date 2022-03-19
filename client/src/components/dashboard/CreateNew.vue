@@ -59,7 +59,12 @@
 
         <div class='form-group'>
           <label for="catalog_id">Accession Number</label>
-          <input class='form-control' type="text" id='catalog_id' placeholder='Catalog ID...' v-model='submission.accession_number'>
+          <input class='form-control' type="text" id='accession_number' placeholder='Accession Number...' v-model='submission.accession_number'>
+        </div>
+        <div class='form-group'>
+          <label for="catalog_id">IIIF Image ID</label>
+          <small id="imageHelp" class="form-text text-muted">Required</small>
+          <input class='form-control' type="text" id='iiif_id' placeholder='IIIF ID...' v-model='submission.iiif_uuid'>
         </div>
     </div>
     <div class='modal-foot'>
@@ -160,8 +165,8 @@ export default {
         artist: null,
         curator: window.user_id,
         curator_id: window.user_id,
-        image_ref: null,
-        accession_number: null
+        accession_number: null,
+        iiif_uuid: null
       },
       currentStatus: 0,
       s: {
@@ -174,7 +179,8 @@ export default {
         artwork_title: false,
         artwork_creation_date: false,
         artist_name: false,
-        accession_number: false
+        accession_number: false,
+        iiif_uuid: false
       },
       validForm: false
     }
@@ -220,6 +226,10 @@ export default {
     },
     'submission.accession_number': function (value) {
       validateExists('accession_number', value, this)
+      this.submissionCheck()
+    },
+    'submission.iiif_uuid': function (value) {
+      validateExists('iiif_uuid', value, this)
       this.submissionCheck()
     },
     'local_input.artist_name': function (value) {

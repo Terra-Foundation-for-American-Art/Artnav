@@ -155,16 +155,20 @@ const mutations = {
         }
     },
     addNewPointToList(state, payload) {
-        if (state.local_data.points.all.length) {
-            convertImgToDataURLviaCanvas(payload.point_image, (b64Data) => {
-                payload.point_image = b64Data
-                state.local_data.points.all.push(payload)
+        if (state.local_data.points.all && state.local_data.points.all.length) {
+            console.log('local points exist')
+            convertImgToDataURLviaCanvas(payload.point.point_image, (b64Data) => {
+                payload.point.point_image = b64Data
+                state.local_data.points.all.push(payload.point)
+                payload.cb()
             })
         } else {
-            convertImgToDataURLviaCanvas(payload.point_image, (b64Data) => {
-                payload.point_image = b64Data
+            console.log('no local points yet')
+            convertImgToDataURLviaCanvas(payload.point.point_image, (b64Data) => {
+                payload.point.point_image = b64Data
                 state.local_data.points.all = []
-                state.local_data.points.all.push(payload)
+                state.local_data.points.all.push(payload.point)
+                payload.cb()
             })
         }
     },
@@ -202,8 +206,10 @@ const actions = {
     getPoints({
         commit
     }, payload) {
+        console.log('get points')
         axiosInstance.get(`points/?artwork=${window.art_id}`)
             .then(resp => {
+                console.log(resp)
                 commit('setPoints', resp.data)
             }, err => {
                 console.log(err)
@@ -225,28 +231,33 @@ const actions = {
                 }
             })
             .then(resp => {
-                
                 $('#newArtPoint').modal('hide')
                 // empty out rich text editor inside of vue instance
                 payload.rt.editor.setContents([])
-                commit('addNewPointToList', resp.data)
-                payload.emitter.emit('openSidebar')
-                dispatch('updateCustomIndexes', {
-                    vm: payload,
-                    points: state.local_data.points.all
-                })
-                commit('closeNewPoint', {
-                    vm: payload
-                })
-                commit('resetNewPointData')
-                var successPayload = {
-                    m: `${resp.data.point_title} was successfully Added.`,
-                    hideDelay: 3500
-                }
-                commit('callSuccessAlert', successPayload)
-                commit('setSavingMode', {
-                    show: false,
-                    padding: 500
+                commit('addNewPointToList', {
+                    // use callback here to handle async image load for 64 bit method:
+                    cb: function () {      
+                        payload.emitter.emit('openSidebar')
+                        console.log(state.local_data.points.all)
+                        dispatch('updateCustomIndexes', {
+                            vm: payload,
+                            points: state.local_data.points.all
+                        })
+                        commit('closeNewPoint', {
+                            vm: payload
+                        })
+                        commit('resetNewPointData')
+                        var successPayload = {
+                            m: `${resp.data.point_title} was successfully Added.`,
+                            hideDelay: 3500
+                        }
+                        commit('callSuccessAlert', successPayload)
+                        commit('setSavingMode', {
+                            show: false,
+                            padding: 500
+                        })
+                    },
+                    point: resp.data
                 })
             }, err => {
                 console.log(err)
@@ -299,7 +310,7 @@ const actions = {
             show: true,
             padding: 0
         })
-        axiosInstance.delete(`points/${state.local_data.points.delete.id}`, {
+        axiosInstance.delete(`points/${state.local_data.points.delete.id}/`, {
                 headers: {
                     'X-CSRFToken': window.csrf
                 }

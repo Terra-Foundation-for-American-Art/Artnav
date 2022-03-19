@@ -11,7 +11,7 @@
   </div>
 </template>
 <script>
-import {mapState, mapActions} from 'vuex'
+import {mapState, mapActions, mapMutations} from 'vuex'
 import SideBar from './sidebar/Sidebar.vue'
 import ArtCanvas from './ArtCanvas.vue'
 import DeleteModal from './DeleteModal.vue'
@@ -26,15 +26,59 @@ export default {
   },
   name: 'artmapper',
   computed: {
-    ...mapState('art', ['preview_state'])
+    ...mapState('art', ['preview_state', 'viewer'])
   },
   methods: {
-    ...mapActions('art', ['getArtData']),
-    ...mapActions('point', ['getPoints'])
+    ...mapActions('art', ['getArtData', 'getArtistData', 'getIIIFAsset']),
+    ...mapMutations('art', ['initCanvas', 'artmapHasLoaded']),
+    ...mapActions('point', ['getPoints']),
+    preloadArtCanvas() {
+      // There's no promise or nice callback from Openseadragon
+      // so we watch the zoom canvas until something is rendered to it.
+      // Then, emit a loading state.
+      const loadCheck = setInterval(() => {
+          // Preload is based on first tiled view of artwork being fully loaded and rendered to <canvas>:
+          if (this.viewer) {
+            const firstLoadItem = this.viewer.world.getItemAt(0)
+            if (firstLoadItem) {
+              const firstLoad = firstLoadItem.getFullyLoaded()
+              if (firstLoad) {
+                this.artmapHasLoaded(this)
+                // if (this.$route.params.pointSlug) {
+                //   this.getArtPointOr404(this.$route.params.pointSlug)
+                // } else {
+                //   this.viewer.viewport.goHome(false)
+                // }
+                clearInterval(loadCheck)
+              }
+            }
+          }
+      }, 500)
+    },
+    createArtmap() {
+      this.getArtData(this)
+        .then((artResponse) => {
+            this.getArtistData(artResponse.data.artist)
+            this.getIIIFAsset(artResponse.data.iiif_uuid)
+              .then((resp) => {
+                this.getPoints()
+                  .then((pointsResponse) => {
+                    this.initCanvas()
+                  })
+                  .catch(err => {
+                    console.log(err)
+                  })
+              })
+              .catch(err => { console.log(err) })
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    }
   },
   created () {
-    this.getArtData(this)
-    console.log(window.art_image)
+    this.preloadArtCanvas()
+    this.createArtmap(null)
   },
   components: {
     ArtCanvas: ArtCanvas,

@@ -2,21 +2,18 @@
   <transition name='main-menu'>
     <div v-if='toggles.main_menu' class='artmap-menu'>
       <div class='artmap-menu-wrap'>
-        <div class='art_meta_info' v-if='local_data.art && local_data.catalog_item'>
-          <!-- <h1>{{local_data.art.artwork_title}}</h1> -->
+        <div class='art_meta_info' v-if='local_data.art && local_data.artist'>
           <h1>
-            {{local_data.catalog_item.artist}} {{local_data.catalog_item.artist_lifespan}}<br>
-            <span class='italic_title'>{{local_data.catalog_item.title}},</span> {{local_data.catalog_item.year}}<br>
+            <!-- {{local_data.artist.artist_name}} {{local_data.artist.lifespan}}<br> -->
+            <span class='italic_title'>{{local_data.art.artwork_title}},</span> {{local_data.art.artwork_creation_date}}<br>
           </h1>
           <p class='catalog_caption'>
-            {{local_data.catalog_item.medium}} {{local_data.catalog_item.dimensions}}<br>
-            {{local_data.catalog_item.credit}}, {{local_data.catalog_item.object_number}}
+            {{local_data.art.medium}} {{local_data.art.dimensions}}<br>
+            {{local_data.art.credit}}, {{local_data.art.accession_number}}
           </p>
-          <!-- <p class='artist_name' v-if='local_data.artist'>by {{local_data.artist.artist_name}}</p> -->
-          <!-- <p class='creation_date'>{{local_data.art.artwork_creation_date}}</p> -->
-          <p v-if='local_data.art.about' v-html='renderQHtml(local_data.art.about)'></p>
+          <p class='artist_name'>by {{local_data.artist.artist_name}}</p>
         </div>
-        <div class='collection_list'>
+        <div class='collection_list' v-if='local_data.collections.length'>
           <div class='row no-gutters'><p class='related-section-label'>Related:</p></div>
           <div class='row related_collection no-gutters' v-if='local_data.collections' v-for='(collection, i) in local_data.collections' :key='i'>
             <h2 class='col-sm-12'>{{collection.collection_title}}</h2>
@@ -65,6 +62,9 @@ export default {
     goToArtmap: function (slug) {
       window.location.href = `/gallery/${slug}`
     }
+  },
+  mounted () {
+    console.log(this.local_data)
   }
 }
 </script>
@@ -123,6 +123,7 @@ export default {
     }
   }
   .collection_list{
+    margin-top:1.5rem;
     border-top:1px solid rgba(255, 255, 255, 0.1);
     padding-top:1.6rem;
   }

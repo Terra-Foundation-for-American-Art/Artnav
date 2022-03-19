@@ -61,7 +61,6 @@ export default {
       'getPoints', 
       'getArtData', 
       'getArtistData', 
-      'getCatalogData',
       'getIIIFAsset'
     ]),
     endPreview: function () {
@@ -123,20 +122,17 @@ export default {
       this.getArtData(this)
         .then((artResponse) => {
           this.getArtistData(artResponse.data.artist)
-          this.getCatalogData(artResponse.data.accession_number)
-            .then((catalogResponse) => {
-              this.getIIIFAsset(catalogResponse.data.iiif_uuid)
-                .then((resp) => {
-                  this.getPoints()
-                    .then((pointsResponse) => {
-                      this.initCanvas(pointsResponse.data)
-                    })
-                    .catch(err => {
-                      console.log(err)
-                    })
-                })
-                .catch(err => { console.log(err) })
-            }).catch(err => { console.log(err) })
+            this.getIIIFAsset(artResponse.data.iiif_uuid)
+              .then((resp) => {
+                this.getPoints()
+                  .then((pointsResponse) => {
+                    this.initCanvas(pointsResponse.data)
+                  })
+                  .catch(err => {
+                    console.log(err)
+                  })
+              })
+              .catch(err => { console.log(err) })
         })
         .catch(err => {
           console.log(err)

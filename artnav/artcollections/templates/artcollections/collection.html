@@ -35,8 +35,6 @@
                 <a href='{% url "artworks:artwork-detail" art.artwork_slug %}'>{{ art.artwork_title }}</a>
               </h2>
               <p class='artist_byline'>by {{art.artist.artist_name}}</p>
-              <!-- <p class="card-text">{{art.description|truncatewords:50}}</p> -->
-              <!-- <p class='card_body_text'>{% lorem 50 w %}</p> -->
             </div>
             <p class='data-fig'>{{art.pub_date | date:'m.d.Y'}}</p>
           </div>

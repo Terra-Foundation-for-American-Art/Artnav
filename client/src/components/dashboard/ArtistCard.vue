@@ -5,6 +5,7 @@
       <h3 class="card-title">
         {{card.artist_name}}
       </h3>
+      <p class='card-detail' v-if='card.lifespan'>{{card.lifespan}}</p>
     </div>
   </div>
 </div>
@@ -197,6 +198,12 @@ export default {
     color:$colors_grays_dark;
     line-height: 1.2rem;
   }
+}
+.card-detail{
+  margin:0;
+  margin-top:0.2rem;
+  font-size:0.8rem;
+  color:#949494;
 }
 .artist_byline{
   color:$colors_text_secondary;

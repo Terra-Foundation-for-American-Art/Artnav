@@ -16,9 +16,9 @@ class DashboardArtworksSerializer(serializers.HyperlinkedModelSerializer):
 
   class Meta:
     model = Artwork
-    fields = ('id', 'artwork_title', 'description', 'image_ref', 'catalog_id', 'accession_number',
+    fields = ('id', 'artwork_title', 'iiif_uuid', 'accession_number',
       'artwork_slug', 'artwork_creation_date', 'creation_date', 'updated_at', 'artist',
-              'curator', 'published', 'pub_date', 'og_title', 'og_description',)
+              'curator', 'published', 'og_title', 'og_description',)
 
 
 class DashboardCollectionsSerializer(serializers.HyperlinkedModelSerializer):
