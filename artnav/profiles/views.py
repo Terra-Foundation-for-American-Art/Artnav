@@ -14,7 +14,7 @@ from django.shortcuts import get_object_or_404, render
 
 from rest_framework import viewsets, mixins, views
 
-from .forms import UserForm, ProfileForm
+from .forms import UserForm
 
 from .serializers import UserSerializer
 
@@ -25,20 +25,16 @@ from .serializers import UserSerializer
 def profile(request):
 	user = get_object_or_404(User, pk=request.user.id)
 	user_form = UserForm(instance=request.user)
-	profile_form = ProfileForm(instance=request.user.profile)
 
 	context = {
 		'user': user,
 		'user_form': user_form,
-		'profile_form': profile_form,
 	}
 
 	if request.method == 'POST':
 		user_form = UserForm(request.POST, instance=request.user)
-		profile_form = ProfileForm(request.POST, instance=request.user.profile)
 		if user_form.is_valid() and profile_form.is_valid():
 			user_form.save()
-			profile_form.save()
 
 			return HttpResponseRedirect(reverse('profiles:user-profile') )
 
