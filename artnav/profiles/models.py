@@ -13,7 +13,6 @@ from artnav.institutions.models import Institution
 class Profile(models.Model):
 	user = models.OneToOneField(User, on_delete=models.CASCADE)
 	role = models.CharField(max_length=300, blank=True, null=True)
-	bio = models.TextField(max_length=500, blank=True, null=True)
 	website = models.URLField(blank=True, null=True)
 	# institution = models.ForeignKey(Institution, on_delete=models.SET_NULL, blank=True, null=True)
 
