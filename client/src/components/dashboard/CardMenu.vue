@@ -7,8 +7,8 @@
     <ul>
       <li><a :href='"/art/" + card.artwork_slug' title="">Edit Artwork</a></li>
       <li>
-        <a v-if='card.published' :href='"/gallery/" + card.artwork_slug' title="">View Published</a>
-        <a v-else :href='"/art/" + card.artwork_slug + "/preview"' title="">View Preview</a>
+        <a v-if='card.published' :href='"/gallery/" + card.artwork_slug + "/"' title="">View Published</a>
+        <a v-else :href='"/art/" + card.artwork_slug + "/preview" + "/"' title="">View Preview</a>
       </li>
       <li v-if='card.published' @click='updatePublishing(false)'>
         Unpublish Artmap
