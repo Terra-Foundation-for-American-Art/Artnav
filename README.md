@@ -31,6 +31,7 @@ The Artnav web application is built using the [Django web framework](https://www
 2. Create a user `createuser -d -l -P -r -s -p`
 3. Create the local database called "artnav" `createdb artnavdb`
 4. Artnav uses the `decouple` package to store accessible environment variables in a .env file in the project root. Create a .env file in the root with these key/value pairs:<br>
+```
 DJANGO_SECRET_KEY=<include a secret string> (generate a secret key for local use here: https://djecrety.ir/)<br>
 DB_NAME=artnavdb<br>
 DB_USER=<the user you just created above><br>
@@ -41,6 +42,7 @@ AWS_ACCESS_KEY_ID=AKIAJCVL476WWR5VNB7Q<br>
 AWS_SECRET_ACCESS_KEY=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<br>
 AWS_STORAGE_BUCKET_NAME=artmapper-assets<br>
 VUE_APP_BASE_URL=http://127.0.0.1:8000/<br>
+```
 5. Create a python virtual environment, I recommend installing virtualenvwrapper to manage virtual environments (https://virtualenvwrapper.readthedocs.io/en/latest/)<br>
 6. Activate the virtual environment with `workon <name of your virtual env>`<br>
 7. Install project dependencies by running `pip install -r requirements.txt`<br>
