@@ -1,23 +1,24 @@
 # The Artnav Project
 Artnav is a web application built for the Terra Foundation for American Art. It's purpose is to make the online creation and display of publicly viewable "Artmaps" easy and manageable. 
 
-## Artmaps
+### Artmaps
 An "Artmap" is a term to describe a context for viewing artwork in which the art can be zoomed to variable scales. 
 
-## Points 
+### Points 
 Navigational "meta" information can be pinned to specific x/y coordinates of the artwork. This kind of "meta" information is called a "Point". Artmap "points" can be read in a natural linear sequence, or as they are denoted on the surface of the artwork, a user can non-linearly explore them as well.
 
-## Collections
+### Collections
 Collections are groupings of Artmaps that have institutional or otherwise conceptual commonalities.
 
-## Artists
+### Artists
 Artists are the artists of the artworks used in Artmaps. Artists have names and lifespans. There is currently an unused field for  biography text.
+
+-----------
 
 # Web Application
 The Artnav web application is built using the [Django web framework](https://www.djangoproject.com/), which is a web framework for the Python programming language. 
 
-
-## Core Project Technologies:
+### Core Project Technologies:
 - Django web framework - https://www.djangoproject.com/ - Core web application framework.
 - PostgresSQL - https://www.postgresql.org/ - Open Source Relational Database
 - Django Rest Framework - https://www.django-rest-framework.org/ - Toolkit for building Web APIs with Django
@@ -25,8 +26,7 @@ The Artnav web application is built using the [Django web framework](https://www
 - Heroku Web hosting - https://www.heroku.com/ - Managed application hosting platform
 - Amazon web services S3 static file hosting
 
-
-## Local Backend/API Installation
+### Local Backend/API Installation
 1. If PostgresSQL isn't installed, install using your preferred method, homebrew or an installer found here: https://www.postgresql.org/download/
 2. Create a user `createuser -d -l -P -r -s -p`
 3. Create the local database called "artnav" `createdb artnavdb`
@@ -51,25 +51,25 @@ VUE_APP_BASE_URL=http://127.0.0.1:8000/<br>
 9. Run project's backend/API locally with `python manage.py runserver`.<br>
 
 
-# client
+### client
 Artnav has several javascript-rich vue.js applications used throughout the project. They serve specific purposes, and so, they are bound to specific areas of the application. Details on their purposes follow, and further below the bundle assignments are described.
 
-### Dashboard:
+#### Dashboard:
 This is the administrative view used for viewing all art in Artnav, creating or deleting new artmaps, and editing collections.
 
-### Editor:
+#### Editor:
 This is the editing tool used to author artmaps. Authoring artmaps includes the ability to update artwork details (artist, medium, dimenions, credits, art titling), add/remove/edit navigational points of interest, preview artmaps before they're published, and then publish or unpublish artmaps.
 
-### Artmap:
+#### Artmap:
 The Artmap application is the publicly viewable zoomable artmap. This includes published details about the artwork itself, and if included, navigational points of interest.
 
-### Create New:
+#### Create New:
 Create new is the form used to create new artmaps. It's accessible from any dashboard view.
 
-### Chunk Vendors:
+#### Chunk Vendors:
 Any required vendor javascript packages are bundled into here.
 
-## Application Bundles
+### Application Bundles
 Artnav has 5 different client bundles. These build configurations are in `vue.config.js`.
 They are each used for specific templates in the application.
 
@@ -86,7 +86,7 @@ They are each used for specific templates in the application.
 `artnav/templates/base.html`.
 
 
-## Local Client Installation
+### Local Client Installation
 Project requires node.js version v14.17.6. Information about updating locally here: https://nodejs.org/en/.
 
 1. cd into `/client` and run `npm install` to install project packages
@@ -94,7 +94,6 @@ Project requires node.js version v14.17.6. Information about updating locally he
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
-
 
 # Deploying the project:
 1. Make sure you have Heroku Command Line tools installed - https://devcenter.heroku.com/categories/command-line
