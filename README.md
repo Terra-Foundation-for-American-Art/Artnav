@@ -25,7 +25,7 @@ The Artnav web application is built using the [Django web framework](https://www
 - Vue.js - a framework for building web user interfaces
 - Heroku Web hosting - https://www.heroku.com/ - Managed application hosting platform
 - Amazon web services S3 static file hosting
-- DLC - The application's IIIF image service, an image hosting service supported by a UK-based cultural institution digital services company called Digirati - https://digirati.com/. 
+- DLC - https://portal.dlc.services/, The application's IIIF image service, an image hosting service supported by a UK-based cultural institution digital services company called Digirati - (https://digirati.com/). 
 
 ---------------------------------------------------------------
 
