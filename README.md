@@ -13,7 +13,7 @@ Collections are groupings of Artmaps that have institutional or otherwise concep
 ### Artists
 Artists are the artists of the artworks used in Artmaps. Artists have names and lifespans. There is currently an unused field for  biography text.
 
------------
+---------------------------------------------------------------
 
 # Web Application
 The Artnav web application is built using the [Django web framework](https://www.djangoproject.com/), which is a web framework for the Python programming language. 
@@ -25,6 +25,8 @@ The Artnav web application is built using the [Django web framework](https://www
 - Vue.js - a framework for building web user interfaces
 - Heroku Web hosting - https://www.heroku.com/ - Managed application hosting platform
 - Amazon web services S3 static file hosting
+
+---------------------------------------------------------------
 
 ### Local Backend/API Installation
 1. If PostgresSQL isn't installed, install using your preferred method, homebrew or an installer found here: https://www.postgresql.org/download/
@@ -86,6 +88,7 @@ They are each used for specific templates in the application.
 `createnew.js` and `chunk-vendors.js` binds to the project's base template here:
 `artnav/templates/base.html`.
 
+---------------------------------------------------------------
 
 ### Local Client Installation
 Project requires node.js version v14.17.6. Information about updating locally here: https://nodejs.org/en/.
@@ -95,6 +98,8 @@ Project requires node.js version v14.17.6. Information about updating locally he
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+---------------------------------------------------------------
 
 # Deploying the project:
 1. Make sure you have Heroku Command Line tools installed - https://devcenter.heroku.com/categories/command-line
