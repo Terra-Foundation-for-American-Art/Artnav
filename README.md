@@ -1,5 +1,5 @@
 # The Artnav Project
-Artnav is a web application built for the Terra Foundation for American Art. It's purpose is to make the online creation and display of publicly viewable "Artmaps" easy and manageable. 
+Artnav is a web application built for the Terra Foundation for American Art. It's purpose is to make the online creation and display of publicly viewable "Artmaps" easy and manageable. Below is a brief documentation and synopsis of the technology, and it's usage.
 
 ### Artmaps
 An "Artmap" is a term to describe a context for viewing artwork in which the art can be zoomed to variable scales. 
@@ -50,8 +50,9 @@ VUE_APP_BASE_URL=http://127.0.0.1:8000/<br>
 9. Create a superadmin user with `python manage.py createsuperuser`, and follow the prompts.<br>
 9. Run project's backend/API locally with `python manage.py runserver`.<br>
 
+---------------------------------------------------------------
 
-### client
+### About the client
 Artnav has several javascript-rich vue.js applications used throughout the project. They serve specific purposes, and so, they are bound to specific areas of the application. Details on their purposes follow, and further below the bundle assignments are described.
 
 #### Dashboard:
