@@ -84,9 +84,6 @@ const mutations = {
     setArtistData(state, payload) {
         state.local_data.artist = payload
     },
-    // setPointData(state, payload) {
-    //     state.local_data.points = payload
-    // },
     setCatalogData(state, payload) {
         state.local_data.catalog_item = payload
     },
@@ -99,17 +96,6 @@ const mutations = {
     toggleDiscoverMode(state, payload) {
         state.discover_mode ? state.discover_mode = false : state.discover_mode = true
     },
-    // convertAndSetPoints({commit}, state) {
-    //     if (state.local_data.points.length > 0) {
-    //         state.local_data.points.forEach((point) => {
-    //             point['x'] = Number(point.point_x)
-    //             point['id'] = String(point.id)
-    //             point['y'] = Number(point.point_y)
-    //             point['placement'] = 'CENTER'
-    //             point['checkResize'] = false
-    //         })
-    //     }
-    // },
     artmapHasLoaded(state, vm) {
         state.loaded = true
         vm.emitter.emit('artmapHasLoaded')
@@ -152,7 +138,6 @@ const actions = {
         return new Promise((resolve, reject) => {
             axiosInstance.get(`${CATALOG_URL}${accession_number}/`)
                 .then(resp => {
-                    console.log(resp.data)
                     commit('setCatalogData', resp.data)
                     resolve(resp)
                 }, err => {
@@ -176,7 +161,6 @@ const actions = {
         commit,
         dispatch
     }, payload) {
-        console.log(window.art_id)
         return new Promise((resolve, reject) => {
             axiosInstance.get(`art/${window.art_id}/`)
                 .then(resp => {

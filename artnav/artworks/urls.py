@@ -10,6 +10,4 @@ urlpatterns = [
 	url(r'^(?P<artwork_slug>[\w\-]+)/?$', views.artwork, name='artwork-detail'),
   	url(r'^(?P<artwork_slug>[\w\-]+)/preview/$', views.artworkPreview, name='artwork-preview'),
 	url(r'^(?P<artwork_slug>[\w\-]+)/add-to-collection', views.addExistingArtworkToCollection, name='artwork-add-to-collection'),
-	# url(r'^$', views.artworkList, name='artwork-list'),
-	# artform-artist
 ]

@@ -15,7 +15,6 @@
 </template>
 <script>
 import {mapState, mapActions} from 'vuex'
-// import {eventsPointEdits} from './../EventBuses'
 export default {
   computed: {
     ...mapState('point', ['local_data']),

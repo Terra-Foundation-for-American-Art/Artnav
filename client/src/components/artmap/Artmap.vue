@@ -76,7 +76,6 @@ export default {
         }
         this.setCurrentPoint(foundArtPoint[0])
         this.goTo(foundArtPoint[0])
-        console.log(foundArtPoint[0])
         this.setInfoTrayOpen()
       } else {
         // go to 404
@@ -84,7 +83,6 @@ export default {
       }
     },
     goHome: function () {
-      console.log(this.viewer)
       this.viewer.viewport.goHome(false)
     },
     goTo: function (focalPoint) {
@@ -96,7 +94,6 @@ export default {
       var zoomVal = Number(focalPoint.zoom_value)
       this.viewer.viewport.zoomTo(zoomVal, false)
       this.viewer.viewport.panTo(point, false)
-      console.log(point)
     },
     setOverlays: function () {
       this.viewer.clearOverlays()

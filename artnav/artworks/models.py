@@ -4,7 +4,6 @@ from __future__ import unicode_literals
 from django.db import models
 
 from django.contrib.auth.models import User
-# from django.utils.encoding import python_2_unicode_compatible
 from django.utils import timezone
 
 
@@ -55,7 +54,6 @@ class ArtPoint(models.Model):
   custom_order_index = models.IntegerField(blank=True, null=True)
   updated_at = models.DateTimeField(auto_now=True, blank=True, null=True)
   point_slug = models.SlugField(unique=True)
-  # point_caption = models.TextField(null=True, blank=True)
   point_content = models.TextField(null=True, blank=True)
   point_lede = models.CharField(max_length=200, blank=True, null=True)
   artwork_context = models.ForeignKey(Artwork, on_delete=models.CASCADE,)
@@ -67,7 +65,6 @@ class ArtPoint(models.Model):
     return self.point_title
 
   def save(self, force_insert=False, force_update=False, *args, **kwargs):
-    # self.artwork_context.updated_at = timezone.now()
     self.artwork_context.save()
     super(ArtPoint, self).save(force_insert, force_update, *args, **kwargs)
 

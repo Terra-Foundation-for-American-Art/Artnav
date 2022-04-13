@@ -6,7 +6,6 @@
       :max="scale_max" 
       :value='scale_value'
       @input="handleRangeChange">
-    <!-- <img class='range_ticks' src="~@/assets/range_slider_image.svg"> -->
     <RangeSliderTicks class='range-slider-ticks' />
   </div>
 </template>
@@ -19,7 +18,6 @@ export default {
   },
   methods: {
     handleRangeChange (e) {
-      console.log(e.target.value)
       this.$emit('rangeChange', e.target.value)
     }
   }

@@ -12,9 +12,6 @@ from artnav.institutions.models import Institution
 
 class Profile(models.Model):
 	user = models.OneToOneField(User, on_delete=models.CASCADE)
-	# role = models.CharField(max_length=300, blank=True, null=True)
-	# institution = models.ForeignKey(Institution, on_delete=models.SET_NULL, blank=True, null=True)
-
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):

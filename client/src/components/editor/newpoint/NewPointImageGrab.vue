@@ -23,21 +23,6 @@
         <span class='snapshot_btn yes' @click='capture'><CheckIcon /></span>
         <span class='snapshot_btn no' @click='handleCloseNewPoint'><XIcon /></span>
       </div>
-      <!-- <transition name="scale-slider"> -->
-      <!-- <Slider
-        v-show='modes.new'
-        :min='scale_min'
-        :max='scale_max'
-        :step='10'
-        :show-stops='true'
-        v-model='scale_value'/> -->
-      <!-- <input 
-        v-show='modes.new'
-        type="range" 
-        :min="scale_min" 
-        :max="scale_max" 
-        v-model='scale_value'> -->
-        
       <div class='range_slider' v-show='modes.new'>
         <range-slider 
           :scale_min='scale_min'
@@ -46,7 +31,6 @@
           @rangeChange='(value) => { scale_value = value }'
         />
       </div>
-      <!-- </transition> -->
     </div>
   </vue-draggable-resizable>
 </template>
@@ -55,7 +39,6 @@
   import {mapState, mapMutations} from 'vuex'
   import VueDraggableResizable from './DraggableWrap.vue'
   import RangeSlider from './RangeSlider.vue'
-  // import {eventsNewPoints, eventsSidebar} from './../../EventBuses'
   import OpenSeadragon from 'openseadragon'
   import CheckIcon from './../../svgs/Check.vue'
   import XIcon from './../../svgs/X.vue'
@@ -90,18 +73,8 @@
         var wrapY = this.$el.offsetTop
         var padX = this.snap_canvas.offsetLeft
         var padY = (this.scale_max - this.scale_value) / 2
-        // var thisX = wrapX + padX
-        // var thisY = wrapY + padY
-        // var thisX = wrapX
-        // var thisY = wrapY
-
         var newX = wrapX - (this.scale_value/2)
         var newY = wrapY - (this.scale_value/2)
-        // var newX = wrapX
-        // var newY = wrapY
-
-        console.log('new x:' + newX)
-        console.log('new y:' + newY)
 
         var image = new Image()
 
@@ -194,13 +167,11 @@
     components: {
       VueDraggableResizable,
       RangeSlider,
-      // Slider: Slider,
       CheckIcon,
       XIcon,
     },
     mounted () {
       const vm = this;
-      // this.snap_canvas = $('#snapshot')[0]
       this.snap_canvas = document.getElementById('snapshot');
       this.setInitialGrabberPosition()
       this.emitter.on('openImageGrabber', () => {
@@ -213,8 +184,6 @@
       })
       
       this.emitter.on('closeNewPointGrabber', () => {
-        console.log('close grabber')
-        console.log(vm)
         this.closeNewPoint({vm})
       })
     }

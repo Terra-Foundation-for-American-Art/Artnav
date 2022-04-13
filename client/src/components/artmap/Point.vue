@@ -4,7 +4,6 @@
     :class='[{active: local_data.current_point === point}, {ready: discover_mode}]'
     :id='point.id'
     @click='handlePointClick(point.point_slug)'>
-    <!-- <i class="material-icons expand_plus">&#xE145;</i> -->
     <svg class='point_el' width="34" height="34">
       <circle cx="16" cy="16" r="15" transform="" class="outer"></circle>
     </svg>

@@ -37,7 +37,6 @@ import { QuillDeltaToHtmlConverter } from 'quill-delta-to-html';
 import moment from 'moment'
 import OpenSeadragon from 'openseadragon'
 import {mapState, mapMutations, mapActions} from 'vuex'
-// import {eventsPointEdits, eventsNewPoints} from './../../EventBuses'
 import PencilIcon from './../../svgs/pencil.svg'
 
 export default{
@@ -88,12 +87,6 @@ export default{
   methods: {
     ...mapMutations('point', ['setPointToBeDeleted', 'setValidation', 'setPointEditorAlert', 'showEditPointModal', 'closeEditPointModal', 'setEditingPoint', 'setEditCaptureThumb', 'setEditCandidate']),
     ...mapActions('point', ['savePointEdit']),
-    // turnOffDrag: function ($e) {
-    //   eventsPointEdits.$emit('turnOffDrag')
-    // },
-    // turnOnDrag: function () {
-    //   eventsPointEdits.$emit('turnOnDrag')
-    // },
     expandPoint: function () {
       if (!this.showEditPoint) {
         this.expanded ? this.expanded = false : this.expanded = true
@@ -106,11 +99,8 @@ export default{
 
       // EVENT is subscribed to by:
       // EditPointImageGrabber.vue
-      // eventsPointEdits.$emit('recaptureFromThumb')
-      console.log('click')
     },
     locateEdit: function (immediately) {
-      // this.viewer.zoomPerClick = 1
       this.setEditCaptureThumb(false)
       this.setEditingPoint(true)
       this.setEditCandidate(this.point)
@@ -130,20 +120,7 @@ export default{
         this.emitter.emit('locateEdit')
         this.emitter.emit('closeNewPointGrabber')
         this.setEditCaptureThumb(true)
-        console.log(this.captures.edit)
       }, 1200)
-
-      // var pointEl = document.getElementById(`${this.point.id}`)
-      // $('.osdOverlayWrap').removeClass('focused')
-      // var pencilBtn = document.createElement('span')
-      // pencilBtn.className = 'snapshot_btn'
-      // $(`#${this.point.id}`).html(pencilBtn)
-      // $(`#${this.point.id} .snapshot_btn`).html(PencilIcon)
-      // $(`#${this.point.id}`).addClass('focused')
-      // $('.osdOverlayWrap .snapshot_btn').on('click', (event) => {
-      //   eventsPointEdits.$emit('editPointGrabber', this.point)
-      //   this.setEditCaptureThumb(true)
-      // })
     },
     editBtnEvents: function () {
 
@@ -151,10 +128,6 @@ export default{
     formatDate: function (date) {
       return moment(date).format('MMMM Do YYYY, h:mm:ss a')
     },
-    // renderRichText: function (contentData) {
-    //   var parsed = JSON.parse(contentData)
-    //   return qRender(parsed.ops)
-    // },
     renderQHtml: function (contentData) {
       var parsedOps = JSON.parse(contentData)
       var cfg = {}
@@ -167,159 +140,6 @@ export default{
       this.setPointToBeDeleted(this.point)
       $('#deletePoint').modal('show')
     },
-    // assignPointDataToLocalInstance: function () {
-    //   this.editedPoint.id = this.point.id
-    //   this.editedPoint.point_x = this.point.point_x
-    //   this.editedPoint.point_y = this.point.point_y
-    //   this.editedPoint.point_title = this.point.point_title
-    //   this.editedPoint.point_slug = this.point.point_slug
-    //   this.editedPoint.point_content = this.point.point_content
-    //   this.editedPoint.artwork_context = this.point.artwork_context
-    // },
-    // toggleShowEditPoint: function () {
-    //   if (this.showEditPoint) {
-    //     this.showEditPoint = false
-    //     this.turnOnDrag()
-    //   } else {
-    //     this.showEditPoint = true
-    //     this.turnOffDrag()
-    //     this.expanded = false
-    //     eventsPointEdits.$emit('triggerEditPoint', this.point.id)
-    //     this.assignPointDataToLocalInstance()
-    //     this.initRichTextEditor()
-    //   }
-    // },
-    // clearTemporaryEditPin: function () {
-    //   var overlayToRemove = document.getElementById('editing-pin')
-    //   if (overlayToRemove) this.viewer.removeOverlay(overlayToRemove)
-    // },
-    // hideOriginalPin: function () {
-    //   var existingPoint = document.getElementById(this.point.id)
-    //   if (existingPoint) {
-    //     existingPoint.style.display = 'none'
-    //   }
-    // },
-    // showOriginalPin: function () {
-    //   var existingPoint = document.getElementById(this.point.id)
-    //   if (existingPoint) {
-    //     existingPoint.style.display = 'block'
-    //   }
-    // },
-    // moveExistingPin: function (rawX, rawY) {
-    //   // localize this canvas overlay instance manipulation to each individual iteration of
-    //   // the pointlistitem component to they can each manage their own state:
-    //   // this.clearTemporaryPin()
-    //   this.hideOriginalPin()
-    //   this.clearTemporaryEditPin()
-    //   this.viewer.zoomPerClick = 1
-
-    //   var elt = document.createElement('span')
-    //   elt.id = 'editing-pin'
-    //   elt.className = "osdOverlayWrap"
-
-    //   var newPoint = {
-    //     element: elt,
-    //     placement: 'CENTER',
-    //     checkResize: false,
-    //     location: new OpenSeadragon.Point(rawX, rawY)
-    //   }
-
-    //   this.viewer.addOverlay(newPoint)
-    //   var stringCoords = {
-    //     x: String(rawX.toFixed(5)),
-    //     y: String(rawY.toFixed(5))
-    //   }
-    //   this.editedPoint.point_x = stringCoords.x
-    //   this.editedPoint.point_y = stringCoords.y
-    // },
-    // postSaveCleanup: function () {
-    //   // after
-    //   this.showEditPoint = false
-    //   this.viewer.zoomPerClick = 2
-    //   this.editedPoint = {
-    //     id: null,
-    //     point_x: null,
-    //     point_y: null,
-    //     point_title: null,
-    //     point_slug: null,
-    //     point_content: null,
-    //     artwork_context: null
-    //   }
-    //   this.turnOnDrag()
-    // },
-    // cancelChanges: function () {
-    //   // because only one pin can be editable at a time
-    //   // it can be true that if an edit is canceled
-    //   // we can let the viewer resume it's
-    //   // click-based zooming:
-    //   this.clearTemporaryEditPin()
-    //   this.showOriginalPin()
-    //   this.turnOnDrag()
-    //   this.showEditPoint = false
-    //   this.viewer.zoomPerClick = 2
-    //   this.editedPoint = {
-    //     id: null,
-    //     point_x: null,
-    //     point_y: null,
-    //     point_title: null,
-    //     point_slug: null,
-    //     point_content: null,
-    //     artwork_context: null
-    //   }
-    // },
-    // resetChangesWithoutZoomChange: function () {
-    //   this.clearTemporaryEditPin()
-    //   this.showOriginalPin()
-    //   this.showEditPoint = false
-    //   this.editedPoint = {
-    //     id: null,
-    //     point_x: null,
-    //     point_y: null,
-    //     point_title: null,
-    //     point_slug: null,
-    //     point_content: null,
-    //     artwork_context: null
-    //   }
-    // },
-    // saveChanges: function () {
-    //   var missingKey = null
-    //   var alert
-    //   var richTextData = JSON.stringify(this.rt.editor.getContents())
-    //   this.editedPoint.point_content = richTextData
-
-    //   for (const key in this.editedPoint) {
-    //     if (this.editedPoint[key] === null || this.editedPoint[key] === '' || this.editedPoint[key] === JSON.stringify({'ops': [{'insert': '\n'}]})) {
-    //       console.log(this.editedPoint)
-    //       this.setValidation(false)
-    //       missingKey = key
-    //       break
-    //     } else {
-    //       this.setValidation(true)
-    //     }
-    //   }
-
-    //   if (this.validForSubmission) {
-    //     this.setPointEditorAlert({show: false, message: null})
-
-    //     var payload = {
-    //       vm: this,
-    //       pointData: this.editedPoint
-    //     }
-    //     this.savePointEdit(payload)
-
-    //     console.log('valid!')
-    //   } else {
-    //     console.log('not valid!')
-    //     var message = this.validationMessages[missingKey]
-
-    //     alert = {
-    //       show: true,
-    //       message: `Looks like ${message}`
-    //     }
-
-    //     this.setPointEditorAlert(alert)
-    //   }
-    // },
     initRichTextEditor: function () {
 
       //cleanup any existing rich text elements:
@@ -338,22 +158,6 @@ export default{
       this.rt.editor = new Quill(newEl, this.rt.options)
       this.rt.editor.setContents(JSON.parse(this.point.point_content))
     }
-  },
-  mounted () {
-    // eventsNewPoints.$on('showAddNewPoint',  () => {
-    //   this.resetChangesWithoutZoomChange()
-    //   this.turnOnDrag()
-    // })
-    // eventsPointEdits.$on('triggerEditPoint', (pointId) => {
-    //   if (this.point.id !== pointId) {
-    //     this.resetChangesWithoutZoomChange()
-    //   }
-    // })
-    // eventsPointEdits.$on('ArtCanvasClick', (clickData) => {
-    //   if (this.showEditPoint) {
-    //     this.moveExistingPin(clickData.point.x, clickData.point.y)
-    //   }
-    // })
   }
 }
 </script>

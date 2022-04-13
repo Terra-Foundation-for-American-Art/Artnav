@@ -23,7 +23,6 @@
 import OpenSeadragon from 'openseadragon'
 import './../vendor/viewerinputhook.min.js'
 import { mapState, mapMutations, mapActions } from 'vuex'
-// import {eventsPointEdits, eventsNewPoints, eventsArtCanvas} from './../EventBuses'
 import Loader from './../loaders/Loader.vue'
 import NewPointButton from './newpoint/NewPointButton.vue'
 import NewPointImageGrab from './newpoint/NewPointImageGrab.vue'
@@ -50,7 +49,6 @@ export default {
     ...mapActions('point', ['getPoints']),
     ...mapActions('art', ['preloadArtCanvas']),
     resetZoom: function () {
-      console.log(this.viewer)
       this.viewer.viewport.goHome(false)
     },
     resetOverlays: function () {
@@ -92,8 +90,6 @@ export default {
     }
   },
   mounted () {
-    // this.initCanvas()
-    // this.preloadArtCanvas()
     this.emitter.on('cancelAnyNewPoint', () => {
       this.resetOverlays()
     })

@@ -22,11 +22,6 @@
           <label>Short Description</label>
           <input type="text" placeholder='This description will show up in the side bar...' v-model='local_data.points.new.point_lede'>
 
-<!--           <div id='new_caption_group'>
-            <label>Caption</label>
-            <span class='location_group' id='caption_rt_pos'></span>
-          </div> -->
-
           <div id='new_description_group'>
             <label>Description</label>
             <span class='location_group' id='description_rt_pos'></span>
@@ -54,14 +49,12 @@
 <script>
 import Quill from 'quill'
 import {mapState, mapMutations, mapActions} from 'vuex'
-// import {eventsPointEdits} from './../../EventBuses'
 import MiniLoader from './../../loaders/MiniLoader.vue'
 export default {
   data () {
     return {
       rt: {
         editor: null,
-        // captionEditor: null,
         options: {
           modules: {
             toolbar: [
@@ -72,16 +65,6 @@ export default {
           placeholder: 'Compose an epic...',
           theme: 'snow'
         }
-        // captionOptions: {
-        //   modules: {
-        //     toolbar: [
-        //       [{ header: [1, 2, 3, false] }],
-        //       ['bold', 'italic', 'underline', 'image', 'video']
-        //     ]
-        //   },
-        //   placeholder: 'Compose an epic caption...',
-        //   theme: 'snow'
-        // }
       }
     }
   },
@@ -108,11 +91,9 @@ export default {
     ...mapActions('point', ['saveNewPoint']),
     attemptSavePoint () {
       var richTextData = JSON.stringify(this.rt.editor.getContents())
-      // var richTextCaptionData = JSON.stringify(this.rt.captionEditor.getContents())
       var payload = {
         artwork: window.art_id,
         content: richTextData
-        // caption: richTextCaptionData
       }
       this.setNewPointContent(payload)
       this.setNewPoint()
@@ -123,7 +104,6 @@ export default {
 
       for (const key in this.local_data.points.new) {
         if (this.local_data.points.new[key] === null || this.local_data.points.new[key] === '') {
-          // || this.this.local_data.points.new[key] === JSON.stringify({'ops': [{'insert': '\n'}]})
           this.setValidation(false)
           missingKey = key
           break
@@ -149,26 +129,8 @@ export default {
       }
     },
     initRichText: function () {
-      
-      // var existingRtCaptionEl = document.getElementById('new_point_caption_rich_text')
-      // // var existingCaptionToolbar = document.getElementsByClassName('ql-toolbar')[0]
-      // var existingCaptionToolbar = $('#new_caption_group').find('.ql-toolbar')[0]
-      // if (existingRtCaptionEl) existingRtCaptionEl.parentNode.removeChild(existingRtCaptionEl)
-      // if (existingCaptionToolbar) existingCaptionToolbar.parentNode.removeChild(existingCaptionToolbar)
-
-      // // add new element for caption rich text:
-      // var newCaptionEl = document.createElement('div')
-
-      // newCaptionEl.id = 'new_point_caption_rich_text'
-
-      // var captionRef = document.getElementById('caption_rt_pos')
-      // captionRef.parentNode.insertBefore(newCaptionEl, captionRef.nextSibling)
-
-      // this.rt.captionEditor = new Quill(newCaptionEl, this.rt.captionOptions)
-
       // MAIN DESCRIPTION EDITOR:
       var existingRtEl = document.getElementById('new_point_rich_text')
-      // var existingToolbar = document.getElementsByClassName('ql-toolbar')[1]
       var existingToolbar = $('#new_description_group').find('.ql-toolbar')[0]
       if (existingRtEl) existingRtEl.parentNode.removeChild(existingRtEl)
       if (existingToolbar) existingToolbar.parentNode.removeChild(existingToolbar)

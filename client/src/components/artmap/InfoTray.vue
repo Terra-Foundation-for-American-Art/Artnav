@@ -17,7 +17,6 @@
       </div>
       <div class='info-tray-body row justify-content-end'>
         <div class='body-content-wrap col-sm-10'>
-          <!-- <div v-if='local_data.current_point.point_caption' class='point_caption' v-html='renderQHtml(local_data.current_point.point_caption)'></div> -->
           <p v-html='renderQHtml(local_data.current_point.point_content)'></p>
         </div>
       </div>

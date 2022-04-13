@@ -43,8 +43,6 @@ def dashboard(request):
   newArtistForm = CreateNewArtistForm()
 
   context = {
-    # 'artcollections': artcollections_list,
-    # 'recentCollections': recent_collections,
     'recentContent': all_recent_sorted,
     'recentArtworks': recent_artworks,
     'form': newArtCollectionForm,
@@ -76,7 +74,6 @@ def dashboard(request):
 @login_required
 def handleAddArtwork(request):
   user = request.user
-  # newArtworkForm = CreateNewArtworkForm(user)
 
   if request.method == 'POST':
     newArtworkForm = CreateNewArtworkForm(user, request.POST, request.FILES)

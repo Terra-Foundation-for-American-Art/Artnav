@@ -6,23 +6,15 @@
 
       <div class='modal-body'>
 
-
-
         <div v-if='validation.editor_alert.show' class='point_editor_messages'>
           {{validation.editor_alert.message}}
         </div>
 
         <div class='art_point new_point'>
         <div class='point_captured'>
-          <!-- <p> -->
-            <!-- Selected Image -->
             <span class='point_thumbnail'>
               <img :src="editedPoint.point_image">
             </span>
-          <!-- </p> -->
-
-
-          <!-- <span class='thumbnail_reset'>Selected Point Image</span> -->
         </div>
           <label>Title</label>
           <input type="text" placeholder='Give this point a name...' v-model='editedPoint.point_title'>
@@ -33,11 +25,6 @@
 
           <label>Short Description</label>
           <input type="text" placeholder='This description will show up in the side bar...' v-model='editedPoint.point_lede'>
-
-<!--           <div id='edit_caption_group'>
-            <label>Caption</label>
-            <span class='location_group' id='edit_caption_rt_pos'></span>
-          </div> -->
 
           <div id='edit_desc_group'>
             <label>Description</label>
@@ -74,7 +61,6 @@
 
 import Quill from 'quill'
 import {mapState, mapMutations, mapActions} from 'vuex'
-// import {eventsPointEdits, eventsSidebar} from './../../EventBuses'
 import MiniLoader from './../../loaders/MiniLoader.vue'
 export default {
   data () {
@@ -87,7 +73,6 @@ export default {
         point_title: null,
         point_image: null,
         point_slug: null,
-        // point_caption: null,
         point_content: null,
         point_lede: null,
         artwork_context: null,
@@ -107,16 +92,6 @@ export default {
           placeholder: 'Compose an epic...',
           theme: 'snow'
         }
-        // captionOptions: {
-        //   modules: {
-        //     toolbar: [
-        //       [{ header: [1, 2, false] }],
-        //       ['bold', 'italic', 'underline']
-        //     ]
-        //   },
-        //   placeholder: 'Compose an epic caption...',
-        //   theme: 'snow'
-        // }
       }
     }
   },
@@ -145,13 +120,6 @@ export default {
     attemptSavePoint () {
       if (this.modes.new) {
         var richTextData = JSON.stringify(this.rt.editor.getContents())
-        // var payload = {
-        //   artwork: `${this.$http.options.root}art/${window.art_id}/`,
-        //   content: richTextData
-        // }
-        // this.setNewPointContent(payload)
-        // this.setNewPoint()
-
       }
     },
     saveChanges: function ($e) {
@@ -159,15 +127,10 @@ export default {
       var alert
 
       var richTextData = JSON.stringify(this.rt.editor.getContents())
-      // var richTextCaptionData = JSON.stringify(this.rt.captionEditor.getContents())
       this.editedPoint.point_content = richTextData
-      // this.editedPoint.point_caption = richTextCaptionData
 
       for (const key in this.editedPoint) {
-        console.log(key, this.editedPoint[key])
         if (this.editedPoint[key] === null || this.editedPoint[key] === '') {
-          // || this.editedPoint[key] === JSON.stringify({'ops': [{'insert': '\n'}]})
-          console.log(this.editedPoint)
           this.setValidation(false)
           missingKey = key
           break
@@ -190,10 +153,7 @@ export default {
         }
         this.savePointEdit(payload)
 
-        console.log('valid!')
-
         // EVENT SUBSCRIBED TO BY:
-        // EditPointImageGrab.vue
         this.emitter.emit('clearEdit')
         setTimeout(() => {
           // EVENT SUBSCRIBED TO BY:
@@ -202,7 +162,6 @@ export default {
           this.viewer.viewport.goHome(false)
         }, 400)
       } else {
-        console.log('not valid!')
         var message = this.validation.messages[missingKey]
 
         alert = {
@@ -214,15 +173,12 @@ export default {
       }
     },
     postSaveCleanup: function () {
-      // after
-      // this.viewer.zoomPerClick = 2
       this.editedPoint = {
         id: null,
         point_x: null,
         point_y: null,
         point_title: null,
         point_slug: null,
-        // point_caption: null,
         point_content: null,
         point_lede: null,
         artwork_context: null
@@ -230,31 +186,10 @@ export default {
       this.emitter.emit('clearEdit')
     },
     initRichText: function () {
-      // var existingRtCaptionEl = document.getElementById('edit_point_caption_rich_text')
-      // // var existingCaptionToolbar = document.getElementsByClassName('ql-toolbar')[0]
-      // var existingCaptionToolbar = $('#edit_caption_group').find('.ql-toolbar')[0]
-      // if (existingRtCaptionEl) existingRtCaptionEl.parentNode.removeChild(existingRtCaptionEl)
-      // if (existingCaptionToolbar) existingCaptionToolbar.parentNode.removeChild(existingCaptionToolbar)
-
-      // // add new element for caption rich text:
-      // var newCaptionEl = document.createElement('div')
-
-      // newCaptionEl.id = 'edit_point_caption_rich_text'
-
-      // var captionRef = document.getElementById('edit_caption_rt_pos')
-      // captionRef.parentNode.insertBefore(newCaptionEl, captionRef.nextSibling)
-
-      // this.rt.captionEditor = new Quill(newCaptionEl, this.rt.captionOptions)
-      // if (this.local_data.points.edit.point_caption) {
-      //   this.rt.captionEditor.setContents(JSON.parse(this.local_data.points.edit.point_caption))
-      // }
-
       // MAIN DESCRIPTION TEXT EDITOR:
       var existingRtEl = document.getElementById('edit_point_rich_text')
-      // var existingToolbar = document.getElementsByClassName('ql-toolbar')[1]
       
       var existingToolbar = $('#edit_desc_group').find('.ql-toolbar')[0]
-      console.log(existingToolbar)
       if (existingRtEl) existingRtEl.parentNode.removeChild(existingRtEl)
       if (existingToolbar) existingToolbar.parentNode.removeChild(existingToolbar)
 
@@ -266,12 +201,10 @@ export default {
       ref.parentNode.insertBefore(newEl, ref.nextSibling)
 
       this.rt.editor = new Quill(newEl, this.rt.options)
-      console.log(this.local_data.points.edit.point_content)
+      
       if (this.local_data.points.edit.point_content) {
-        console.log(this.local_data.points.edit.point_content)
         this.rt.editor.setContents(JSON.parse(this.local_data.points.edit.point_content))
       }
-      console.log('rich text init')
     },
     assignPointDataToLocalInstance: function (newThumbnail) {
       this.editedPoint.id = this.local_data.points.edit.id
@@ -279,7 +212,6 @@ export default {
       this.editedPoint.point_y = this.local_data.points.edit.point_y
       this.editedPoint.point_title = this.local_data.points.edit.point_title
       this.editedPoint.point_slug = this.local_data.points.edit.point_slug
-      // this.editedPoint.point_caption = this.local_data.points.edit.point_caption
       this.editedPoint.point_content = this.local_data.points.edit.point_content
       this.editedPoint.point_lede = this.local_data.points.edit.point_lede
       this.editedPoint.artwork_context = this.local_data.points.edit.artwork_context
@@ -290,12 +222,9 @@ export default {
   },
   mounted () {
     this.emitter.on('triggerEditPoint', () => {
-      // this.closeNewPoint()
-      console.log('assign local point data:')
       this.assignPointDataToLocalInstance()
       this.initRichText()
       $('#editArtPoint').modal('show')
-      console.log('event heard')
     })
   },
   components: {

@@ -122,8 +122,6 @@ def artworkPreview(request, artwork_slug):
   artist = Artist.objects.get(pk=artwork.artist_id)
   collections = ArtCollection.objects.filter(artworks=artwork.id)
   artworkPoints = ArtPoint.objects.filter(artwork_context_id=artwork.id)
-  # newPointForm = CreateNewPointForm(request.POST)
-  # addToCollectionForm = AddArtworkToCollectionForm(user)
   collections_found_in = ArtCollection.objects.filter(artworks__in=[artwork.id])
 
   context = {
@@ -131,27 +129,9 @@ def artworkPreview(request, artwork_slug):
     'artist': artist,
     'collections': collections,
     'points': artworkPoints,
-    # 'pointForm': newPointForm,
-    # 'collectionForm': addToCollectionForm,
     'collections_found': collections_found_in,
   }
 
-  # if request.method == 'POST':
-  #   if newPointForm.is_valid():
-  #     point = ArtPoint(
-  #       point_x = newPointForm.cleaned_data['point_x'],
-  #       point_y = newPointForm.cleaned_data['point_y'],
-  #       point_title = newPointForm.cleaned_data['point_title'],
-  #       point_slug = slugify(newPointForm.cleaned_data['point_title']),
-  #       point_content = newPointForm.cleaned_data['point_content'],
-  #       artwork_context_id = artwork.id
-  #     )
-  #     point.save()
-  #     messages.success(request, 'A new point was just added.', extra_tags='alert alert-success')
-  #   else:
-  #     messages.warning(request, 'Your point did not get added. Give it another shot.', extra_tags='alert alert-danger')
-
-  #     return HttpResponseRedirect(reverse('artworks:artwork-detail', args=(artwork_slug, )) )
 
   return render(request, 'artworks/artwork-preview.html', context)
 
@@ -163,15 +143,7 @@ def addExistingArtworkToCollection(request, artwork_slug):
     print('post is heard!')
     newArtworkForm = AddArtworkToCollectionForm(user, request.POST)
     if newArtworkForm.is_valid():
-      # art = Artwork(
-      #   artwork_title = newArtworkForm.cleaned_data['artwork_title'],
-      #   artwork_slug = slugify(newArtworkForm.cleaned_data['artwork_title']),
-      #   artist = newArtworkForm.cleaned_data['artist'],
-      #   curator = request.user,
-      # )
-      # art.save()
       artwork = Artwork.objects.get(artwork_slug=artwork_slug)
-      # artwork.collection.id
       selectedArtCollection = ArtCollection.objects.get(pk=newArtworkForm.cleaned_data['collection'].id)
       selectedArtCollection.artworks.add(artwork)
 
@@ -200,7 +172,6 @@ def handleAddArtistForm(request):
     return HttpResponseRedirect(reverse('artworks:artwork-list'))
 
   return HttpResponse(reverse('artworks:artwork-list'))
-  # return render(request, 'artworks/artwork-list.html', context)
 
 
 class ArtistViewSet(viewsets.ModelViewSet):

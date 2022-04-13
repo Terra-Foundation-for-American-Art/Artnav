@@ -112,21 +112,13 @@
       },
       capture: function () {
         var vm = this
-        // this.snap_canvas = $('#snapshot_edit')[0]
         this.snap_canvas = document.getElementById('snapshot_edit');
         var local_ctx = this.snap_canvas.getContext('2d')
         var res_ratio = Number(window.devicePixelRatio)
         var wrapX = this.$el.offsetLeft
         var wrapY = this.$el.offsetTop
-        // var padX = this.snap_canvas.offsetLeft
-        // var padY = (this.scale_max - this.scale_value) / 2
-        // var thisX = wrapX + padX
-        // var thisY = wrapY + padY
         var thisX = wrapX - (this.scale_value/2)
         var thisY = wrapY - (this.scale_value/2)
-        // var thisX = wrapX
-        // var thisY = wrapY
-
         var image = new Image()
 
         // CLEAR CANVAS:
@@ -185,15 +177,11 @@
         var viewportPixel = this.viewer.viewport.pixelFromPoint(pixel)
         var padX = this.snap_canvas.offsetLeft
         var padY = this.snap_canvas.offsetTop
-        // var newX = viewportPixel.x - padX
-        // var newY = viewportPixel.y - padY
         var newX = viewportPixel.x
         var newY = viewportPixel.y
 
         this.x = newX
         this.y = newY
-
-        console.log('x:' + newX)
       },
       setInitialGrabberPosition: function () {
         var containerEL = document.getElementById("art_container")
@@ -216,9 +204,7 @@
       PencilIcon,
     },
     mounted () {
-      // this.snap_canvas = $('#snapshot_edit')[0]
       this.snap_canvas = document.getElementById('snapshot_edit');
-      console.log(this.snap_canvas)
       this.setInitialGrabberPosition()
       // IF USER SELECTS EDIT OPTION FROM POINT LIST ITEM
       // WE NEED TO RECAPTURE THE BASE64 IMAGE VALUE SO THAT
@@ -231,10 +217,6 @@
         this.clearCapture()
         this.scale_value = this.local_data.points.edit.scale_value
       })
-      // this.emitter.on('resetImageGrabber', () => {
-      // //   this.setInitialGrabberPosition()
-      // //   this.clearCapture()
-      // })
       this.emitter.on('clearEdit', () => {
         this.clearCapture()
       })

@@ -4,7 +4,6 @@
       <div class='artmap-menu-wrap'>
         <div class='art_meta_info' v-if='local_data.art && local_data.artist'>
           <h1>
-            <!-- {{local_data.artist.artist_name}} {{local_data.artist.lifespan}}<br> -->
             <span class='italic_title'>{{local_data.art.artwork_title}},</span> {{local_data.art.artwork_creation_date}}<br>
           </h1>
           <p class='catalog_caption'>
@@ -62,9 +61,6 @@ export default {
     goToArtmap: function (slug) {
       window.location.href = `/gallery/${slug}`
     }
-  },
-  mounted () {
-    console.log(this.local_data)
   }
 }
 </script>

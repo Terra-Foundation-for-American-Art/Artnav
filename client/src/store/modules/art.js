@@ -1,9 +1,6 @@
-
 import OpenSeadragon from 'openseadragon'
 import {axiosInstance} from '@/api/endpoints'
-// import {
-//   eventsArtCanvas
-// } from './../../EventBuses'
+
 import {
   CATALOG_URL
 } from './../../api/endpoints'
@@ -41,7 +38,6 @@ const state = () => ({
 const mutations = {
   initCanvas(state) {
     // FIX CORS CACHING BUG WITH IMAGE REQUESTS TO S3:
-    // var nonCachedArtImg = `${window.art_image}?d=${Date.now()}`
     setTimeout(() => {
       state.viewer = OpenSeadragon({
         id: 'artcanvas',
@@ -78,7 +74,6 @@ const mutations = {
     state.art_data_revertable.art = artClone
   },
   setArtDescription(state, payload) {
-    console.log(payload)
     state.art_data.art.about = payload
   },
   setArtsArtistId(state, payload) {

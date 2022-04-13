@@ -18,10 +18,6 @@ class CustomUserAdmin(UserAdmin):
 	list_display = ('username', 'email', 'first_name', 'last_name', 'is_staff',)
 	list_select_related = ('profile', ) 
 
-	# def get_institution(self, instance):
-	# 	return instance.profile.institution
-	# get_institution.short_description = 'Institution'
-
 	def get_inline_instances(self, request, obj=None):
 		if not obj:
 			return list()

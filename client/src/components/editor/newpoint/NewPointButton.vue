@@ -7,7 +7,6 @@
 </template>
 <script>
 import {mapState, mapMutations} from 'vuex'
-// import {eventsNewPoints, eventsPointEdits} from './../../EventBuses'
 import PlusIcon from './../../svgs/PlusIcon.vue'
 export default {
   computed: {

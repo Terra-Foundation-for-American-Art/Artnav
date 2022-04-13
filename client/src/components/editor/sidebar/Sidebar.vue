@@ -14,14 +14,11 @@
     </div>
 
     <span class='sidebar_reveal' @click='toggleTheSidebar'>Show Artmap Points <span class='arrow'></span></span>
-    <!-- <div class='click-bg'></div> -->
 
   </div>
 
 </template>
 <script>
-// import NewPointCtrl from './NewPointCtrl.vue'
-// import {eventsSidebar, eventsPointEdits} from './../../EventBuses'
 import {mapState, mapMutations} from 'vuex'
 import PointList from './PointList.vue'
 import ArtDetails from './ArtDetails.vue'

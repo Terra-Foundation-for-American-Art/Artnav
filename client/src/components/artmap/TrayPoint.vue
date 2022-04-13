@@ -22,7 +22,6 @@ export default {
   },
   methods: {
     goTo: function () {
-      // this.clearCanvas()
       this.$router.push({ path: `/${this.point.point_slug}` })
     },
     renderQHtml: function (contentData) {
@@ -37,10 +36,8 @@ export default {
       localCtx.clearRect(0, 0, this.canvas_mask[0].width, this.canvas_mask[0].height)
     },
     locatePoint: function () {
-      console.log(this.point)
       var point = new OpenSeadragon.Point(this.point.x, this.point.y)
       this.viewer.viewport.panTo(point, false)
-      // this.viewer.viewport.zoomTo(1.0, false)
     },
     returnToOriginalPosition: function () {
       if (this.local_data.current_point) {

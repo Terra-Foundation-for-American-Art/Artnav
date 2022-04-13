@@ -44,11 +44,6 @@ export default {
               const firstLoad = firstLoadItem.getFullyLoaded()
               if (firstLoad) {
                 this.artmapHasLoaded(this)
-                // if (this.$route.params.pointSlug) {
-                //   this.getArtPointOr404(this.$route.params.pointSlug)
-                // } else {
-                //   this.viewer.viewport.goHome(false)
-                // }
                 clearInterval(loadCheck)
               }
             }

@@ -5,8 +5,6 @@ from django.contrib.auth.models import User
 from rest_framework import serializers
 from artnav.artworks.serializers import ArtworkSerializer, ArtistSerializer
 from artnav.profiles.serializers import UserSerializer
-# from .base64Handler import Base64CharField
-# from drf_base64.fields import Base64ImageField
 from drf_extra_fields.fields import Base64ImageField
 
 

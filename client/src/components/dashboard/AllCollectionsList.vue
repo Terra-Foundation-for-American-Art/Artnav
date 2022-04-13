@@ -37,7 +37,6 @@ import Card from './Card.vue'
 import EditCollectionModal from './EditCollectionModal.vue'
 import DeleteCollectionModal from './DeleteCollectionModal.vue'
 import MiniLoader from './../loaders/MiniLoader.vue'
-// import { getObject } from './../../faux_catalog_api'
 import {CATALOG_URL} from './../../api/endpoints'
   export default {
     props: ['filterValue'],
@@ -57,7 +56,6 @@ import {CATALOG_URL} from './../../api/endpoints'
     },
     watch: {
       filterValue: function (value) {
-        console.log(value)
         this.all_collections = this.all_collections_backup
         var filteredResults
         if (value) {
@@ -93,14 +91,12 @@ import {CATALOG_URL} from './../../api/endpoints'
         })
       },
       handleDeleteCollection: function (collectionCard) {
-        console.log(collectionCard)
         this.collection_to_be_deleted = collectionCard
         $('#deleteCollectionDashboard').modal('show')
       },
       handleUpdateCollection: function (collectionCard) {
         this.collection_to_be_edited = collectionCard
         $('#editCollectionDashboard').modal('show')
-        console.log(collectionCard)
       },
       setSuccessMessage: function (successObj) {
         this.alert = successObj
@@ -125,8 +121,6 @@ import {CATALOG_URL} from './../../api/endpoints'
             foundArtworksSize += 1
             axiosInstance.get(`${CATALOG_URL}${collectionArtworkItem.accession_number}/`)
             .then(resp => {
-              console.log(resp.body)
-
               axiosInstance.get(`https://dlc.services/iiif-img/3/2/${resp.data.iiif_uuid}/info.json`)
               .then(iiif_resp => {
                 collectionArtworkItem['iiif'] = iiif_resp.data
@@ -152,8 +146,6 @@ import {CATALOG_URL} from './../../api/endpoints'
                 hasArtworkCount += 1
                 item.artworks.forEach(artItem => {
                   if (artItem.iiif || artItem.api_error) { count++ }
-                  console.log(count)
-                  console.log(foundArtworksSize)
                   if (count === foundArtworksSize) {
                     clearInterval(asyncCheckerCollections)
                     this.all_collections = updatedCollections

@@ -57,7 +57,6 @@ import Card from './Card.vue'
 import EditCollectionModal from './EditCollectionModal.vue'
 import DeleteCollectionModal from './DeleteCollectionModal.vue'
 import MiniLoader from './../loaders/MiniLoader.vue'
-// import { getObject } from './../../faux_catalog_api'
 import {CATALOG_URL} from './../../api/endpoints'
 export default {
   props: ['loading'],
@@ -171,7 +170,6 @@ export default {
         if (count === arraySize) {
           clearInterval(asyncCheckerArtwork)
           this.artwork_in_collection = updatedArtwork
-          // this.all_artwork_backup = updatedArtwork
           this.loading_artwork = false
         }
       })

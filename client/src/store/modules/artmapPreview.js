@@ -1,4 +1,3 @@
-
 import OpenSeadragon from 'openseadragon'
 import { axiosInstance } from '@/api/endpoints'
 import {
@@ -33,7 +32,6 @@ const state = () => ({
 const mutations = {
     initCanvas(state, payload) {
         var nonCachedArtImg = `${window.art_image}?d=${Date.now()}`
-        console.log(window.art_image)
         state.viewer = OpenSeadragon({
             id: 'artmappreviewcanvas',
             visibilityRatio: 1.0,

@@ -26,7 +26,6 @@
 import Draggable from 'vuedraggable'
 import {mapActions} from 'vuex'
 import PointListItem from './PointListItem.vue'
-// import {eventsPointEdits} from './../../EventBuses'
 export default {
   data () {
     return {
@@ -56,18 +55,15 @@ export default {
   methods: {
     ...mapActions('point', ['updatePointListOrder']),
     choosing: function () {
-      console.log('choosing!')
       this.grabState = true
     },
     choiceMade: function () {
-      console.log('choice completed')
       this.grabState = false
     }
   },
   mounted () {
     this.emitter.on('turnOffDrag', () => {
       this.dragSortOptions.disabled = true
-      console.log('focus!')
     })
     this.emitter.on('turnOnDrag', () => {
       this.dragSortOptions.disabled = false

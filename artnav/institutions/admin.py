@@ -5,11 +5,6 @@ from django.contrib import admin
 
 # Register your models here.
 from .models import Institution
-# from artworks.models import Artwork
-
-
-# class ArtworkInline(admin.TabularInline):
-# 	model = Artwork
 
 
 class InstitutionAdmin(admin.ModelAdmin):
@@ -22,6 +17,5 @@ class InstitutionAdmin(admin.ModelAdmin):
 	list_display = ('name', 'website')
 	list_filter = ['name']
 	search_fields = ['name']
-	# inlines = [ArtworkInline]
 
 admin.site.register(Institution, InstitutionAdmin)

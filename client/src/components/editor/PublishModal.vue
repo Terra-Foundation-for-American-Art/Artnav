@@ -306,16 +306,6 @@ export default {
       },
       set (value) { this.local_input.artist_name = value }
     },
-    // 'description': {
-    //   get () {
-    //     // return this.$store.state.art.art_data.art.description
-    //     var artDesc = this.$store.state.art.art_data.art.description
-    //     if (artDesc) {
-    //       this.rt.editor.setContents(JSON.parse(artDesc))
-    //     }
-    //   },
-    //   set (value) { this.$store.state.art.art_data.art.description = value }
-    // },
     'image_ref': {
       get () { return this.$store.state.art.art_data.art.image_ref },
       set (value) { this.$store.state.art.art_data.art.image_ref = value }
@@ -468,26 +458,6 @@ export default {
     handleSelection (selectedIndex) {
         this.index = selectedIndex
     },
-    // initRichText (value) {
-    //   var existingRtEl = document.getElementById('about_rich_text')
-    //   // var existingToolbar = document.getElementsByClassName('ql-toolbar')[2]
-    //   var existingToolbar = $('#edit_about_group').find('.ql-toolbar')[0]
-    //   if (existingRtEl) existingRtEl.parentNode.removeChild(existingRtEl)
-    //   if (existingToolbar) existingToolbar.parentNode.removeChild(existingToolbar)
-
-    //   // add new element for caption rich text:
-    //   var newAboutEl = document.createElement('div')
-
-    //   newAboutEl.id = 'about_rich_text'
-
-    //   var aboutRef = document.getElementById('about_rt_pos')
-    //   aboutRef.parentNode.insertBefore(newAboutEl, aboutRef.nextSibling)
-
-    //   this.rt.editor = new Quill(newAboutEl, this.rt.options)
-    //   if (value) {
-    //     this.rt.editor.setContents(JSON.parse(value))
-    //   }
-    // },
     saveNewArtistFirst: function (cb) {
       axiosInstance.post('artists/', this.new_artist, {
         headers: {
@@ -590,13 +560,6 @@ export default {
       var successPayload = { m: `${updatedArtwork.artwork_title} was successfully updated.`, hideDelay: 3500 }
 
       this.callSuccessAlert(successPayload)
-
-      // var artistPayload = {
-      //   vm: this,
-      //   artist: updatedArtwork.artist
-      // }
-
-      // console.log(artistPayload)
 
       this.getArtistData(updatedArtwork.artist)
       this.getThisArtworksCollections()

@@ -1,12 +1,7 @@
-// import {
-//     eventsNewPoints,
-//     eventsSidebar
-// } from './../../EventBuses'
 import {axiosInstance} from '@/api/endpoints'
 import {
     convertImgToDataURLviaCanvas
 } from './../../utilities/ImgToB64'
-
 
 const state = () => ({
     captures: {
@@ -80,8 +75,6 @@ const mutations = {
         state.local_data.points.edit = payload
     },
     setEditCaptureThumb(state, payload) {
-        console.log('setEditCaptureThumb here:')
-        console.log(payload.image)
         state.captures.edit = payload
         if (payload.image) {
             state.local_data.points.edit.point_image = payload.image.src
@@ -103,7 +96,6 @@ const mutations = {
     setNewPointContent(state, payload) {
         state.local_data.points.new.artwork_context = payload.artwork
         state.local_data.points.new.point_content = payload.content
-        // state.local_data.points.new.point_caption = payload.caption
     },
     setEditingPoint(state, payload) {
         state.modes.editing = payload
@@ -158,14 +150,12 @@ const mutations = {
     },
     addNewPointToList(state, payload) {
         if (state.local_data.points.all && state.local_data.points.all.length) {
-            console.log('local points exist')
             convertImgToDataURLviaCanvas(payload.point.point_image, (b64Data) => {
                 payload.point.point_image = b64Data
                 state.local_data.points.all.push(payload.point)
                 payload.cb()
             })
         } else {
-            console.log('no local points yet')
             convertImgToDataURLviaCanvas(payload.point.point_image, (b64Data) => {
                 payload.point.point_image = b64Data
                 state.local_data.points.all = []
@@ -208,10 +198,8 @@ const actions = {
     getPoints({
         commit
     }, payload) {
-        console.log('get points')
         axiosInstance.get(`points/?artwork=${window.art_id}`)
             .then(resp => {
-                console.log(resp)
                 commit('setPoints', resp.data)
             }, err => {
                 console.log(err)
@@ -226,7 +214,6 @@ const actions = {
             show: true,
             padding: 0
         })
-        console.log(state.local_data.points.new)
         axiosInstance.post('points/', state.local_data.points.new, {
                 headers: {
                     'X-CSRFToken': window.csrf
@@ -240,7 +227,6 @@ const actions = {
                     // use callback here to handle async image load for 64 bit method:
                     cb: function () {      
                         payload.emitter.emit('openSidebar')
-                        console.log(state.local_data.points.all)
                         dispatch('updateCustomIndexes', {
                             vm: payload,
                             points: state.local_data.points.all

@@ -10,17 +10,10 @@ from artnav.artcollections.models import ArtCollection
 
 
 class CreateNewArtworkForm(forms.ModelForm):
-    # artwork_title = forms.CharField(max_length=200)
-    # artist = forms.ModelChoiceField(queryset=Artist.objects.all())
     collection = forms.ModelChoiceField(queryset=ArtCollection.objects.none(), required=False)
-    # image = forms.ImageField()
 
     class Meta:
       model = Artwork
-      # labels = {
-      #     "role": "Your Job Role",
-      #     "company_not_exists": "Add a new company"
-      # }
       fields = (
         'artwork_title',
         'artist',
@@ -49,17 +42,10 @@ class AddArtworkToCollectionForm(forms.Form):
           self.fields['collection'].queryset = None
 
 
-# class CreateNewArtistForm(forms.Form):
-#     artist_name = forms.CharField(max_length=200)
-#     artist_bio = forms.CharField(widget=forms.Textarea)
 class CreateNewArtistForm(forms.ModelForm):
 
   class Meta:
     model = Artist
-    # labels = {
-    #     "role": "Your Job Role",
-    #     "company_not_exists": "Add a new company"
-    # }
     fields = (
       'artist_name',
       'artist_bio',

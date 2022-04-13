@@ -55,7 +55,6 @@ import Card from './Card.vue'
 import EditCollectionModal from './EditCollectionModal.vue'
 import DeleteCollectionModal from './DeleteCollectionModal.vue'
 import MiniLoader from './../loaders/MiniLoader.vue'
-// import { getObject } from './../../faux_catalog_api'
 import {CATALOG_URL} from './../../api/endpoints'
 
   export default {
@@ -177,25 +176,14 @@ import {CATALOG_URL} from './../../api/endpoints'
         })
 
         updatedRecentArtwork.forEach((updatedArtItem, i) => {
-
-          // axiosInstance.get(`${CATALOG_URL}${updatedArtItem.accession_number}/`)
-          // .then(resp => {
-          //   // console.log(resp.body)
-          console.log(updatedArtItem)
-
-            axiosInstance.get(`https://dlc.services/iiif-img/3/2/${updatedArtItem.iiif_uuid}/info.json`)
-            .then(iiif_resp => {
-              updatedArtItem['iiif'] = iiif_resp.data
-              updatedArtItem['thumbnail'] = `https://dlc.services/thumbs/3/2/${updatedArtItem.iiif_uuid}/full/${iiif_resp.data.sizes[1].width},${iiif_resp.data.sizes[1].height}/0/default.jpg`
-            }, err => {
-              console.log(err)
-              updatedArtItem['api_error'] = err
-            })
-
-          // }, err => {
-          //   console.log(err)
-          //   updatedArtItem['api_error'] = err.body
-          // })
+          axiosInstance.get(`https://dlc.services/iiif-img/3/2/${updatedArtItem.iiif_uuid}/info.json`)
+          .then(iiif_resp => {
+            updatedArtItem['iiif'] = iiif_resp.data
+            updatedArtItem['thumbnail'] = `https://dlc.services/thumbs/3/2/${updatedArtItem.iiif_uuid}/full/${iiif_resp.data.sizes[1].width},${iiif_resp.data.sizes[1].height}/0/default.jpg`
+          }, err => {
+            console.log(err)
+            updatedArtItem['api_error'] = err
+          })
         })
 
         var foundArtworksSize = 0
@@ -203,25 +191,14 @@ import {CATALOG_URL} from './../../api/endpoints'
         updatedRecentCollections.forEach((updatedCollectionItem, i) => {
           updatedCollectionItem.artworks.forEach(collectionArtworkItem => {
             foundArtworksSize += 1
-            console.log(`https://dlc.services/iiif-img/3/2/${collectionArtworkItem.iiif_uuid}/info.json`)
-            // axiosInstance.get(`${CATALOG_URL}${collectionArtworkItem.accession_number}/`)
-            // .then(resp => {
-            //   // console.log(resp.body)
-            //   // console.log(resp)
-
-              axiosInstance.get(`https://dlc.services/iiif-img/3/2/${collectionArtworkItem.iiif_uuid}/info.json`)
-              .then(iiif_resp => {
-                collectionArtworkItem['iiif'] = iiif_resp.data
-                collectionArtworkItem['thumbnail'] = `https://dlc.services/thumbs/3/2/${collectionArtworkItem.iiif_uuid}/full/${iiif_resp.data.sizes[3].width},${iiif_resp.data.sizes[3].height}/0/default.jpg`
-              }, err => {
-                console.log(err)
-                collectionArtworkItem['api_error'] = err.body
-              })
-
-            // }, err => {
-            //   console.log(err)
-            //   collectionArtworkItem['api_error'] = err.body
-            // })
+            axiosInstance.get(`https://dlc.services/iiif-img/3/2/${collectionArtworkItem.iiif_uuid}/info.json`)
+            .then(iiif_resp => {
+              collectionArtworkItem['iiif'] = iiif_resp.data
+              collectionArtworkItem['thumbnail'] = `https://dlc.services/thumbs/3/2/${collectionArtworkItem.iiif_uuid}/full/${iiif_resp.data.sizes[3].width},${iiif_resp.data.sizes[3].height}/0/default.jpg`
+            }, err => {
+              console.log(err)
+              collectionArtworkItem['api_error'] = err.body
+            })
           })
         })
 
@@ -242,8 +219,6 @@ import {CATALOG_URL} from './../../api/endpoints'
                   // or if there was an api error preventing them from doing it so that
                   // the rest of the view will load
                   if (artItem.iiif || artItem.api_error) { count++ }
-                  // console.log(count)
-                  // console.log(foundArtworksSize)
                   if (count === foundArtworksSize) {
                     clearInterval(asyncCheckerCollections)
                     this.recent_collections = updatedRecentCollections
@@ -276,7 +251,6 @@ import {CATALOG_URL} from './../../api/endpoints'
         }
 
         var asyncCheckerAll = setInterval(() => {
-          // console.log(allRecentCount)
           if (allRecentCount === allRecentSize) {
             clearInterval(asyncCheckerAll)
             this.mergeAllRecentIntoList(true)
@@ -297,13 +271,10 @@ import {CATALOG_URL} from './../../api/endpoints'
       getRecentCollections: function () {
         axiosInstance.get('recent-collections/')
         .then(resp => {
-          console.log(resp)
           this.recent_collections = resp.data
           this.recent_collections_backup = resp.data
           // this.mergeAllRecentIntoList(true)
           // get catalog data
-          console.log(this.recent_collections)
-          console.log(this.recent_collections_backup)
           this.getCatalogData()
         }, err => {
           console.log(err)
@@ -332,7 +303,6 @@ import {CATALOG_URL} from './../../api/endpoints'
         }
         setTimeout(() => {
           this.loading = false
-          console.log(this.all_recent)
         }, 300)
       }
     },

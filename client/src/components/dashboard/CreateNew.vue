@@ -402,7 +402,6 @@ export default {
     },
     saveSubmission: function (collectionCreated, collectionId) {
       var vm = this
-      console.log(window.csrf)
       axiosInstance.post('art/', this.submission, {
         headers: {
           'X-CSRFToken': window.csrf
