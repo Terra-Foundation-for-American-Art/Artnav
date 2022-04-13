@@ -41,9 +41,9 @@ DB_USER=<the user you just created above>
 DB_PASSWORD=<the password for the user>
 DB_HOST=localhost
 ALLOWED_HOSTS=.127.0.0.1,localhost
-AWS_ACCESS_KEY_ID=<get this some AWS account>
-AWS_SECRET_ACCESS_KEY=<get this some AWS account>
-AWS_STORAGE_BUCKET_NAME=<get this some AWS account>
+AWS_ACCESS_KEY_ID=<get this from AWS account>
+AWS_SECRET_ACCESS_KEY=<get this from AWS account>
+AWS_STORAGE_BUCKET_NAME=<get this from AWS account>
 VUE_APP_BASE_URL=http://127.0.0.1:8000/<br>
 ```
 5. Create a python virtual environment, I recommend installing virtualenvwrapper to manage virtual environments (https://virtualenvwrapper.readthedocs.io/en/latest/)<br>
