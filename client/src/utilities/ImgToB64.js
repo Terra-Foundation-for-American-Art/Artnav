@@ -2,7 +2,7 @@
 var convertImgToDataURLviaCanvas = function (url, callback) {
   var img = new Image();
   console.log('setting image to handle CORS issue here: ====>')
-  img.crossOrigin = 'Anonymous';
+  img.crossOrigin = null;
   img.onload = function() {
     var canvas = document.createElement('CANVAS');
     var ctx = canvas.getContext('2d');
