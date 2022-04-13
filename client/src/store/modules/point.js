@@ -80,6 +80,8 @@ const mutations = {
         state.local_data.points.edit = payload
     },
     setEditCaptureThumb(state, payload) {
+        console.log('setEditCaptureThumb here:')
+        console.log(payload.image)
         state.captures.edit = payload
         if (payload.image) {
             state.local_data.points.edit.point_image = payload.image.src

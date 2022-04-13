@@ -266,6 +266,7 @@ export default {
       ref.parentNode.insertBefore(newEl, ref.nextSibling)
 
       this.rt.editor = new Quill(newEl, this.rt.options)
+      console.log(this.local_data.points.edit.point_content)
       if (this.local_data.points.edit.point_content) {
         console.log(this.local_data.points.edit.point_content)
         this.rt.editor.setContents(JSON.parse(this.local_data.points.edit.point_content))
