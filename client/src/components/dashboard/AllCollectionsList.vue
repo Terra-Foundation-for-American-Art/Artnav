@@ -37,7 +37,6 @@ import Card from './Card.vue'
 import EditCollectionModal from './EditCollectionModal.vue'
 import DeleteCollectionModal from './DeleteCollectionModal.vue'
 import MiniLoader from './../loaders/MiniLoader.vue'
-import {CATALOG_URL} from './../../api/endpoints'
   export default {
     props: ['filterValue'],
     data () {
@@ -119,21 +118,14 @@ import {CATALOG_URL} from './../../api/endpoints'
         updatedCollections.forEach((updatedCollectionItem, i) => {
           updatedCollectionItem.artworks.forEach(collectionArtworkItem => {
             foundArtworksSize += 1
-            axiosInstance.get(`${CATALOG_URL}${collectionArtworkItem.accession_number}/`)
-            .then(resp => {
-              axiosInstance.get(`https://dlc.services/iiif-img/3/2/${resp.data.iiif_uuid}/info.json`)
+            axiosInstance.get(`https://dlc.services/iiif-img/3/2/${collectionArtworkItem.iiif_uuid}/info.json`)
               .then(iiif_resp => {
                 collectionArtworkItem['iiif'] = iiif_resp.data
-                collectionArtworkItem['thumbnail'] = `https://dlc.services/thumbs/3/2/${resp.data.iiif_uuid}/full/${iiif_resp.data.sizes[3].width},${iiif_resp.data.sizes[3].height}/0/default.jpg`
+                collectionArtworkItem['thumbnail'] = `https://dlc.services/thumbs/3/2/${collectionArtworkItem.iiif_uuid}/full/${iiif_resp.data.sizes[3].width},${iiif_resp.data.sizes[3].height}/0/default.jpg`
               }, err => {
                 console.log(err)
                 collectionArtworkItem['api_error'] = err.data.message
               })
-
-            }, err => {
-              console.log(err)
-              collectionArtworkItem['api_error'] = err.data.message
-            })
           })
         })
 

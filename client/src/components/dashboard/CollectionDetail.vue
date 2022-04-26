@@ -57,7 +57,6 @@ import Card from './Card.vue'
 import EditCollectionModal from './EditCollectionModal.vue'
 import DeleteCollectionModal from './DeleteCollectionModal.vue'
 import MiniLoader from './../loaders/MiniLoader.vue'
-import {CATALOG_URL} from './../../api/endpoints'
 export default {
   props: ['loading'],
  data () {
@@ -145,21 +144,14 @@ export default {
     })
 
     updatedArtwork.forEach((updatedArtItem, i) => {
-      axiosInstance.get(`${CATALOG_URL}${updatedArtItem.accession_number}/`)
-      .then(resp => {
-        axiosInstance.get(`https://dlc.services/iiif-img/3/2/${resp.data.iiif_uuid}/info.json`)
+      axiosInstance.get(`https://dlc.services/iiif-img/3/2/${updatedArtItem.iiif_uuid}/info.json`)
         .then(iiif_resp => {
           updatedArtItem['iiif'] = iiif_resp.data
-          updatedArtItem['thumbnail'] = `https://dlc.services/thumbs/3/2/${resp.data.iiif_uuid}/full/${iiif_resp.data.sizes[1].width},${iiif_resp.data.sizes[1].height}/0/default.jpg`
+          updatedArtItem['thumbnail'] = `https://dlc.services/thumbs/3/2/${updatedArtItem.iiif_uuid}/full/${iiif_resp.data.sizes[1].width},${iiif_resp.data.sizes[1].height}/0/default.jpg`
         }, err => {
           console.log(err)
           updatedArtItem['api_error'] = err.data.message
         })
-
-      }, err => {
-        console.log(err)
-        updatedArtItem['api_error'] = err.data.message
-      })
     })
 
     var asyncCheckerArtwork = setInterval(() => {

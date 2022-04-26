@@ -1,8 +1,5 @@
 import OpenSeadragon from 'openseadragon'
 import {axiosInstance} from '@/api/endpoints'
-import {
-    CATALOG_URL
-} from './../../api/endpoints'
 
 const state = () => ({
     viewer: null,
@@ -19,7 +16,6 @@ const state = () => ({
         points: null,
         current_point: null,
         collections: window.collections,
-        catalog_item: null,
         iiif_item: null
     },
     toggles: {
@@ -84,9 +80,6 @@ const mutations = {
     setArtistData(state, payload) {
         state.local_data.artist = payload
     },
-    setCatalogData(state, payload) {
-        state.local_data.catalog_item = payload
-    },
     setIIIF(state, payload) {
         state.local_data.iiif_item = payload
     },
@@ -125,20 +118,6 @@ const actions = {
             axiosInstance.get(`https://dlc.services/iiif-img/3/2/${iiif_uuid}/info.json`)
                 .then(resp => {
                     commit('setIIIF', resp.data)
-                    resolve(resp)
-                }, err => {
-                    reject(err)
-                })
-        })
-    },
-    getCatalogData({
-        commit,
-        dispatch
-    }, accession_number) {
-        return new Promise((resolve, reject) => {
-            axiosInstance.get(`${CATALOG_URL}${accession_number}/`)
-                .then(resp => {
-                    commit('setCatalogData', resp.data)
                     resolve(resp)
                 }, err => {
                     reject(err)

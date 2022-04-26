@@ -9,5 +9,3 @@ export const axiosInstance = axios.create({
     baseURL: `${BASE_URL}api/`
 });
 
-export const CATALOG_URL = 'https://conversations.terraamericanart.org/api/v1/artworks/'
-

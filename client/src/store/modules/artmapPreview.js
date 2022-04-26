@@ -1,8 +1,5 @@
 import OpenSeadragon from 'openseadragon'
 import { axiosInstance } from '@/api/endpoints'
-import {
-    CATALOG_URL
-} from './../../api/endpoints'
 
 const state = () => ({
     viewer: null,
@@ -19,7 +16,6 @@ const state = () => ({
         points: null,
         current_point: null,
         collections: window.collections,
-        catalog_item: null,
         iiif_item: null
     },
     toggles: {
@@ -77,9 +73,6 @@ const mutations = {
     },
     setPointData(state, payload) {
         state.local_data.points = payload
-    },
-    setCatalogData(state, payload) {
-        state.local_data.catalog_item = payload
     },
     setIIIF(state, payload) {
         state.local_data.iiif_item = payload

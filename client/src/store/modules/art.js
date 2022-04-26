@@ -1,10 +1,6 @@
 import OpenSeadragon from 'openseadragon'
 import {axiosInstance} from '@/api/endpoints'
 
-import {
-  CATALOG_URL
-} from './../../api/endpoints'
-
 const state = () => ({
   viewer: null,
   canvas: null,
@@ -23,7 +19,6 @@ const state = () => ({
     art: null,
     artist: null,
     collections: null,
-    catalog_item: null,
     iiif_item: null
   },
   loaded: false,
@@ -92,9 +87,6 @@ const mutations = {
     state.art_data.artist = payload
     let artistClone = Object.assign({}, state.art_data.artist)
     state.art_data_revertable.artist = artistClone
-  },
-  setCatalogData(state, payload) {
-    state.art_data.catalog_item = payload
   },
   setIIIF(state, payload) {
     state.art_data.iiif_item = payload

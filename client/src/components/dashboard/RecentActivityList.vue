@@ -55,7 +55,6 @@ import Card from './Card.vue'
 import EditCollectionModal from './EditCollectionModal.vue'
 import DeleteCollectionModal from './DeleteCollectionModal.vue'
 import MiniLoader from './../loaders/MiniLoader.vue'
-import {CATALOG_URL} from './../../api/endpoints'
 
   export default {
     props: ['filterValue'],

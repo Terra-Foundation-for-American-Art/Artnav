@@ -44,7 +44,6 @@
 import {axiosInstance} from '@/api/endpoints'
 import Card from './Card.vue'
 import MiniLoader from './../loaders/MiniLoader.vue'
-import {CATALOG_URL} from './../../api/endpoints'
   export default {
     props: ['filterValue'],
     data () {
