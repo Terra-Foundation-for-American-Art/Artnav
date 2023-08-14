@@ -1,9 +1,9 @@
-from django.conf.urls import url
+from django.urls import re_path
 
 from . import views
 
 app_name = 'gallery'
 
 urlpatterns = [
-  url(r'^(?P<artwork_slug>[\w\-]+)/?$', views.artmap, name='artmap'),
+  re_path(r'^(?P<artwork_slug>[\w\-]+)/?$', views.artmap, name='artmap'),
 ]

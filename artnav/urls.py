@@ -1,4 +1,4 @@
-from django.conf.urls import include, url
+from django.urls import include, re_path
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -27,18 +27,18 @@ router.register(r'all-artwork', AllArtworksViewSet, 'all-artwork')
 router.register(r'all-collections', AllCollectionsViewSet, 'all-collections')
 
 urlpatterns = [
-	url(r'^$', dashboard),
-  url(r'^artmapper/$', TemplateView.as_view(template_name='spa.html'), name='artmapper'),
-	url(r'^api/', include(router.urls)),
-	url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-  url(r'^admin/?', admin.site.urls),
-  url(r'^profile/', include('artnav.profiles.urls')),
-  url(r'^accounts/', include('django.contrib.auth.urls')),
-  url(r'^dashboard/?', include('artnav.dashboard.urls')),
-  url(r'^collections/', include('artnav.artcollections.urls')),
-  url(r'^art/', include('artnav.artworks.urls')),
-  url(r'^gallery/', include('artnav.gallery.urls')),
-  url(r'^s3-sign/$', s3SignView.as_view(), name='s3-sign'),
+	re_path(r'^$', dashboard),
+  re_path(r'^artmapper/$', TemplateView.as_view(template_name='spa.html'), name='artmapper'),
+	re_path(r'^api/', include(router.urls)),
+	re_path(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+  re_path(r'^admin/?', admin.site.urls),
+  re_path(r'^profile/', include('artnav.profiles.urls')),
+  re_path(r'^accounts/', include('django.contrib.auth.urls')),
+  re_path(r'^dashboard/?', include('artnav.dashboard.urls')),
+  re_path(r'^collections/', include('artnav.artcollections.urls')),
+  re_path(r'^art/', include('artnav.artworks.urls')),
+  re_path(r'^gallery/', include('artnav.gallery.urls')),
+  re_path(r'^s3-sign/$', s3SignView.as_view(), name='s3-sign'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 # if settings.DEBUG:
 #     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

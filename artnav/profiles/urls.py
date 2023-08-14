@@ -1,9 +1,9 @@
-from django.conf.urls import url
+from django.urls import re_path
 
 from . import views
  
 app_name = 'profiles'
 
 urlpatterns = [
-	url(r'^$', views.profile, name='user-profile'),
+	re_path(r'^$', views.profile, name='user-profile'),
 ]

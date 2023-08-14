@@ -130,7 +130,7 @@ export default {
     padding-top: 0rem;
     padding-bottom: 0.5rem;
     h1{
-      @include font-size(1.68)
+      @include font-size(1.68);
       color:white;
       margin-bottom:0.5rem;
     }

@@ -70,7 +70,7 @@ export default {
     border-radius:50%;
     background-color:rgba(0, 0, 0, 0.15);
     color:white;
-    @include font-size(1.3)
+    @include font-size(1.3);
     text-align: center;
     margin-right:1.5rem;
     cursor: pointer;

@@ -196,7 +196,7 @@ export default{
     }
     i{
       position: absolute;
-      @include font-size(1.3)
+      @include font-size(1.3);
       right: 0.4rem;
       top: 50%;
       transform: translateY(-50%);
@@ -238,7 +238,7 @@ export default{
           li{
             list-style-type: none;
             color:white;
-            @include font-size(0.75)
+            @include font-size(0.75);
             margin-bottom: 0.35rem;
             transition: all 0.2s ease-in-out;
             .oi{

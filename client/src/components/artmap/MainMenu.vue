@@ -6,6 +6,7 @@
           <h1>
             <span class='italic_title'>{{local_data.art.artwork_title}},</span> {{local_data.art.artwork_creation_date}}<br>
           </h1>
+          <p class='about_artwork'> {{ local_data.art.about }}</p>
           <p class='catalog_caption'>
             {{local_data.art.medium}} {{local_data.art.dimensions}}<br>
             {{local_data.art.credit}}, {{local_data.art.accession_number}}
@@ -106,8 +107,8 @@ export default {
         margin-bottom:1rem;
       }
       .about_artwork{
-        @include font-size(1.08)
-        @include line-height(1.6)
+        @include font-size(1.08);
+        @include line-height(1.6);
         padding-right:18%;
       }
       .catalog_caption{
@@ -139,7 +140,7 @@ export default {
     .external_link{
       a{
         .oi{
-          @include font-size(0.6)
+          @include font-size(0.6);
           margin-left:0.4rem;
         }
       }
@@ -167,7 +168,7 @@ export default {
       .collection_artwork_title{
         a{
           color:white;
-          @include font-size(1.2)
+          @include font-size(1.2);
           &:hover{
             text-decoration: none;
             color:#199bff;
@@ -175,8 +176,8 @@ export default {
         }
       }
       h1{
-        @include font-size(1.2)
-        @include line-height(1.8)
+        @include font-size(1.2);
+        @include line-height(1.8);
         margin-bottom:0.3rem;
       }
       p{}
