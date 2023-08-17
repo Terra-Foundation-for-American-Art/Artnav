@@ -17,12 +17,12 @@
           Artmaps
       </router-link>
     </li>
-    <li>
+    <!-- <li>
       <router-link  to='/collections' :class='{active: $route.name==="collections" || $route.name === "collection-detail"}'>
           <CollectionsIcon />
           Collections
       </router-link>
-    </li>
+    </li> -->
     <li>
       <router-link  to='/artists' :class='{active: $route.name==="artists"}'>
           <ArtistsIcon />
