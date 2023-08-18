@@ -17,12 +17,6 @@
           Artmaps
       </router-link>
     </li>
-    <!-- <li>
-      <router-link  to='/collections' :class='{active: $route.name==="collections" || $route.name === "collection-detail"}'>
-          <CollectionsIcon />
-          Collections
-      </router-link>
-    </li> -->
     <li>
       <router-link  to='/artists' :class='{active: $route.name==="artists"}'>
           <ArtistsIcon />
@@ -37,7 +31,6 @@
 
 import CreateIcon from './../svgs/Create.vue'
 import ArtmapsIcon from './../svgs/ArtmapsIcon.vue'
-import CollectionsIcon from './../svgs/CollectionsIcon.vue'
 import ArtistsIcon from './../svgs/ArtistsIcon.vue'
 export default {
   methods: {
@@ -48,7 +41,6 @@ export default {
   components: {
     CreateIcon: CreateIcon,
     ArtmapsIcon: ArtmapsIcon,
-    CollectionsIcon: CollectionsIcon,
     ArtistsIcon: ArtistsIcon
   }
 }
@@ -79,7 +71,6 @@ export default {
   ul{
     display: flex;
     justify-content:center;
-    align-items: center;
     li{
       padding: 0.8rem;
       margin:0 0.5rem;

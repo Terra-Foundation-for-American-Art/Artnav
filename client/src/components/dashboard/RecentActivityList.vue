@@ -6,13 +6,12 @@
   <transition name='fade'>
     <MiniLoader v-show='loading' :colorClass='"dark"' class='dashboard_loader' />
   </transition>
-  <p class='dashboard_section_title' v-if='recent_artwork && recent_collections'>
+  <p class='dashboard_section_title' v-if='recent_artwork'>
     Dashboard: Recent Activity
     <span class='view_counts'>
       <span v-if='!isFiltering'>Showing: </span>
       <span v-else>Filtered to: </span>
         <span class='inline_highlight'>{{recent_artwork.length}} artworks</span>
-      and <span class='inline_highlight'>{{recent_collections.length}} collections</span>
     </span>
   </p>
   <div v-if='all_recent'>
@@ -23,7 +22,7 @@
       :card='item'
       @updatedPublishState='handlePublishUpdate'
       @deleteArtwork='showDeleteDialog'
-      @showUpdateCollectionModal='handleUpdateCollection' />
+     />
   </div>
   <div class="modal fade" id="deleteArtworkDashboard" tabindex="-1" role="dialog" aria-labelledby="deleteArtworkDashboard" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -40,11 +39,6 @@
     </div>
     <div class="modal-backdrop fade show"></div>
   </div>
-  <EditCollectionModal
-    :passedCollection='collection_to_be_edited'
-    @collectionUpdated='handleCollectionUpdated'
-    @deleteCollection='handleDeleteCollection'/>
-  <DeleteCollectionModal :collection='collection_to_be_deleted' @updateAfterDelete='handleCollectionDeleted' />
 </div>
 </template>
 <script>
@@ -52,8 +46,6 @@
 import _ from 'lodash'
 import {axiosInstance} from '@/api/endpoints'
 import Card from './Card.vue'
-import EditCollectionModal from './EditCollectionModal.vue'
-import DeleteCollectionModal from './DeleteCollectionModal.vue'
 import MiniLoader from './../loaders/MiniLoader.vue'
 
   export default {
@@ -62,13 +54,10 @@ import MiniLoader from './../loaders/MiniLoader.vue'
       return {
         isFiltering: false,
         loading: false,
-        collection_to_be_edited: null,
-        collection_to_be_deleted: null,
         all_recent: null,
         all_recent_backup: null,
         recent_artwork: null,
         recent_artwork_backup: null,
-        recent_collections: null,
         item_for_delete: null,
         alert: {
           message: null,
@@ -102,28 +91,7 @@ import MiniLoader from './../loaders/MiniLoader.vue'
       }
     },
     methods: {
-      handleCollectionUpdated: function () {
-        this.getRecentArtwork()
-        this.setSuccessMessage({
-          message: `${this.collection_to_be_edited.collection_title} was successfully updated.`,
-          show: true
-        })
-      },
-      handleCollectionDeleted: function () {
-        this.getRecentArtwork()
-        this.setSuccessMessage({
-          message: `${this.collection_to_be_deleted.collection_title} was successfully deleted.`,
-          show: true
-        })
-      },
-      handleDeleteCollection: function (collectionCard) {
-        this.collection_to_be_deleted = collectionCard
-        $('#deleteCollectionDashboard').modal('show')
-      },
-      handleUpdateCollection: function (collectionCard) {
-        this.collection_to_be_edited = collectionCard
-        $('#editCollectionDashboard').modal('show')
-      },
+
       showDeleteDialog: function (artworkItem) {
         this.item_for_delete = artworkItem
         $('#deleteArtworkDashboard').modal('show')
@@ -310,8 +278,6 @@ import MiniLoader from './../loaders/MiniLoader.vue'
     },
     components: {
       Card,
-      EditCollectionModal,
-      DeleteCollectionModal,
       MiniLoader
     }
   }

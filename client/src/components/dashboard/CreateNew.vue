@@ -34,29 +34,6 @@
             </ul>
           </div>
         </div>
-        <div class='form-group collection-form-field'>
-          <label for="art_collection">Assign to Collection</label>
-          <small id="imageHelp" class="form-text text-muted">Optional</small>
-          <div class='auto-complete-input'>
-            <input
-              type="text"
-              class='form-control'
-              placeholder='Search for an existing collection or add a new one'
-              @keydown='handleCollectionInputKeyDown'
-              @click='flags.autocomplete_selections.collection = false'
-              v-model='local_input.collection_title'>
-              <span v-if='new_collection.collection_title' class='new-obj-indicator'>New Collection</span>
-            <ul
-              v-if='autocompletes.collections'
-              class='auto-complete-list'>
-              <li
-                v-for='(found_collection, j) in autocompletes.collections'
-                :key='`found-collection-${j}`'
-                @click='autoCompleteSelectCollection(found_collection, "collection_title")'>{{found_collection.collection_title}}</li>
-            </ul>
-          </div>
-        </div>
-
         <div class='form-group'>
           <label for="catalog_id">Accession Number</label>
           <input class='form-control' type="text" id='accession_number' placeholder='Accession Number...' v-model='submission.accession_number'>

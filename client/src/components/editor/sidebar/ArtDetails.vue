@@ -8,13 +8,6 @@
       <p class='meta_attr'>by {{art_data.artist.artist_name}}</p>
     </div>
 
-    <p v-if='art_data.collections'>
-      included in
-      <span v-for='collection in art_data.collections'>
-        {{collection.collection_title}}
-      </span>
-    </p>
-
   </div>
 
 </template>
