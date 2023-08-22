@@ -101,52 +101,6 @@
                   </div>
               </div>
             </div>
-            
-            <div class='row artwork'>
-              <div class='col-sm-12'>
-                <label>Collections</label>
-                  <div class='form-group autocomplete-group collections-field'>
-                    <small id="imageHelp" class="form-text text-muted">Type the name of a new or existing collection:</small>
-                    <div class='auto-complete-input'>
-                      <input
-                        type="text"
-                        class='form-control'
-                        placeholder='Search for an existing collection or add a new one'
-                        @keydown='handleCollectionInputKeyDown'
-                        @click='flags.autocomplete_selections.collection = false'
-                        v-model='local_input.collection_title'>
-                        <span v-if='new_collection.collection_title' class='new-obj-indicator'>New Collection</span>
-                      <ul
-                        v-if='autocompletes.collections'
-                        class='auto-complete-list'>
-                        <li
-                          v-for='(found_collection, j) in autocompletes.collections'
-                          :key='j'
-                          @click='autoCompleteSelectCollection(found_collection, "collection_title")'>{{found_collection.collection_title}}</li>
-                        </ul>
-                    </div>
-                    <div v-if='new_collection.collection_title'>
-                      <small class="form-text text-muted">About this Collection</small>
-                      <textarea class='form-control' placeholder='Provide an optional description for this new collection...' v-model='local_input.curatorial_statement'></textarea>
-                      <small class="form-text text-muted">External Link</small>
-                      <input
-                        type="text"
-                        class='form-control'
-                        placeholder='Include an optional external link for this collection...'
-                        v-model='local_input.external_link'>
-                    </div>
-                    <ul v-if='existing_collections' class='existing_collections'>
-                      <li
-                        v-for='collection in existing_collections'
-                        :key='collection.id'
-                        @click='removeFromCollection(collection.id)'>
-                          <span>{{collection.collection_title}}</span>
-                          <span class="oi oi-circle-x"></span>
-                      </li>
-                    </ul>
-                  </div>
-              </div>
-            </div>
             <div class='row artwork meta-data'>
               <div class='col-sm-12'>
                 <label>Artmap Meta Tags</label>
