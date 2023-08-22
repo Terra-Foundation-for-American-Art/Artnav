@@ -83,34 +83,34 @@
   <span class='artmap_point' id='161'></span> -->
 
   <script type="text/javascript">
-    window.art_id = {{ artwork.id }}
+    window.art_id = "{{ artwork.id }}"
     window.art_title = "{{artwork.artwork_title}}"
-    window.art_image = "{{ artwork.image_ref }}",
+    window.art_image = "{{ artwork.image_ref }}"
     window.collections = [
-      {% if collections is not None %}
-        {% for collection in collections %}
+      "{% if collections is not None %}",
+       " {% for collection in collections %}",
         {
           collection_title: "{{collection.collection_title}}",
           collection_slug: "{{collection.collection_slug}}",
           curatorial_statement: "{{collection.curatorial_statement}}",
           external_link: "{{collection.external_link}}",
           artworks: [
-            {% if collection.artworks is not None %}
-            {% for work in collection.artworks.all %}
-              {% if work.id is not artwork.id and work.published %}
+            "{% if collection.artworks is not None %}",
+            "{% for work in collection.artworks.all %}",
+              "{% if work.id is not artwork.id and work.published %}",
                 {
                   name: "{{work.artwork_title}}",
                   slug: "{{work.artwork_slug}}",
                   url: "{{work.image_ref}}",
                   artist: "{{work.artist.artist_name}}"
                 },
-              {% endif %}
-            {% endfor %}
-            {% endif %}
+              "{% endif %}",
+            "{% endfor %}",
+            "{% endif %}"
           ]
         },
-        {% endfor %}
-      {% endif %}
+        "{% endfor %}",
+      "{% endif %}"
     ]
   </script>
   {% render_bundle 'chunk-vendors' %}
