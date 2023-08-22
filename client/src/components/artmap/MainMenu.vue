@@ -180,7 +180,6 @@ export default {
         @include line-height(1.8);
         margin-bottom:0.3rem;
       }
-      p{}
       &:hover{
         .artwork_img{
           border:2px solid $colors_primary;
