@@ -107,9 +107,10 @@ export default {
         margin-bottom:1rem;
       }
       .about_artwork{
-        @include font-size(1.08);
-        @include line-height(1.6);
+        @include font-size(0.8);
+        @include line-height(1.2);
         padding-right:18%;
+        color:#969696;
       }
       .catalog_caption{
         @include font-size(0.8);
