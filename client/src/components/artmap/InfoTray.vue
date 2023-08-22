@@ -179,21 +179,21 @@ export default {
       a{ color: #007bff !important; }
     }
     h1{
-      @include font-size(1.2)
+      @include font-size(1.2);
       @include type_header_bold;
       background-color:transparent !important;
       span{
-        @include font-size(1.2)
+        @include font-size(1.2);
         @include type_header_bold;
         background-color:transparent !important;
       }
     }
     h2{
-      @include font-size(1)
+      @include font-size(1);
       @include type_header_bold;
       background-color:transparent !important;
       span{
-        @include font-size(1)
+        @include font-size(1);
         @include type_header_bold;
         background-color:transparent !important;
       }

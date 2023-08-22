@@ -46,12 +46,12 @@
     animation: shadow 0.8s ease infinite;
 }
 
-@-keyframes mapping{
+@keyframes mapping{
     0% {transform: translateY(0px) rotate(-46deg);}
     50%{transform: translateY(-8px) rotate(-46deg);}
     100% {transform: translateY(0px) rotate(-46deg);}
 }
-@-webkit-keyframes mapping{
+@keyframes mapping{
     0% {transform: translateY(0px) rotate(-46deg);}
     50%{transform: translateY(-8px) rotate(-46deg);}
     100% {transform: translateY(0px) rotate(-46deg);}
@@ -62,7 +62,7 @@
     100% {transform: translateY(0px) rotate(-46deg);}
 }
 
-@-keyframes shadow{
+@keyframes shadow{
     0% {transform: scale(1);}
     50%{transform: scale(0.85);}
     100% {transform: scale(1);}

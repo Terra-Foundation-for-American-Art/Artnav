@@ -19,6 +19,10 @@
                     <small id="imageHelp" class="form-text text-muted">Title:</small>
                     <input class='form-control' type="text" id='art_title' placeholder='Title...' v-model='artwork_title'>
                 </div>
+                <div class='form-group'>
+                    <small id="imageHelp" class="form-text text-muted">Image Description:</small>
+                    <input class='form-control' type="text" id='art_about' placeholder='Image Description...' v-model='about'>
+                </div>
                <div class='form-group'>
                     <small id="imageHelp" class="form-text text-muted">Accession Number:</small>
                     <input class='form-control' type="text" id='art_accession' placeholder='Accession Number...' v-model='accession_number'>
@@ -222,6 +226,7 @@ export default {
       local_data: {
         id: null,
         artwork_title: null,
+        about: null,
         accession_number: null,
         artwork_creation_date: null,
         artist: null,
@@ -269,6 +274,10 @@ export default {
         this.$store.state.art.art_data.art.artwork_title = value
         this.$store.state.art.art_data.art.artwork_slug = value.replace(/[^A-Z0-9]+/ig, '-').toLowerCase().toLowerCase()
       }
+    },
+    'about': {
+      get () { return this.$store.state.art.art_data.art.about },
+      set (value) {this.$store.state.art.art_data.art.about = value}
     },
     'artwork_credit': {
       get () { return this.$store.state.art.art_data.art.credit },
@@ -322,6 +331,10 @@ export default {
   watch: {
     'art_data.art.artwork_title': function (value) {
       validateExists('artwork_title', value, this)
+      this.submissionCheck()
+    },
+    'art_data.art.about': function (value) {
+      validateExists('about', value, this)
       this.submissionCheck()
     },
     'art_data.art.artwork_creation_date': function (value) {
@@ -716,7 +729,7 @@ export default {
     }
     .oi{
       margin-left:0.5rem;
-      @include font-size(0.7)
+      @include font-size(0.7);
       cursor: pointer;
     }
     &:last-child{

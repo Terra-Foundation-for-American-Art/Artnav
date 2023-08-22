@@ -33,7 +33,7 @@ def profile(request):
 
 	if request.method == 'POST':
 		user_form = UserForm(request.POST, instance=request.user)
-		if user_form.is_valid() and profile_form.is_valid():
+		if user_form.is_valid():
 			user_form.save()
 
 			return HttpResponseRedirect(reverse('profiles:user-profile') )

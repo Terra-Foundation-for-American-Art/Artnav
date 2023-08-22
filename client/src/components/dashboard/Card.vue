@@ -255,7 +255,7 @@ export default {
 .artist_byline{
   color:$colors_text_secondary;
   margin: 0;
-  @include font-size(0.8)
+  @include font-size(0.8);
   position: relative;
   z-index: 1;
 }

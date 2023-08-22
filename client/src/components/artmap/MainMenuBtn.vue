@@ -35,7 +35,7 @@ export default {
     z-index:5;
   }
   i{
-    @include font-size(1.3)
+    @include font-size(1.3);
     position: relative;
     display: block;
     top: 50%;

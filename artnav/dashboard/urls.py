@@ -1,11 +1,11 @@
-from django.conf.urls import url
+from django.urls import re_path
 
 from . import views
  
 app_name = 'dashboard'
 
 urlpatterns = [
-	url(r'^$', views.dashboard, name='dashboard'),
-	url(r'^add-artwork/$', views.handleAddArtwork, name='add-new-artwork'),
-	url(r'^add-artist/$', views.handleAddArtistForm, name='add-new-artist')
+	re_path(r'^$', views.dashboard, name='dashboard'),
+	re_path(r'^add-artwork/$', views.handleAddArtwork, name='add-new-artwork'),
+	re_path(r'^add-artist/$', views.handleAddArtistForm, name='add-new-artist')
 ]
