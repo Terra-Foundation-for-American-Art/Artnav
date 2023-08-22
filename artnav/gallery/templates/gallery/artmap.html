@@ -35,7 +35,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="{% static 'icons/apple-touch-icon.png' %}">
   <link rel="icon" type="image/png" sizes="32x32" href="{% static 'icons/favicon-32x32.png' %}">
   <link rel="icon" type="image/png" sizes="16x16" href="{% static 'icons/favicon-16x16.png' %}">
-  <!-- <link rel="manifest" href="{% static 'icons/site.webmanifest' %}"> -->
+  <link rel="manifest" href="{% static 'icons/site.webmanifest' %}">
   <link rel="mask-icon" href="{% static 'icons/safari-pinned-tab.svg' %}" color="#3b84c7">
   <meta name="msapplication-TileColor" content="#3b84c7">
   <meta name="theme-color" content="#ffffff">
@@ -83,34 +83,34 @@
   <span class='artmap_point' id='161'></span> -->
 
   <script type="text/javascript">
-    window.art_id = {{ artwork.id }}
+    window.art_id = "{{ artwork.id }}"
     window.art_title = "{{artwork.artwork_title}}"
-    window.art_image = "{{ artwork.image_ref }}",
+    window.art_image = "{{ artwork.image_ref }}"
     window.collections = [
-      {% if collections is not None %}
-        {% for collection in collections %}
+      "{% if collections is not None %}",
+       " {% for collection in collections %}",
         {
           collection_title: "{{collection.collection_title}}",
           collection_slug: "{{collection.collection_slug}}",
           curatorial_statement: "{{collection.curatorial_statement}}",
           external_link: "{{collection.external_link}}",
           artworks: [
-            {% if collection.artworks is not None %}
-            {% for work in collection.artworks.all %}
-              {% if work.id is not artwork.id and work.published %}
+            "{% if collection.artworks is not None %}",
+            "{% for work in collection.artworks.all %}",
+              "{% if work.id is not artwork.id and work.published %}",
                 {
                   name: "{{work.artwork_title}}",
                   slug: "{{work.artwork_slug}}",
                   url: "{{work.image_ref}}",
                   artist: "{{work.artist.artist_name}}"
                 },
-              {% endif %}
-            {% endfor %}
-            {% endif %}
+              "{% endif %}",
+            "{% endfor %}",
+            "{% endif %}"
           ]
         },
-        {% endfor %}
-      {% endif %}
+        "{% endfor %}",
+      "{% endif %}"
     ]
   </script>
   {% render_bundle 'chunk-vendors' %}

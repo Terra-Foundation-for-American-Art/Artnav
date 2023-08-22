@@ -20,8 +20,8 @@
                     <input class='form-control' type="text" id='art_title' placeholder='Title...' v-model='artwork_title'>
                 </div>
                 <div class='form-group'>
-                    <small id="imageHelp" class="form-text text-muted">Artwork Description:</small>
-                    <input class='form-control' type="text" id='art_about' placeholder='Artwork Description...' v-model='about'>
+                    <small id="imageHelp" class="form-text text-muted">Image Description:</small>
+                    <input class='form-control' type="text" id='art_about' placeholder='Image Description...' v-model='about'>
                 </div>
                <div class='form-group'>
                     <small id="imageHelp" class="form-text text-muted">Accession Number:</small>

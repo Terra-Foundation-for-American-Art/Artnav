@@ -6,12 +6,12 @@
           <h1>
             <span class='italic_title'>{{local_data.art.artwork_title}},</span> {{local_data.art.artwork_creation_date}}<br>
           </h1>
-          <p class='about_artwork'> {{ local_data.art.about }}</p>
           <p class='catalog_caption'>
             {{local_data.art.medium}} {{local_data.art.dimensions}}<br>
             {{local_data.art.credit}}, {{local_data.art.accession_number}}
           </p>
           <p class='artist_name'>by {{local_data.artist.artist_name}}</p>
+          <p class='about_artwork'> {{ local_data.art.about }}</p>
         </div>
         <div class='collection_list' v-if='local_data.collections.length'>
           <div class='row no-gutters'><p class='related-section-label'>Related:</p></div>
@@ -107,9 +107,10 @@ export default {
         margin-bottom:1rem;
       }
       .about_artwork{
-        @include font-size(1.08);
-        @include line-height(1.6);
+        @include font-size(0.8);
+        @include line-height(1.2);
         padding-right:18%;
+        color:#969696;
       }
       .catalog_caption{
         @include font-size(0.8);
@@ -180,7 +181,6 @@ export default {
         @include line-height(1.8);
         margin-bottom:0.3rem;
       }
-      p{}
       &:hover{
         .artwork_img{
           border:2px solid $colors_primary;
