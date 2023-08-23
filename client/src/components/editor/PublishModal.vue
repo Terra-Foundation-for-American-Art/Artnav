@@ -229,7 +229,7 @@ export default {
         this.$store.state.art.art_data.art.artwork_slug = value.replace(/[^A-Z0-9]+/ig, '-').toLowerCase().toLowerCase()
       }
     },
-    'about': {
+    'description': {
       get () { return this.$store.state.art.art_data.art.description },
       set (value) {this.$store.state.art.art_data.art.description = value}
     },
@@ -287,10 +287,6 @@ export default {
       validateExists('artwork_title', value, this)
       this.submissionCheck()
     },
-    // 'art_data.art.about': function (value) {
-    //   validateExists('about', value, this)
-    //   this.submissionCheck()
-    // },
     'art_data.art.artwork_creation_date': function (value) {
       validateExists('artwork_creation_date', value, this)
       this.submissionCheck()

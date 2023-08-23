@@ -11,7 +11,7 @@
             {{local_data.art.credit}}, {{local_data.art.accession_number}}
           </p>
           <p class='artist_name'>by {{local_data.artist.artist_name}}</p>
-          <p class='about_artwork'> {{ local_data.art.about }}</p>
+          <p class='about_artwork'> {{ local_data.art.description }}</p>
         </div>
         <div class='collection_list' v-if='local_data.collections.length'>
           <div class='row no-gutters'><p class='related-section-label'>Related:</p></div>
