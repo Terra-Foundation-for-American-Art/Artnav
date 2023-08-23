@@ -19,6 +19,7 @@ class Artist(models.Model):
 class Artwork(models.Model):
   artwork_title = models.CharField(max_length=300)
   about = models.TextField(null=True, blank=True)
+  description = models.TextField(null=True, blank=True)
   
   iiif_uuid = models.CharField(max_length=300, blank=True, null=True)
   credit = models.TextField(null=True, blank=True)

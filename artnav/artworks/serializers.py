@@ -25,7 +25,7 @@ class ArtworkSerializer(serializers.HyperlinkedModelSerializer):
 
   class Meta:
     model = Artwork
-    fields = ('id', 'artwork_title', 'about', 'iiif_uuid', 'credit', 'dimensions', 
+    fields = ('id', 'artwork_title', 'about', 'description', 'iiif_uuid', 'credit', 'dimensions', 
       'medium', 'accession_number', 'artwork_slug', 'artwork_creation_date', 'creation_date', 
       'updated_at', 'artist', 'curator', 'published', 'og_title', 'og_description',)
 

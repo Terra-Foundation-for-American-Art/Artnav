@@ -16,7 +16,7 @@ class ArtworkAdmin(admin.ModelAdmin):
 		('Curator', {'fields': ['curator']}),
 		('Artwork Title', {'fields': ['artwork_title', 'artwork_slug', 'published', ]}),
     	('About the Artwork', {'fields': ['artwork_creation_date', 'accession_number', 'iiif_uuid', 'credit', 
-		'dimensions', 'medium',]}),
+		'dimensions', 'medium','description']}),
 		('Artist', {'fields': ['artist']})
 	]
 	prepopulated_fields = {'artwork_slug': ('artwork_title',), }

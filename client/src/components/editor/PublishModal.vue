@@ -21,7 +21,7 @@
                 </div>
                 <div class='form-group'>
                     <small id="imageHelp" class="form-text text-muted">Image Description:</small>
-                    <input class='form-control' type="text" id='art_about' placeholder='Image Description...' v-model='about'>
+                    <input class='form-control' type="text" id='art_description' placeholder='Image Description...' v-model='description'>
                 </div>
                <div class='form-group'>
                     <small id="imageHelp" class="form-text text-muted">Accession Number:</small>
@@ -230,8 +230,8 @@ export default {
       }
     },
     'about': {
-      get () { return this.$store.state.art.art_data.art.about },
-      set (value) {this.$store.state.art.art_data.art.about = value}
+      get () { return this.$store.state.art.art_data.art.description },
+      set (value) {this.$store.state.art.art_data.art.description = value}
     },
     'artwork_credit': {
       get () { return this.$store.state.art.art_data.art.credit },
@@ -287,10 +287,10 @@ export default {
       validateExists('artwork_title', value, this)
       this.submissionCheck()
     },
-    'art_data.art.about': function (value) {
-      validateExists('about', value, this)
-      this.submissionCheck()
-    },
+    // 'art_data.art.about': function (value) {
+    //   validateExists('about', value, this)
+    //   this.submissionCheck()
+    // },
     'art_data.art.artwork_creation_date': function (value) {
       validateExists('artwork_creation_date', value, this)
       this.submissionCheck()

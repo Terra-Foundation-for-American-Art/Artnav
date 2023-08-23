@@ -472,7 +472,6 @@ export default {
     left: 0;
     width: 100%;
     height: 100%;
-    p{}
     .loader-wrap{
       position: absolute;
       top: 40%;

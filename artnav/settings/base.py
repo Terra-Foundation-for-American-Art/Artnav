@@ -10,7 +10,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # CORE SETTINGS
 # ==============================================================================
 
-SECRET_KEY = config("SECRET_KEY", default="django-insecure$artnav.settings")
+SECRET_KEY = config("SECRET_KEY", default="django-insecure$artnav.settings.local")
 
 DEBUG = config("DEBUG", default=True, cast=bool)
 
