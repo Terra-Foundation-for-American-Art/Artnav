@@ -13,7 +13,7 @@
           <p class='artist_name'>by {{local_data.artist.artist_name}}</p>
           <p class='about_artwork'> {{ local_data.art.description }}</p>
         </div>
-        <div class='collection_list' v-if='local_data.collections.length'>
+        <!-- <div class='collection_list' v-if='local_data.collections.length'>
           <div class='row no-gutters'><p class='related-section-label'>Related:</p></div>
           <div class='row related_collection no-gutters' v-if='local_data.collections' v-for='(collection, i) in local_data.collections' :key='i'>
             <h2 class='col-sm-12'>{{collection.collection_title}}</h2>
@@ -34,7 +34,7 @@
               <p>by {{artwork.artist}}</p>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </transition>
