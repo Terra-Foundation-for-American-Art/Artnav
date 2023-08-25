@@ -1,5 +1,5 @@
 <template>
-  <div class="icon preview">
+  <div title="Click to Preview" class="icon preview">
     <svg id='preview-icon' xmlns="http://www.w3.org/2000/svg" viewBox="5664 577.505 47.842 25.99">
       <g id="Symbol_4_1" data-name="Symbol 4 – 1" transform="translate(4075 544)">
         <g id="Path_12" data-name="Path 12" class="cls-1" transform="translate(1589 33.505)">
