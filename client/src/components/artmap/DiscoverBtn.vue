@@ -1,11 +1,11 @@
 <template>
   <button
     v-show='loaded'
-    class='btn btn-primary btn-discover'
+    class='btn btn-primary btn-discover btn-lg'
     :class='{exit_ready: discover_mode}'
     @click='toggleDiscoverMode'>
-      <span v-if='discover_mode'>Hide Navigation</span>
-      <span v-else>Discover</span>
+      <span v-if='!discover_mode'>Hide Navigation</span>
+      <span v-else>Show Navigation</span>
   </button>
 </template>
 <script>
@@ -37,6 +37,9 @@ export default {
     border:none;
     color:white;
     box-shadow: none;
+  }
+  span {
+    font-size: .8rem;
   }
 }
 </style>

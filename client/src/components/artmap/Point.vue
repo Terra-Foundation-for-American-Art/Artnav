@@ -1,7 +1,7 @@
 <template>
   <span
     class='artmap_point'
-    :class='[{active: local_data.current_point === point}, {ready: discover_mode}]'
+    :class='[{active: local_data.current_point === point}, {ready: !discover_mode}]'
     :id='point.id'
     @click='handlePointClick(point.point_slug)'>
     <svg class='point_el' width="34" height="34">

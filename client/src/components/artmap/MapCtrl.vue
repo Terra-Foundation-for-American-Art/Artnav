@@ -1,5 +1,5 @@
 <template>
-  <div class='map-ctrls' v-show='discover_mode'>
+  <div class='map-ctrls' v-show='!discover_mode'>
     <span @click='viewer.viewport.goHome(false)' class='reset-btn' id='reset'><i class="material-icons">&#xE55C;</i></span>
     <span class='zooms'>
       <span @click='zoom(true)' class='zoom-btn' id='zoom-in'><i class="material-icons">&#xE145;</i></span>

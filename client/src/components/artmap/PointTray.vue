@@ -1,5 +1,5 @@
 <template>
-  <div v-show='local_data.points && local_data.points.length > 0 && discover_mode' class='point_tray_wrap' :class='{open: open}'>
+  <div v-show='local_data.points && local_data.points.length > 0 && !discover_mode' class='point_tray_wrap' :class='{open: open}'>
     <div id='point_tray'>
       <div class='point-tray-intro' v-if='local_data.artist && local_data.art'>
         <h1>{{local_data.art.artwork_title}}</h1>
