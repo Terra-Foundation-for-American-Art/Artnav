@@ -21,7 +21,7 @@
                 </div>
                 <div class='form-group'>
                     <small id="imageHelp" class="form-text text-muted">Image Description:</small>
-                    <input class='form-control' type="text" id='art_description' placeholder='Image Description...' v-model='description'>
+                    <textarea class='form-control' type="text" id='art_description' placeholder='Image Description...' v-model='description'></textarea>
                 </div>
                <div class='form-group'>
                     <small id="imageHelp" class="form-text text-muted">Accession Number:</small>
