@@ -14,7 +14,7 @@
       </span>
     <div class="sorting_buttons">
       <button class="buttons shadow-none" @click="sortedArtists">Sort by Artist Name</button>
-      <button class="buttons shadow-none" @click="sortedDate">Sort by Date</button>
+      <button class="buttons shadow-none" @click="sortedDate">Sort by Last Updated</button>
       <button class="buttons shadow-none" @click="sortedPublished">Sort by Published</button>
     </div>
     </p>
@@ -111,8 +111,8 @@ export default {
     },
     sortedDate() {
       return this.all_artwork.sort((a, b) => {
-        if (this.formatData(a.creation_date) > this.formatData(b.creation_date)) return -1;
-        if (this.formatData(a.creation_date) < this.formatData(b.creation_date)) return 1;
+        if (this.formatData(a.updated_at) > this.formatData(b.updated_at)) return -1;
+        if (this.formatData(a.updated_at) < this.formatData(b.updated_at)) return 1;
         return 0;
       });
 
@@ -219,7 +219,7 @@ export default {
 .sorting_buttons {
   display: flex;
   justify-content: space-between;
-  width: 400px;
+  width: 450px;
 
   .buttons {
     @include type_body_bold;
