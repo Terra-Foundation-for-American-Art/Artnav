@@ -130,6 +130,10 @@ export default {
       this.editedPoint.point_content = richTextData
 
       for (const key in this.editedPoint) {
+        // Skip point_lede as it's optional
+        if (key === 'point_lede') {
+          continue
+        }
         if (this.editedPoint[key] === null || this.editedPoint[key] === '') {
           this.setValidation(false)
           missingKey = key

@@ -103,6 +103,10 @@ export default {
       var alert
 
       for (const key in this.local_data.points.new) {
+        // Skip point_lede as it's optional
+        if (key === 'point_lede') {
+          continue
+        }
         if (this.local_data.points.new[key] === null || this.local_data.points.new[key] === '') {
           this.setValidation(false)
           missingKey = key
