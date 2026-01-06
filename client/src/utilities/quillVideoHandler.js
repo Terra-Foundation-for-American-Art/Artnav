@@ -50,6 +50,7 @@ class CustomVideoHandler extends Quill.import('formats/video') {
       const embedUrl = `https://www.youtube.com/embed/${videoId}`
       
       // Set iframe attributes including referrerpolicy
+      // Using 16:9 aspect ratio (560:315 = 16:9)
       node.setAttribute('src', embedUrl)
       node.setAttribute('frameborder', '0')
       node.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture')
@@ -57,6 +58,7 @@ class CustomVideoHandler extends Quill.import('formats/video') {
       node.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin')
       node.setAttribute('width', '560')
       node.setAttribute('height', '315')
+      node.setAttribute('style', 'aspect-ratio: 16 / 9; width: 100%; height: auto;')
       node.setAttribute('class', 'ql-video')
     }
     
@@ -118,11 +120,11 @@ export function getQuillDeltaToHtmlConfig() {
       
       if (videoId) {
         const embedUrl = `https://www.youtube.com/embed/${videoId}`
-        return `<iframe src="${embedUrl}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="true" referrerpolicy="strict-origin-when-cross-origin" width="560" height="315" class="ql-video"></iframe>`
+        return `<iframe src="${embedUrl}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="true" referrerpolicy="strict-origin-when-cross-origin" width="560" height="315" style="aspect-ratio: 16 / 9; width: 100%; height: auto;" class="ql-video"></iframe>`
       }
       
       // Fallback for non-YouTube videos
-      return `<iframe src="${op.insert.video}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="true" referrerpolicy="strict-origin-when-cross-origin" width="560" height="315" class="ql-video"></iframe>`
+      return `<iframe src="${op.insert.video}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="true" referrerpolicy="strict-origin-when-cross-origin" width="560" height="315" style="aspect-ratio: 16 / 9; width: 100%; height: auto;" class="ql-video"></iframe>`
     }
   }
 }
