@@ -38,6 +38,10 @@ import moment from 'moment'
 import OpenSeadragon from 'openseadragon'
 import {mapState, mapMutations, mapActions} from 'vuex'
 import PencilIcon from './../../svgs/pencil.svg'
+import { registerCustomVideoHandler, getQuillDeltaToHtmlConfig, processVideoEmbeds } from './../../../utilities/quillVideoHandler.js'
+
+// Register custom video handler before creating Quill instances
+registerCustomVideoHandler()
 
 export default{
   props: ['point', 'index'],
@@ -130,10 +134,12 @@ export default{
     },
     renderQHtml: function (contentData) {
       var parsedOps = JSON.parse(contentData)
-      var cfg = {}
+      var cfg = getQuillDeltaToHtmlConfig()
 
       var converter = new QuillDeltaToHtmlConverter(parsedOps.ops, cfg)
-      return converter.convert()
+      var html = converter.convert()
+      // Post-process to ensure all YouTube iframes have referrerpolicy
+      return processVideoEmbeds(html)
     },
     
     callDeleteAlert: function () {

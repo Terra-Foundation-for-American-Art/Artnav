@@ -26,6 +26,7 @@
 <script>
 import { QuillDeltaToHtmlConverter } from 'quill-delta-to-html'; 
 import {mapState, mapMutations} from 'vuex'
+import { getQuillDeltaToHtmlConfig, processVideoEmbeds } from './../../utilities/quillVideoHandler.js'
 export default {
   data () {
     return {
@@ -59,9 +60,11 @@ export default {
     ...mapMutations('artmap', ['setInfoTrayClose', 'setInfoTrayOpen']),
     renderQHtml: function (contentData) {
       var parsedOps = JSON.parse(contentData)
-      var cfg = {}
+      var cfg = getQuillDeltaToHtmlConfig()
       var converter = new QuillDeltaToHtmlConverter(parsedOps.ops, cfg)
-      return converter.convert()
+      var html = converter.convert()
+      // Post-process to ensure all YouTube iframes have referrerpolicy
+      return processVideoEmbeds(html)
     },
     closeAndLeave: function () {
       this.setInfoTrayClose()

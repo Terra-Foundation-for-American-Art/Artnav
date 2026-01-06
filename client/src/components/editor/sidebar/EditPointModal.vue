@@ -62,6 +62,11 @@
 import Quill from 'quill'
 import {mapState, mapMutations, mapActions} from 'vuex'
 import MiniLoader from './../../loaders/MiniLoader.vue'
+import { registerCustomVideoHandler } from './../../../utilities/quillVideoHandler.js'
+
+// Register custom video handler before creating Quill instances
+registerCustomVideoHandler()
+
 export default {
   data () {
     return {
