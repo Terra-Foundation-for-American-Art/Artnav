@@ -86,8 +86,8 @@ export function registerCustomVideoHandler() {
 }
 
 /**
- * Post-processes HTML to add referrerpolicy to YouTube iframes
- * This ensures existing embeds get the required attribute
+ * Post-processes HTML to add referrerpolicy and 16:9 aspect ratio styling
+ * to YouTube iframes. This ensures existing embeds get the required attributes.
  */
 export function processVideoEmbeds(html) {
   if (!html || typeof html !== 'string') return html
@@ -98,14 +98,56 @@ export function processVideoEmbeds(html) {
   const youtubeIframePattern = /<iframe([^>]*src=["'][^"']*youtube\.com\/embed\/[^"']*["'][^>]*)(\/?)>/gi
   
   return html.replace(youtubeIframePattern, (match, attributes, selfClosing) => {
-    // Check if referrerpolicy already exists
-    if (/referrerpolicy\s*=/i.test(attributes)) {
+    let updatedAttributes = attributes
+    let needsUpdate = false
+    
+    // Add referrerpolicy if missing
+    if (!/referrerpolicy\s*=/i.test(updatedAttributes)) {
+      updatedAttributes += ' referrerpolicy="strict-origin-when-cross-origin"'
+      needsUpdate = true
+    }
+    
+    // Add width and height if missing
+    if (!/\bwidth\s*=/i.test(updatedAttributes)) {
+      updatedAttributes += ' width="560"'
+      needsUpdate = true
+    }
+    if (!/\bheight\s*=/i.test(updatedAttributes)) {
+      updatedAttributes += ' height="315"'
+      needsUpdate = true
+    }
+    
+    // Add style for 16:9 aspect ratio if missing
+    if (!/\bstyle\s*=/i.test(updatedAttributes)) {
+      updatedAttributes += ' style="aspect-ratio: 16 / 9; width: 100%; height: auto;"'
+      needsUpdate = true
+    } else {
+      // If style exists, check if it has aspect-ratio
+      if (!/aspect-ratio/i.test(updatedAttributes)) {
+        // Try to inject aspect-ratio into existing style
+        updatedAttributes = updatedAttributes.replace(
+          /style\s*=\s*["']([^"']*)["']/i,
+          (styleMatch, styleContent) => {
+            return `style="${styleContent}; aspect-ratio: 16 / 9; width: 100%; height: auto;"`
+          }
+        )
+        needsUpdate = true
+      }
+    }
+    
+    // Add allow attribute if missing
+    if (!/\ballow\s*=/i.test(updatedAttributes)) {
+      updatedAttributes += ' allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"'
+      needsUpdate = true
+    }
+    
+    // Only return modified version if changes were made
+    if (!needsUpdate) {
       return match
     }
     
-    // Add referrerpolicy attribute before the closing > or />
     const closing = selfClosing ? ' />' : '>'
-    return `<iframe${attributes} referrerpolicy="strict-origin-when-cross-origin"${closing}`
+    return `<iframe${updatedAttributes}${closing}`
   })
 }
 

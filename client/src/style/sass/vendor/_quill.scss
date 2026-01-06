@@ -307,6 +307,9 @@
 .ql-editor .ql-video {
   display: block;
   max-width: 100%;
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  height: auto;
 }
 .ql-editor .ql-video.ql-align-center {
   margin: 0 auto;
