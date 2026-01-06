@@ -179,13 +179,16 @@ export default {
 <style lang='scss'>
 @import './../../style/sass/abstracts/variables';
 @import './../../style/sass/abstracts/mixins';
+#artmap{
+  font-weight: 300;
+}
 #artmap_container, #artmapcanvas{
   position: absolute;
   top:0;
   left:0;
   width:100%;
   height:100%;
-  background-color:$colors_artcanvas;
+  background-color: #222;
   overflow: hidden;
   canvas{
     z-index:1;

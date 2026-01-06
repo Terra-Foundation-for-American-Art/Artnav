@@ -37,7 +37,7 @@ export default {
 .map-ctrls{
   position: absolute;
   top:50%;
-  right:2rem;
+  right: 0;
   transform: translateY(-50%);
   z-index: 2;
   text-align: center;
@@ -45,7 +45,7 @@ export default {
     position: relative;
     display: block;
     padding: 0.4rem;
-    background-color:white;
+    background-color: #efe7d7;
     height: 1.8rem;
     transition: all 0.25s ease-in-out;
     cursor: pointer;
@@ -56,7 +56,7 @@ export default {
       display: block;
     }
     &:hover{
-      background-color:#e4e4e4;
+      background-color: #e4e4e4;
     }
     &:active{
       i{

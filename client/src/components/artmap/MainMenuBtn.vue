@@ -20,13 +20,15 @@ export default {
 @import './../../style/sass/abstracts/mixins';
 .main-menu-trigger{
   position: absolute;
-  top:2rem;
-  left: 2.6rem;
+  top: 20px;
+  left: 26px;
   display: block;
-  width:2.7rem;
-  height:2.7rem;
+  width: 46px;
+  height: 46px;
   border-radius:50%;
-  background-color: white;
+  background-color: #efe7d7;
+  font-family: "Ginka", "Helvetica", Arial, sans-serif;
+  font-weight: 300;
   text-align: center;
   box-shadow: 1px 1px 5px 0px rgba(0, 0, 0, 0.15);
   cursor: pointer;
@@ -47,7 +49,7 @@ export default {
   }
   &:hover{
     i{
-      color:$colors_primary;
+      color:#222;
     }
   }
 }

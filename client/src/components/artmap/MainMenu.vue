@@ -137,7 +137,7 @@ export default {
     padding:4rem;
     padding-left: 5rem;
     border-radius:1rem;
-    background-color:$colors_artcanvas;
+    background-color: #222;
     color:white;
     padding-top: 7rem;
     overflow-y: scroll;
@@ -147,8 +147,17 @@ export default {
       padding-right: 20%;
       h1{
         margin-top:0;
-        color:$colors_primary_header;
+        color: #fffcf6;
+        font-family: Fragment, Helvetica, Arial, sans-serif;
+        font-size: 30px;
+        font-weight: 300;
         margin-bottom:0.25rem;
+        span{
+          font-family: Fragment, Helvetica, Arial, sans-serif;
+          font-size: 30px;
+          font-weight: 300;
+          font-style: normal;
+        }
       }
       .creation_date, .artist_name{
         margin:0;
@@ -165,10 +174,15 @@ export default {
         color:#969696;
       }
       .catalog_caption{
-        @include font-size(0.8);
+        font-family: Ginka, Helvetica, Arial, sans-serif;
+        font-size: 18px;
+        color: #fffcf6;
         @include line-height(1.2);
         margin-top: 0.8rem;
-        color:#969696;
+      }
+      .artist_name{
+        font-family: Ginka, Helvetica, Arial, sans-serif;
+        font-size: 18px;
       }
     }
   }
@@ -178,8 +192,10 @@ export default {
     padding-top:1.6rem;
   }
   .related-section-label{
-    @include font-size(1);
-    color:$colors_grays_light;
+    font-family: Ginka, Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    color: #fffcf6;
 
   }
   .related_collection{
@@ -207,11 +223,12 @@ export default {
       text-align: center;
       cursor: pointer;
       margin-top:1rem;
+      font-family: Ginka, Helvetica, Arial, sans-serif;
       .artwork_img{
         background-size: cover;
         background-repeat: no-repeat;
-        width:7rem;
-        height:7rem;
+        width: 120px;
+        height: 120px;
         border:2px solid transparent;
         border-radius:50%;
         margin:0 auto;
@@ -219,26 +236,19 @@ export default {
         transition:all 0.15s ease-in-out;
       }
       .collection_artwork_title{
-        a{
-          color:white;
-          @include font-size(1.2);
-          &:hover{
-            text-decoration: none;
-            color:#199bff;
-          }
-        }
+        font-family: Fragment, Helvetica, Arial, sans-serif;
       }
       h1{
-        @include font-size(1);
+        font-size: 20px;
         @include line-height(1.8);
         margin-bottom:0.3rem;
       }
       &:hover{
         .artwork_img{
-          border:2px solid $colors_primary;
+          border: 2px solid #fffcf6;
         }
         .collection_artwork_title{
-          color:#199bff;
+          color: #fffcf6;
         }
       }
     }

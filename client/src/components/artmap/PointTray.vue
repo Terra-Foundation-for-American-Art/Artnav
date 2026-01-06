@@ -44,10 +44,10 @@ export default {
   position: absolute;
   top:0;
   left:0;
-  width:20rem;
+  width: 400px;
   height:100%;
   padding:1.5rem;
-  transform: translate3d(-20rem, 0rem, 0rem);
+  transform: translate3d(-400px, 0rem, 0rem);
   transition: all 0.3s cubic-bezier(0.4, 0.0, 0.6, 1);
   z-index: 3;
   &.open{
@@ -56,32 +56,44 @@ export default {
   .sidebar_reveal{
     display: block;
     position: absolute;
-    right:0;
-    top:50%;
-    transform: translateX(6.75rem) translateY(-50%) rotateZ(90deg);
-    background-color: #fff;
-    padding:0.7rem;
+    right: 82px;
+    top: 50%;
+    transform: translateX(14.5rem) translateY(-50%) rotate(90deg);
+    background-color: #5f1718;
+    border-width: 2px 2px 0 2px;
+    border-style: solid;
+    border-color: #5f1718;
+    padding: 16px 22px 12px 22px;
+    border-radius: 30px 30px 0 0;
     cursor: pointer;
-    transition:all 0.2s ease-in-out;
+    transition: all .2s ease-in-out;
+    color: #fffcf6;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 1.2;
     .icon{
-      width:0.6rem;
-      height:auto;
+      width: 6px;
+      height: auto;
       display: inline-block;
-      transform: rotateZ(-90deg) translateX(-1px);
-      margin-left: 0.8rem;
-      transition: all 0.2s ease-in-out;
+      transform: rotate(-90deg) translateX(-1px);
+      margin-left: 8px;
+      transition: all .2s ease-in-out;
+      color: #fffcf6;
+    }
+    #double-arrow-icon .cls-1{
+      stroke:#fffcf6;
     }
     &:hover{
-      color:$colors_primary;
+      color:#fffcf6;
       .icon{
-        color:$colors_primary;
+        color:#fffcf6;
       }
     }
     &.open{
-      color:$colors_primary;
+      color:#fffcf6;
       .icon{
-        color:$colors_primary;
-        transform: rotateZ(90deg) translateX(-1px);
+        color:#fffcf6;
+        transform: rotate(90deg) translateX(-1px);
       }
     }
   }
@@ -114,7 +126,7 @@ export default {
   }
 }
 #point_tray{
-  background-color: $colors_primary_dark;
+  background-color: #5f1718;
   position: absolute;
   top:0;
   left:0;
@@ -126,25 +138,26 @@ export default {
   padding: 1rem;
   .point-tray-intro{
     position: relative;
-    padding: 2rem;
-    padding-top: 0rem;
-    padding-bottom: 0.5rem;
+    padding: 20px;
     h1{
-      @include font-size(1.68);
-      color:white;
+      font-family: Fragment, Helvetica, Arial, sans-serif;
+      font-size: 30px;
+      font-weight: 300;
+      color: #fffcf6;
       margin-bottom:0.5rem;
     }
     p{
       margin-bottom:0.3rem;
     }
     .artist-name{
-      color:white;
-      @include font-size(1);
-      @include type_header_medium;
+      color: #fffcf6;
+      font-family: Ginka, Helvetica, Arial, sans-serif;
+      font-size: 18px;
     }
     .creation-date{
-      color: $colors_grays_light;
-      @include font-size(0.8)
+      color: #fffcf6;
+      font-family: Ginka, Helvetica, Arial, sans-serif;
+      font-size: 18px;
     }
   }
 }

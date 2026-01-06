@@ -2,6 +2,46 @@
 $icon-font-path: './../../static/fonts/' !default;
 
 @font-face {
+  font-family: 'Ginka';
+  src:  url('#{$icon-font-path}Ginka-Light.woff2') format('woff2'),
+    url('#{$icon-font-path}Ginka-Light.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Ginka';
+  src:  url('#{$icon-font-path}Ginka-Light_Italic.woff2') format('woff2'),
+    url('#{$icon-font-path}Ginka-Light_Italic.woff') format('woff');
+  font-weight: 300;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Ginka';
+  src:  url('#{$icon-font-path}Ginka-Book.woff2') format('woff2'),
+    url('#{$icon-font-path}Ginka-Book.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Fragment';
+  src:  url('#{$icon-font-path}PPFragment-GlareLight.woff2') format('woff2'),
+    url('#{$icon-font-path}PPFragment-GlareLight.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Fragment';
+  src:  url('#{$icon-font-path}PPFragment-GlareLightItalic.woff2') format('woff2'),
+    url('#{$icon-font-path}PPFragment-GlareLightItalic.woff') format('woff');
+  font-weight: 300;
+  font-style: italic;
+}
+
+@font-face {
   font-family: 'ApercuPro-Bold';
   src:  url('#{$icon-font-path}ApercuPro-Bold.eot');
   src:  url('#{$icon-font-path}ApercuPro-Bold.eot#iefix') format('embedded-opentype'),
@@ -1068,4 +1108,3 @@ $icon-font-path: './../../static/fonts/' !default;
 .oi-zoom-out:before {
   content:'\e0de';
 }
-

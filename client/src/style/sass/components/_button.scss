@@ -43,7 +43,8 @@
 .btn-primary:not([disabled]):not(.disabled).active,
 .btn-primary:not([disabled]):not(.disabled):active,
 .show>.btn-primary.dropdown-toggle{
-  background-color:$colors_primary;
-  border-color:$colors_primary;
-  color:$colors_primary_btn_text;
+  background-color: #efe7d7;
+  border-color: transparent;
+  color: #222;
+  box-shadow: none;
 }

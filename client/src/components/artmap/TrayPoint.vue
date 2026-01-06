@@ -81,13 +81,17 @@ export default {
   transition: all 0.25s cubic-bezier(0.4, 0.0, 0.2, 1);
   cursor: pointer;
   h2{
-    @include type_header_bold;
-    color:$colors_primary_header;
+    font-family: Fragment, Helvetica, Arial, sans-serif;
+    font-size: 22px;
+    font-weight: 300;
+    line-height: 1.2;
+    color: #fffcf6;
   }
   p{
-    color:#fff;
+    font-family: Ginka, Helvetica, Arial, sans-serif;
+    font-size: 18px;
+    color: #fffcf6;
     margin-bottom:0;
-    @include font-size(0.8);
   }
   .point_thumb{
     position: relative;
@@ -102,13 +106,13 @@ export default {
     transform-origin:center;
   }
   .tray_point_text{
-    padding: 1rem 2rem;
+    padding: 10px 20px;
   }
   &:hover, &.active{
     background-color:rgba(255, 255, 255, 0.03);
     .point_thumb{
-      transform: translateY(-50%) scale(0.95);
-      border:2px solid $colors_primary;
+      transform: translateY(-50%) scale(.95);
+      border: 2px solid #fffcf6;
     }
   }
   &:active{

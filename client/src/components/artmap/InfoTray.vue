@@ -98,10 +98,10 @@ export default {
   position: absolute;
   right:0;
   top:0;
-  width: 32rem;
+  width: 500px;
   height: 100%;
   padding: 2rem;
-  background: linear-gradient(90deg, #ff000000, black);
+  background: linear-gradient(90deg, rgba(34, 34, 34, 0), rgba(34, 34, 34, .5) 25%);
   z-index: 3;
   color:white;
   overflow-y: scroll;
@@ -110,7 +110,13 @@ export default {
   position: relative;
   top:0;
   width:100%;
-  color:white;
+  color:#fffcf6;
+  .info-title h1{
+    font-size: 22px;
+    font-family: Fragment, Helvetica, Arial, sans-serif;
+    font-style: normal;
+    font-weight: 300;
+  }
   .controls{
     padding:0;
     margin:0;
@@ -127,7 +133,7 @@ export default {
       transform: scale(1);
       transition: all 0.25s ease-in-out;
       &:hover{
-        color:$colors_primary;
+        color:#fffcf6;
       }
     }
     .next-prev{
@@ -138,7 +144,7 @@ export default {
         transition: all 0.25s ease-in-out;
         cursor: pointer;
         &:hover{
-          color:$colors_primary;
+          color:#fffcf6;
         }
         &.fa-angle-left{
           &:hover{
@@ -171,12 +177,12 @@ export default {
       @include font-size(0.88);
       background-color:transparent !important;
       span, strong, em, u{
-        color:white !important;
-        @include font-size(0.88);
+        color: #fffcf6 !important;
+        font-size: 18px;
         background-color:transparent !important;
-        a{ color: #007bff !important; }
+        a{ color: #fffcf6 !important; }
       }
-      a{ color: #007bff !important; }
+      a{ color: #fffcf6 !important; font-size: 18px; text-decoration: underline; }
     }
     h1{
       @include font-size(1.2);
@@ -204,7 +210,7 @@ export default {
       border-bottom: 1px solid rgba(255, 255, 255, 0.2);
       border-top: 1px solid rgba(255, 255, 255, 0.2);
     }
-    h3, h3 em, h3 strong, h3 u{
+    h3, h3 strong, h3 u{
       @include font-size(0.78);
       @include line-height(1.08);
     }

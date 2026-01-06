@@ -24,22 +24,36 @@ export default {
 @import './../../style/sass/abstracts/mixins';
 .btn-discover{
   position: absolute;
-  top: 2.2rem;
-  left: 15.8rem;
+  top: 20px;
+  left: 487px;
   z-index: 2;
-  border: 2px solid $colors_primary;
-  background-color:$colors_primary;
+  width: 240px;
+  border: none;
+  border-radius: 15px;
+  padding: 13px 38px;
+  background-color: #efe7d7;
+  color: #222;
+  font-family: Ginka, Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.25;
+  letter-spacing: .05em;
+  text-transform: uppercase;
   &:focus{
     box-shadow: none
+  }
+  &:hover{
+    color: #222;
+    background-color: #fffcf6;
   }
   &.exit_ready{
     background-color:transparent;
     border:none;
-    color:white;
+    color: #fffcf6;
     box-shadow: none;
   }
   span {
-    font-size: .8rem;
+    font-size: 16px;
   }
 }
 </style>
